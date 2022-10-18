@@ -1,0 +1,18 @@
+pandoc: 2.7.3
+pkgdown: 2.0.6
+pkgdown_sha: ~
+articles:
+  basic-intro: basic-intro.html
+  bayesian: bayesian.html
+  cross-validation: cross-validation.html
+  delta-models: delta-models.html
+  ggeffects: ggeffects.html
+  index-standardization: index-standardization.html
+  model-description: model-description.html
+  pretty-plots: pretty-plots.html
+  residual-checking: residual-checking.html
+  spatial-trend-models: spatial-trend-models.html
+  threshold-models: threshold-models.html
+  visreg: visreg.html
+last_built: 2022-10-18T00:21Z
+
