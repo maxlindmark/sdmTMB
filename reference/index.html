@@ -61,9 +61,217 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="mesh-construction">Mesh construction<a class="anchor" aria-label="anchor" href="#mesh-construction"></a></h2>
+      
+      <p class="section-desc"></p><p>Tools for converting coordinates into UTMs, constructing SPDE meshes prior to model fitting, and adding correlation barriers.</p>
+
+      
+    </div><div id="" class="section level2">
       
       
+      
+
+      <dl><dt>
+          
+          <code><a href="add_utm_columns.html">add_utm_columns()</a></code> <code><a href="add_utm_columns.html">get_crs()</a></code> 
+        </dt>
+        <dd>Add UTM coordinates to a data frame</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_mesh.html">make_mesh()</a></code> <code><a href="make_mesh.html">plot(<i>&lt;sdmTMBmesh&gt;</i>)</a></code> 
+        </dt>
+        <dd>Construct an SPDE mesh for sdmTMB</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_barrier_mesh.html">add_barrier_mesh()</a></code> 
+        </dt>
+        <dd>Transform a mesh object into a mesh with correlation barriers</dd>
+      </dl></div><div class="section level2">
+      <h2 id="fitting-and-predicting">Fitting and predicting<a class="anchor" aria-label="anchor" href="#fitting-and-predicting"></a></h2>
+      
+      <p class="section-desc"></p><p>Core tools for model fitting, prediction, and inspection.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="sdmTMB.html">sdmTMB()</a></code> 
+        </dt>
+        <dd>Fit a spatial or spatiotemporal GLMM with TMB</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.sdmTMB.html">predict(<i>&lt;sdmTMB&gt;</i>)</a></code> 
+        </dt>
+        <dd>Predict from an sdmTMB model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="tidy.sdmTMB.html">tidy(<i>&lt;sdmTMB&gt;</i>)</a></code> 
+        </dt>
+        <dd>Turn sdmTMB model output into a tidy data frame</dd>
+      </dl><dl><dt>
+          
+          <code><a href="sanity.html">sanity()</a></code> 
+        </dt>
+        <dd>Sanity check of sdmTMB model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="sdmTMBcontrol.html">sdmTMBcontrol()</a></code> 
+        </dt>
+        <dd>Optimization control options</dd>
+      </dl><dl><dt>
+          
+          <code><a href="run_extra_optimization.html">run_extra_optimization()</a></code> 
+        </dt>
+        <dd>Run extra optimization on an already fitted object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="residuals.sdmTMB.html">residuals(<i>&lt;sdmTMB&gt;</i>)</a></code> 
+        </dt>
+        <dd>Residuals method for sdmTMB models</dd>
+      </dl><dl><dt>
+          
+          <code><a href="dharma_residuals.html">dharma_residuals()</a></code> 
+        </dt>
+        <dd>Get DHARMa residuals</dd>
+      </dl></div><div class="section level2">
+      <h2 id="families">Families<a class="anchor" aria-label="anchor" href="#families"></a></h2>
+      
+      <p class="section-desc"></p><p>Additional families beyond the standard R families.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="families.html">Beta()</a></code> <code><a href="families.html">lognormal()</a></code> <code><a href="families.html">nbinom2()</a></code> <code><a href="families.html">nbinom1()</a></code> <code><a href="families.html">truncated_nbinom2()</a></code> <code><a href="families.html">truncated_nbinom1()</a></code> <code><a href="families.html">student()</a></code> <code><a href="families.html">tweedie()</a></code> <code><a href="families.html">censored_poisson()</a></code> <code><a href="families.html">delta_gamma()</a></code> <code><a href="families.html">delta_lognormal()</a></code> <code><a href="families.html">delta_truncated_nbinom2()</a></code> <code><a href="families.html">delta_truncated_nbinom1()</a></code> <code><a href="families.html">delta_poisson_link_gamma()</a></code> <code><a href="families.html">delta_poisson_link_lognormal()</a></code> 
+        </dt>
+        <dd>Additional families</dd>
+      </dl></div><div class="section level2">
+      <h2 id="priors">Priors<a class="anchor" aria-label="anchor" href="#priors"></a></h2>
+      
+      <p class="section-desc"></p><p>Optional priors or penalties on parameters.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="priors.html">sdmTMBpriors()</a></code> <code><a href="priors.html">normal()</a></code> <code><a href="priors.html">halfnormal()</a></code> <code><a href="priors.html">mvnormal()</a></code> <code><a href="priors.html">pc_matern()</a></code> 
+        </dt>
+        <dd>Prior distributions</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_pc_matern.html">plot_pc_matern()</a></code> 
+        </dt>
+        <dd>Plot PC Matern priors</dd>
+      </dl></div><div class="section level2">
+      <h2 id="simulation">Simulation<a class="anchor" aria-label="anchor" href="#simulation"></a></h2>
+      
+      <p class="section-desc"></p><p>Simulating new data with an sdmTMB model.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="simulate.sdmTMB.html">simulate(<i>&lt;sdmTMB&gt;</i>)</a></code> 
+        </dt>
+        <dd>Simulate from a fitted sdmTMB model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="sdmTMB_simulate.html">sdmTMB_simulate()</a></code> 
+        </dt>
+        <dd>Simulate from a spatial/spatiotemporal model</dd>
+      </dl></div><div class="section level2">
+      <h2 id="plotting">Plotting<a class="anchor" aria-label="anchor" href="#plotting"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions for plotting.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="plot_anisotropy.html">plot_anisotropy()</a></code> 
+        </dt>
+        <dd>Plot anisotropy</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_smooth.html">plot_smooth()</a></code> 
+        </dt>
+        <dd>Plot a smooth term from an sdmTMB model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_pc_matern.html">plot_pc_matern()</a></code> 
+        </dt>
+        <dd>Plot PC Matern priors</dd>
+      </dl><dl><dt>
+          
+          <code><a href="visreg_delta.html">visreg_delta()</a></code> <code><a href="visreg_delta.html">visreg2d_delta()</a></code> 
+        </dt>
+        <dd>Plot sdmTMB models with the <span class="pkg">visreg</span> package</dd>
+      </dl></div><div class="section level2">
+      <h2 id="cross-validation">Cross validation<a class="anchor" aria-label="anchor" href="#cross-validation"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions related to cross validation.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="sdmTMB_cv.html">sdmTMB_cv()</a></code> 
+        </dt>
+        <dd>Cross validation with sdmTMB models</dd>
+      </dl><dl><dt>
+          
+          <code><a href="sdmTMB_stacking.html">sdmTMB_stacking()</a></code> 
+        </dt>
+        <dd>Perform stacking with log scores on <code><a href="../reference/sdmTMB_cv.html">sdmTMB_cv()</a></code> output</dd>
+      </dl></div><div class="section level2">
+      <h2 id="derived-quantities">Derived quantities<a class="anchor" aria-label="anchor" href="#derived-quantities"></a></h2>
+      
+      <p class="section-desc"></p><p>Derived quantities that can be calculated from sdmTMB models.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="get_index.html">get_index()</a></code> <code><a href="get_index.html">get_cog()</a></code> 
+        </dt>
+        <dd>Extract a relative biomass/abundance index or a center of gravity</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_index_sims.html">get_index_sims()</a></code> 
+        </dt>
+        <dd>Calculate a population index via simulation from the joint precision matrix</dd>
+      </dl></div><div class="section level2">
+      <h2 id="miscellaneous-parameter-extraction">Miscellaneous parameter extraction<a class="anchor" aria-label="anchor" href="#miscellaneous-parameter-extraction"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions for calculating effect sizes or extracting parameter samples.</p>
 
       
     </div><div id="" class="section level2">
@@ -78,31 +286,6 @@
         <dd>Calculate effects</dd>
       </dl><dl><dt>
           
-          <code><a href="add_barrier_mesh.html">add_barrier_mesh()</a></code> 
-        </dt>
-        <dd>Transform a mesh object into a mesh with correlation barriers</dd>
-      </dl><dl><dt>
-          
-          <code><a href="add_utm_columns.html">add_utm_columns()</a></code> <code><a href="add_utm_columns.html">get_crs()</a></code> 
-        </dt>
-        <dd>Add UTM coordinates to a data frame</dd>
-      </dl><dl><dt>
-          
-          <code><a href="bc_coast.html">bc_coast</a></code> 
-        </dt>
-        <dd>BC coastline data from ropensci/rnaturalearthhires</dd>
-      </dl><dl><dt>
-          
-          <code><a href="bei.html">bei</a></code> 
-        </dt>
-        <dd>Tree locations from Barro Colorado Island</dd>
-      </dl><dl><dt>
-          
-          <code><a href="dharma_residuals.html">dharma_residuals()</a></code> 
-        </dt>
-        <dd>Get DHARMa residuals</dd>
-      </dl><dl><dt>
-          
           <code><a href="emmeans.sdmTMB.html">emmeans.sdmTMB</a></code> 
         </dt>
         <dd>Estimated marginal means with the <span class="pkg">emmeans</span> package with <span class="pkg">sdmTMB</span></dd>
@@ -113,136 +296,12 @@
         <dd>Extract MCMC samples from a model fit with <code><a href="https://rdrr.io/pkg/tmbstan/man/tmbstan.html" class="external-link">tmbstan::tmbstan()</a></code>.</dd>
       </dl><dl><dt>
           
-          <code><a href="families.html">Beta()</a></code> <code><a href="families.html">lognormal()</a></code> <code><a href="families.html">nbinom2()</a></code> <code><a href="families.html">nbinom1()</a></code> <code><a href="families.html">truncated_nbinom2()</a></code> <code><a href="families.html">truncated_nbinom1()</a></code> <code><a href="families.html">student()</a></code> <code><a href="families.html">tweedie()</a></code> <code><a href="families.html">censored_poisson()</a></code> <code><a href="families.html">delta_gamma()</a></code> <code><a href="families.html">delta_lognormal()</a></code> <code><a href="families.html">delta_truncated_nbinom2()</a></code> <code><a href="families.html">delta_truncated_nbinom1()</a></code> <code><a href="families.html">delta_poisson_link_gamma()</a></code> <code><a href="families.html">delta_poisson_link_lognormal()</a></code> 
-        </dt>
-        <dd>Additional families</dd>
-      </dl><dl><dt>
-          
           <code><a href="gather_sims.html">spread_sims()</a></code> <code><a href="gather_sims.html">gather_sims()</a></code> 
         </dt>
         <dd>Extract parameter simulations from the joint precision matrix</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_index.html">get_index()</a></code> <code><a href="get_index.html">get_cog()</a></code> 
-        </dt>
-        <dd>Extract a relative biomass/abundance index or a center of gravity</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_index_sims.html">get_index_sims()</a></code> 
-        </dt>
-        <dd>Calculate a population index via simulation from the joint precision matrix</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_pars.html">get_pars()</a></code> 
-        </dt>
-        <dd>Get TMB parameter list</dd>
-      </dl><dl><dt>
-          
-          <code><a href="make_mesh.html">make_mesh()</a></code> <code><a href="make_mesh.html">plot(<i>&lt;sdmTMBmesh&gt;</i>)</a></code> 
-        </dt>
-        <dd>Construct an SPDE mesh for sdmTMB</dd>
-      </dl><dl><dt>
-          
-          <code><a href="pcod.html">pcod</a></code> 
-        </dt>
-        <dd>Example data for Pacific Cod</dd>
-      </dl><dl><dt>
-          
-          <code><a href="pcod_2011.html">pcod_2011</a></code> 
-        </dt>
-        <dd>Example data for Pacific Cod (years 2011 and after)</dd>
-      </dl><dl><dt>
-          
-          <code><a href="pcod_mesh_2011.html">pcod_mesh_2011</a></code> 
-        </dt>
-        <dd>Example SPDE mesh for the Pacific Cod data (years 2011 and after)</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_anisotropy.html">plot_anisotropy()</a></code> 
-        </dt>
-        <dd>Plot anisotropy</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_pc_matern.html">plot_pc_matern()</a></code> 
-        </dt>
-        <dd>Plot PC Matern priors</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_smooth.html">plot_smooth()</a></code> 
-        </dt>
-        <dd>Plot a smooth term from an sdmTMB model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="predict.sdmTMB.html">predict(<i>&lt;sdmTMB&gt;</i>)</a></code> 
-        </dt>
-        <dd>Predict from an sdmTMB model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="priors.html">sdmTMBpriors()</a></code> <code><a href="priors.html">normal()</a></code> <code><a href="priors.html">halfnormal()</a></code> <code><a href="priors.html">mvnormal()</a></code> <code><a href="priors.html">pc_matern()</a></code> 
-        </dt>
-        <dd>Prior distributions</dd>
-      </dl><dl><dt>
-          
-          <code><a href="qcs_grid.html">qcs_grid</a></code> 
-        </dt>
-        <dd>Example 2x2km prediction grid for Queen Charlotte Sound</dd>
-      </dl><dl><dt>
-          
-          <code><a href="residuals.sdmTMB.html">residuals(<i>&lt;sdmTMB&gt;</i>)</a></code> 
-        </dt>
-        <dd>Residuals method for sdmTMB models</dd>
-      </dl><dl><dt>
-          
-          <code><a href="run_extra_optimization.html">run_extra_optimization()</a></code> 
-        </dt>
-        <dd>Run extra optimization on an already fitted object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="sanity.html">sanity()</a></code> 
-        </dt>
-        <dd>Sanity check of sdmTMB model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="sdmTMB.html">sdmTMB()</a></code> 
-        </dt>
-        <dd>Fit a spatial or spatiotemporal GLMM with TMB</dd>
-      </dl><dl><dt>
-          
-          <code><a href="sdmTMB_cv.html">sdmTMB_cv()</a></code> 
-        </dt>
-        <dd>Cross validation with sdmTMB models</dd>
-      </dl><dl><dt>
-          
-          <code><a href="sdmTMB_simulate.html">sdmTMB_simulate()</a></code> 
-        </dt>
-        <dd>Simulate from a spatial/spatiotemporal model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="sdmTMB_stacking.html">sdmTMB_stacking()</a></code> 
-        </dt>
-        <dd>Perform stacking with log scores on <code><a href="../reference/sdmTMB_cv.html">sdmTMB_cv()</a></code> output</dd>
-      </dl><dl><dt>
-          
-          <code><a href="sdmTMBcontrol.html">sdmTMBcontrol()</a></code> 
-        </dt>
-        <dd>Optimization control options</dd>
-      </dl><dl><dt>
-          
-          <code><a href="simulate.sdmTMB.html">simulate(<i>&lt;sdmTMB&gt;</i>)</a></code> 
-        </dt>
-        <dd>Simulate from a fitted sdmTMB model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="tidy.sdmTMB.html">tidy(<i>&lt;sdmTMB&gt;</i>)</a></code> 
-        </dt>
-        <dd>Turn sdmTMB model output into a tidy data frame</dd>
-      </dl><dl><dt>
-          
-          <code><a href="visreg_delta.html">visreg_delta()</a></code> <code><a href="visreg_delta.html">visreg2d_delta()</a></code> 
-        </dt>
-        <dd>Plot sdmTMB models with the <span class="pkg">visreg</span> package</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
