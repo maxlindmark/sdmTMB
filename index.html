@@ -4,14 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Implements spatial and spatiotemporal predictive-process GLMMs
+    (Generalized Linear Mixed Effect Models) using TMB, INLA, and the SPDE
+    (Stochastic Partial Differential Equation) approximation to Gaussian random
+    fields. One common application is for spatially explicit (and optionally
+    dynamic) species distribution models (SDMs). See Anderson et al. (2022)
+    &lt;doi:10.1101/2022.03.24.485545&gt;.">
 <title>Spatial and Spatiotemporal SPDE-Based GLMMs with TMB • sdmTMB</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Spatial and Spatiotemporal SPDE-Based GLMMs with TMB">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Spatial and Spatiotemporal SPDE-Based GLMMs with TMB">
 <meta property="og:description" content="Implements spatial and spatiotemporal predictive-process GLMMs
     (Generalized Linear Mixed Effect Models) using TMB, INLA, and the SPDE
     (Stochastic Partial Differential Equation) approximation to Gaussian random
@@ -23,105 +28,75 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">sdmTMB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="index.html">sdmTMB</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="reference/index.html">Reference</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/basic-intro.html">Introduction to modelling with sdmTMB</a>
-    </li>
-    <li>
-      <a href="articles/bayesian.html">Bayesian estimation with sdmTMB</a>
-    </li>
-    <li>
-      <a href="articles/cross-validation.html">Cross-validation for model evaluation and comparison</a>
-    </li>
-    <li>
-      <a href="articles/delta-models.html">Fitting delta (hurdle) models with sdmTMB</a>
-    </li>
-    <li>
-      <a href="articles/ggeffects.html">Visualizing marginal effects in sdmTMB models with ggeffects</a>
-    </li>
-    <li>
-      <a href="articles/index-standardization.html">Index standardization with sdmTMB</a>
-    </li>
-    <li>
-      <a href="articles/model-description.html">sdmTMB model description</a>
-    </li>
-    <li>
-      <a href="articles/pretty-plots.html">Making pretty maps with sdmTMB output</a>
-    </li>
-    <li>
-      <a href="articles/residual-checking.html">Residual checking with sdmTMB</a>
-    </li>
-    <li>
-      <a href="articles/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a>
-    </li>
-    <li>
-      <a href="articles/threshold-models.html">Threshold modeling with sdmTMB</a>
-    </li>
-    <li>
-      <a href="articles/visreg.html">Visualizing sdmTMB conditional effects using visreg</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/pbs-assess/sdmTMB/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/basic-intro.html">Introduction to modelling with sdmTMB</a>
+    <a class="dropdown-item" href="articles/bayesian.html">Bayesian estimation with sdmTMB</a>
+    <a class="dropdown-item" href="articles/cross-validation.html">Cross-validation for model evaluation and comparison</a>
+    <a class="dropdown-item" href="articles/delta-models.html">Fitting delta (hurdle) models with sdmTMB</a>
+    <a class="dropdown-item" href="articles/ggeffects.html">Visualizing marginal effects in sdmTMB models with ggeffects</a>
+    <a class="dropdown-item" href="articles/index-standardization.html">Index standardization with sdmTMB</a>
+    <a class="dropdown-item" href="articles/model-description.html">sdmTMB model description</a>
+    <a class="dropdown-item" href="articles/pretty-plots.html">Making pretty maps with sdmTMB output</a>
+    <a class="dropdown-item" href="articles/residual-checking.html">Residual checking with sdmTMB</a>
+    <a class="dropdown-item" href="articles/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a>
+    <a class="dropdown-item" href="articles/threshold-models.html">Threshold modeling with sdmTMB</a>
+    <a class="dropdown-item" href="articles/visreg.html">Visualizing sdmTMB conditional effects using visreg</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/pbs-assess/sdmTMB/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-<div class="section level1">
+    
+  </div>
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="sdmtmb-">sdmTMB <a href="https://github.com/pbs-assess/sdmTMB" class="external-link"><img src="reference/figures/logo-sdmTMB.png" align="right" height="139"></a>
 <a class="anchor" aria-label="anchor" href="#sdmtmb-"></a>
 </h1></div>
-<blockquote><p>Spatial and spatiotemporal GLMMs with TMB</p></blockquote>
+<blockquote>
+<p>Spatial and spatiotemporal GLMMs with TMB</p>
+</blockquote>
 <!-- badges: start -->
-<p>sdmTMB is an R package that fits spatial and spatiotemporal predictive-process GLMMs (Generalized Linear Mixed Effects Models) using Template Model Builder (<a href="https://github.com/kaskr/adcomp" class="external-link">TMB</a>), <a href="https://www.r-inla.org/" class="external-link">R-INLA</a>, and Gaussian Markov random fields. One common application is for species distribution models (SDMs). See also the <a href="https://pbs-assess.github.io/sdmTMB/index.html" class="external-link">documentation site</a>.</p>
+
+<p>sdmTMB is an R package that fits spatial and spatiotemporal predictive-process GLMMs (Generalized Linear Mixed Effects Models) using Template Model Builder (<a href="https://github.com/kaskr/adcomp" class="external-link">TMB</a>), <a href="https://www.r-inla.org/" class="external-link">R-INLA</a>, and Gaussian Markov random fields. One common application is for species distribution models (SDMs). See also the <a href="https://pbs-assess.github.io/sdmTMB/index.html">documentation site</a>.</p>
 <div class="section level2">
 <h2 id="table-of-contents">Table of contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
 </h2>
@@ -133,7 +108,8 @@
 <li><a href="#related-software" id="toc-related-software">Related software</a></li>
 <li><a href="#basic-use" id="toc-basic-use">Basic use</a></li>
 <li>
-<a href="#advanced-functionality" id="toc-advanced-functionality">Advanced functionality</a><ul>
+<a href="#advanced-functionality" id="toc-advanced-functionality">Advanced functionality</a>
+<ul>
 <li><a href="#time-varying-coefficients" id="toc-time-varying-coefficients">Time-varying coefficients</a></li>
 <li><a href="#spatially-varying-coefficients-svc" id="toc-spatially-varying-coefficients-svc">Spatially varying coefficients (SVC)</a></li>
 <li><a href="#random-intercepts" id="toc-random-intercepts">Random intercepts</a></li>
@@ -157,7 +133,7 @@
 <p>Assuming you have a <a href="https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites" class="external-link">C++ compiler</a> installed, you can install sdmTMB:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"pbs-assess/sdmTMB"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pbs-assess/sdmTMB"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>If you have problems installing INLA, try <a href="https://www.r-inla.org/download-install" class="external-link">installing it directly</a> first.</p>
 </div>
 <div class="section level2">
@@ -177,14 +153,14 @@
 </li>
 </ul>
 <p>Estimation is performed in sdmTMB via maximum marginal likelihood with the objective function calculated in TMB and minimized in R via <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">stats::nlminb()</a></code> with the random effects integrated over via the Laplace approximation. The sdmTMB package also allows for models to be passed to Stan via tmbstan, allowing for Bayesian model estimation.</p>
-<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/sdmTMB.html" class="external-link"><code>?sdmTMB</code></a> and <a href="https://pbs-assess.github.io/sdmTMB/reference/predict.sdmTMB.html" class="external-link"><code>?predict.sdmTMB</code></a> for the most complete examples. Also see the vignettes (‘Articles’) on the <a href="https://pbs-assess.github.io/sdmTMB/index.html" class="external-link">documentation site</a> and the preprint and appendices linked to below.</p>
+<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/sdmTMB.html"><code>?sdmTMB</code></a> and <a href="https://pbs-assess.github.io/sdmTMB/reference/predict.sdmTMB.html"><code>?predict.sdmTMB</code></a> for the most complete examples. Also see the vignettes (‘Articles’) on the <a href="https://pbs-assess.github.io/sdmTMB/index.html">documentation site</a> and the preprint and appendices linked to below.</p>
 </div>
 <div class="section level2">
 <h2 id="getting-help">Getting help<a class="anchor" aria-label="anchor" href="#getting-help"></a>
 </h2>
 <p>For questions about how to use sdmTMB or interpret the models, please post on the <a href="https://github.com/pbs-assess/sdmTMB/discussions" class="external-link">discussion board</a>. If you <a href="https://github.com/pbs-assess/sdmTMB/blob/main/DESCRIPTION" class="external-link">email</a> a question, we are likely to respond on the <a href="https://github.com/pbs-assess/sdmTMB/discussions" class="external-link">discussion board</a> with an anonymized version of your question (and without data) if we think it could be helpful to others. Please let us know if you don’t want us to do that.</p>
 <p>For bugs or feature requests, please post in the <a href="https://github.com/pbs-assess/sdmTMB/issues" class="external-link">issue tracker</a>.</p>
-<p><a href="https://pbs-assess.github.io/sdmTMB-teaching/noaa-psaw-2022/" class="external-link">Slides</a> and <a href="https://www.youtube.com/channel/UCYoFG51RjJVx7m9mZGaj-Ng/videos" class="external-link">recordings</a> from a workshop on sdmTMB.</p>
+<p><a href="https://pbs-assess.github.io/sdmTMB-teaching/noaa-psaw-2022/">Slides</a> and <a href="https://www.youtube.com/channel/UCYoFG51RjJVx7m9mZGaj-Ng/videos" class="external-link">recordings</a> from a workshop on sdmTMB.</p>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
@@ -212,14 +188,14 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pbs-assess.github.io/sdmTMB/index.html" class="external-link">sdmTMB</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pbs-assess.github.io/sdmTMB/index.html">sdmTMB</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#&gt; # A tibble: 3 × 6</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt;    year density present depth     X     Y</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; 1  2003   113.        1   201  446. 5793.</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; 2  2003    41.7       1   212  446. 5800.</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; 3  2003     0         0   220  449. 5802.</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 6</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    year density present depth     X     Y</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  2003   113.        1   201  446. 5793.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2003    41.7       1   212  446. 5800.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  2003     0         0   220  449. 5802.</span></span></code></pre></div>
 <p>We start by creating a mesh object that contains matrices to apply the SPDE approach.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, xy_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
@@ -298,12 +274,12 @@
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="va">qcs_grid</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#&gt; # A tibble: 3 × 7</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt;       X     Y depth   est est_non_rf est_rf omega_s</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&gt; 1   456  5636  347. -3.06      -3.08 0.0172  0.0172</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&gt; 2   458  5636  223.  2.03       1.99 0.0459  0.0459</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&gt; 3   460  5636  204.  2.89       2.82 0.0747  0.0747</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 7</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       X     Y depth   est est_non_rf est_rf omega_s</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   456  5636  347. -3.06      -3.08 0.0172  0.0172</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   458  5636  223.  2.03       1.99 0.0459  0.0459</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   460  5636  204.  2.89       2.82 0.0747  0.0747</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">p</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">est</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span>trans <span class="op">=</span> <span class="st">"sqrt"</span><span class="op">)</span></span></code></pre></div>
@@ -353,7 +329,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">lwr_y</span>, ymax <span class="op">=</span> <span class="va">upr_y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_c</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-plot-cog-1.png" width="50%"></p>
-<p>For more on these basic features, see the vignettes <a href="https://pbs-assess.github.io/sdmTMB/articles/basic-intro.html" class="external-link">Intro to modelling with sdmTMB</a> and <a href="https://pbs-assess.github.io/sdmTMB/articles/index-standardization.html" class="external-link">Index standardization with sdmTMB</a>.</p>
+<p>For more on these basic features, see the vignettes <a href="https://pbs-assess.github.io/sdmTMB/articles/basic-intro.html">Intro to modelling with sdmTMB</a> and <a href="https://pbs-assess.github.io/sdmTMB/articles/index-standardization.html">Index standardization with sdmTMB</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="advanced-functionality">Advanced functionality<a class="anchor" aria-label="anchor" href="#advanced-functionality"></a>
@@ -383,7 +359,7 @@
 <span>  spatiotemporal <span class="op">=</span> <span class="st">"ar1"</span>,</span>
 <span>  silent <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>See the vignette <a href="https://pbs-assess.github.io/sdmTMB/articles/basic-intro.html" class="external-link">Intro to modelling with sdmTMB</a> for more details.</p>
+<p>See the vignette <a href="https://pbs-assess.github.io/sdmTMB/articles/basic-intro.html">Intro to modelling with sdmTMB</a> for more details.</p>
 </div>
 <div class="section level3">
 <h3 id="spatially-varying-coefficients-svc">Spatially varying coefficients (SVC)<a class="anchor" aria-label="anchor" href="#spatially-varying-coefficients-svc"></a>
@@ -407,7 +383,7 @@
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">p</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, fill <span class="op">=</span> <span class="va">zeta_s_year_scaled</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_fill_gradient2</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-plot-zeta-1.png" width="50%"></p>
-<p>See the vignette on <a href="https://pbs-assess.github.io/sdmTMB/articles/spatial-trend-models.html" class="external-link">Fitting spatial trend models with sdmTMB</a> for more details.</p>
+<p>See the vignette on <a href="https://pbs-assess.github.io/sdmTMB/articles/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a> for more details.</p>
 </div>
 <div class="section level3">
 <h3 id="random-intercepts">Random intercepts<a class="anchor" aria-label="anchor" href="#random-intercepts"></a>
@@ -437,7 +413,7 @@
 <span>  data <span class="op">=</span> <span class="va">pcod</span>, mesh <span class="op">=</span> <span class="va">mesh</span>,</span>
 <span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>See the vignette on <a href="https://pbs-assess.github.io/sdmTMB/articles/threshold-models.html" class="external-link">Threshold modeling with sdmTMB</a> for more details.</p>
+<p>See the vignette on <a href="https://pbs-assess.github.io/sdmTMB/articles/threshold-models.html">Threshold modeling with sdmTMB</a> for more details.</p>
 </div>
 <div class="section level3">
 <h3 id="simulating-data">Simulating data<a class="anchor" aria-label="anchor" href="#simulating-data"></a>
@@ -491,7 +467,7 @@
 <span>  mesh <span class="op">=</span> <span class="va">mesh</span>,</span>
 <span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">poisson</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/sdmTMB_simulate.html" class="external-link"><code>?sdmTMB_simulate</code></a> for more details.</p>
+<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/sdmTMB_simulate.html"><code>?sdmTMB_simulate</code></a> for more details.</p>
 </div>
 <div class="section level4">
 <h4 id="simulating-from-an-existing-fit">Simulating from an existing fit<a class="anchor" aria-label="anchor" href="#simulating-from-an-existing-fit"></a>
@@ -512,7 +488,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate</a></span><span class="op">(</span><span class="va">fit</span>, nsim <span class="op">=</span> <span class="fl">500</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="reference/dharma_residuals.html">dharma_residuals</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-plot-dharma-1.png" width="50%"></p>
-<p>See the vignette on <a href="https://pbs-assess.github.io/sdmTMB/articles/residual-checking.html" class="external-link">Residual checking with sdmTMB</a>, <a href="https://pbs-assess.github.io/sdmTMB/reference/simulate.sdmTMB.html" class="external-link"><code>?simulate.sdmTMB</code></a>, and <a href="https://pbs-assess.github.io/sdmTMB/reference/dharma_residuals.html" class="external-link"><code>?dharma_residuals</code></a> for more details.</p>
+<p>See the vignette on <a href="https://pbs-assess.github.io/sdmTMB/articles/residual-checking.html">Residual checking with sdmTMB</a>, <a href="https://pbs-assess.github.io/sdmTMB/reference/simulate.sdmTMB.html"><code>?simulate.sdmTMB</code></a>, and <a href="https://pbs-assess.github.io/sdmTMB/reference/dharma_residuals.html"><code>?dharma_residuals</code></a> for more details.</p>
 </div>
 </div>
 <div class="section level3">
@@ -525,7 +501,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">.variable</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span></code></pre></div>
 <p><img src="reference/figures/README-plot-mvn-1.png" width="50%"></p>
-<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/gather_sims.html" class="external-link"><code>?gather_sims</code></a> and <a href="https://pbs-assess.github.io/sdmTMB/reference/get_index_sims.html" class="external-link"><code>?get_index_sims</code></a> for more details.</p>
+<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/gather_sims.html"><code>?gather_sims</code></a> and <a href="https://pbs-assess.github.io/sdmTMB/reference/get_index_sims.html"><code>?get_index_sims</code></a> for more details.</p>
 </div>
 <div class="section level3">
 <h3 id="calculating-uncertainty-on-spatial-predictions">Calculating uncertainty on spatial predictions<a class="anchor" aria-label="anchor" href="#calculating-uncertainty-on-spatial-predictions"></a>
@@ -563,7 +539,7 @@
 <span><span class="co"># (average likelihood density)</span></span>
 <span><span class="va">m_cv</span><span class="op">$</span><span class="va">elpd</span></span>
 <span><span class="co">#&gt; [1] -1.005114</span></span></code></pre></div>
-<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/sdmTMB_cv.html" class="external-link"><code>?sdmTMB_cv</code></a> for more details.</p>
+<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/sdmTMB_cv.html"><code>?sdmTMB_cv</code></a> for more details.</p>
 </div>
 <div class="section level3">
 <h3 id="priors">Priors<a class="anchor" aria-label="anchor" href="#priors"></a>
@@ -585,12 +561,12 @@
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_pc_matern.html">plot_pc_matern</a></span><span class="op">(</span>range_gt <span class="op">=</span> <span class="fl">10</span>, sigma_lt <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-plot-pc-matern-1.png" width="50%"></p>
-<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/priors.html" class="external-link"><code>?sdmTMBpriors</code></a> for more details.</p>
+<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/priors.html"><code>?sdmTMBpriors</code></a> for more details.</p>
 </div>
 <div class="section level3">
 <h3 id="bayesian-mcmc-sampling-with-stan">Bayesian MCMC sampling with Stan<a class="anchor" aria-label="anchor" href="#bayesian-mcmc-sampling-with-stan"></a>
 </h3>
-<p>The fitted model can be passed to the tmbstan package to sample from the posterior with Stan. Note this can be slow for large or poorly identified models. See examples of fixing parameters in <a href="https://pbs-assess.github.io/sdmTMB/reference/extract_mcmc.html" class="external-link"><code>?extract_mcmc</code></a>.</p>
+<p>The fitted model can be passed to the tmbstan package to sample from the posterior with Stan. Note this can be slow for large or poorly identified models. See examples of fixing parameters in <a href="https://pbs-assess.github.io/sdmTMB/reference/extract_mcmc.html"><code>?extract_mcmc</code></a>.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># only 1 chain and 400 iterations for speed:</span></span>
 <span><span class="va">fit_mcmc</span> <span class="op">&lt;-</span> <span class="fu">tmbstan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmbstan/man/tmbstan.html" class="external-link">tmbstan</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">tmb_obj</span>, chains <span class="op">=</span> <span class="fl">1</span>, iter <span class="op">=</span> <span class="fl">400</span><span class="op">)</span></span></code></pre></div>
@@ -615,7 +591,7 @@
 <span><span class="co"># Each row has 200 posterior samples for a row of the `newdata` data frame:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">pred_mcmc</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 65826   200</span></span></code></pre></div>
-<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/extract_mcmc.html" class="external-link"><code>?extract_mcmc</code></a> for more details.</p>
+<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/extract_mcmc.html"><code>?extract_mcmc</code></a> for more details.</p>
 </div>
 <div class="section level3">
 <h3 id="turning-off-random-fields">Turning off random fields<a class="anchor" aria-label="anchor" href="#turning-off-random-fields"></a>
@@ -672,14 +648,11 @@
 <div class="section level3">
 <h3 id="barrier-meshes">Barrier meshes<a class="anchor" aria-label="anchor" href="#barrier-meshes"></a>
 </h3>
-<p>A barrier mesh limits correlation across barriers (e.g., land or water). See the example in <a href="https://pbs-assess.github.io/sdmTMB/reference/add_barrier_mesh.html" class="external-link"><code>?add_barrier_mesh</code></a>.</p>
+<p>A barrier mesh limits correlation across barriers (e.g., land or water). See the example in <a href="https://pbs-assess.github.io/sdmTMB/reference/add_barrier_mesh.html"><code>?add_barrier_mesh</code></a>.</p>
 </div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/pbs-assess/sdmTMB/" class="external-link">Browse source code</a></li>
@@ -724,25 +697,24 @@
 </ul>
 </div>
 
-  </div>
+  </aside>
 </div>
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
 <p>Developed by Sean C. Anderson, Eric J. Ward, Lewis A. K. Barnett, Philina A. English.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 

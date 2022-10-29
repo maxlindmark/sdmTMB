@@ -4,168 +4,161 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="sdmTMB">
 <title>Fitting spatial trend models with sdmTMB • sdmTMB</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Fitting spatial trend models with sdmTMB">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Fitting spatial trend models with sdmTMB">
 <meta property="og:description" content="sdmTMB">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">sdmTMB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../reference/index.html">Reference</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/basic-intro.html">Introduction to modelling with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/bayesian.html">Bayesian estimation with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/cross-validation.html">Cross-validation for model evaluation and comparison</a>
-    </li>
-    <li>
-      <a href="../articles/delta-models.html">Fitting delta (hurdle) models with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/ggeffects.html">Visualizing marginal effects in sdmTMB models with ggeffects</a>
-    </li>
-    <li>
-      <a href="../articles/index-standardization.html">Index standardization with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/model-description.html">sdmTMB model description</a>
-    </li>
-    <li>
-      <a href="../articles/pretty-plots.html">Making pretty maps with sdmTMB output</a>
-    </li>
-    <li>
-      <a href="../articles/residual-checking.html">Residual checking with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/threshold-models.html">Threshold modeling with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/visreg.html">Visualizing sdmTMB conditional effects using visreg</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/pbs-assess/sdmTMB/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/basic-intro.html">Introduction to modelling with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/bayesian.html">Bayesian estimation with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/cross-validation.html">Cross-validation for model evaluation and comparison</a>
+    <a class="dropdown-item" href="../articles/delta-models.html">Fitting delta (hurdle) models with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/ggeffects.html">Visualizing marginal effects in sdmTMB models with ggeffects</a>
+    <a class="dropdown-item" href="../articles/index-standardization.html">Index standardization with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/model-description.html">sdmTMB model description</a>
+    <a class="dropdown-item" href="../articles/pretty-plots.html">Making pretty maps with sdmTMB output</a>
+    <a class="dropdown-item" href="../articles/residual-checking.html">Residual checking with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/threshold-models.html">Threshold modeling with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/visreg.html">Visualizing sdmTMB conditional effects using visreg</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/pbs-assess/sdmTMB/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><script src="spatial-trend-models_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Fitting spatial trend models with sdmTMB</h1>
+
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="" class="logo" alt=""><h1>Fitting spatial trend models with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2022-10-18</h4>
+            <h4 data-toc-skip class="date">2022-10-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/spatial-trend-models.Rmd" class="external-link"><code>vignettes/spatial-trend-models.Rmd</code></a></small>
-      <div class="hidden name"><code>spatial-trend-models.Rmd</code></div>
-
+      <div class="d-none name"><code>spatial-trend-models.Rmd</code></div>
     </div>
 
     
     
-<p><strong>If the code in this vignette has not been evaluated, a rendered version is available on the <a href="https://pbs-assess.github.io/sdmTMB/index.html" class="external-link">documentation site</a> under ‘Articles’.</strong></p>
+<p><strong>If the code in this vignette has not been evaluated, a
+rendered version is available on the <a href="https://pbs-assess.github.io/sdmTMB/index.html">documentation
+site</a> under ‘Articles’.</strong></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pbs-assess.github.io/sdmTMB/index.html" class="external-link">sdmTMB</a></span><span class="op">)</span></span></code></pre></div>
-<p>Using the built-in British Columbia Queen Charlotte Sound Pacific Cod dataset, we might be interested in fitting a model that describes spatially varying trends through time. The data are as follows:</p>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pbs-assess.github.io/sdmTMB/index.html">sdmTMB</a></span><span class="op">)</span></span></code></pre></div>
+<p>Using the built-in British Columbia Queen Charlotte Sound Pacific Cod
+dataset, we might be interested in fitting a model that describes
+spatially varying trends through time. The data are as follows:</p>
 <ul>
 <li>There are columns for depth and depth squared.</li>
-<li>Depth was centred and scaled by its standard deviation and we’ve included those in the data frame so that they could be used to similarly scale the prediction grid.</li>
+<li>Depth was centred and scaled by its standard deviation and we’ve
+included those in the data frame so that they could be used to similarly
+scale the prediction grid.</li>
 <li>The density units should be kg/km<sup>2</sup>.</li>
 <li>Here, X and Y are coordinates in UTM zone 9.</li>
 </ul>
-<p>We will set up our SPDE mesh with a relatively coarse resolution so that this vignette builds quickly:</p>
+<p>We will set up our SPDE mesh with a relatively coarse resolution so
+that this vignette builds quickly:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pcod_spde</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pcod_spde</span><span class="op">)</span></span></code></pre></div>
 <p><img src="spatial-trend-models_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
-<p>We will fit a model that includes a slope for ‘year’, an intercept spatial random field, and another random field for spatially varying slopes the represent trends over time in space (<code>spatial_varying</code> argument). Our model just estimates an intercept and accounts for all other variation through the random effects.</p>
-<p>First, we will set up a column for time that is Normal(0, 1) to help with estimation:</p>
+<p>We will fit a model that includes a slope for ‘year’, an intercept
+spatial random field, and another random field for spatially varying
+slopes the represent trends over time in space
+(<code>spatial_varying</code> argument). Our model just estimates an
+intercept and accounts for all other variation through the random
+effects.</p>
+<p>First, we will set up a column for time that is Normal(0, 1) to help
+with estimation:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="va">pcod</span></span>
 <span><span class="va">d</span><span class="op">$</span><span class="va">scaled_year</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">year</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></code></pre></div>
-<p>Now fit a model using <code>spatial_varying ~ 0 + scaled_year</code>:</p>
-<p>(The <code>0 +</code> drops the intercept, although sdmTMB would take care of that anyways here.)</p>
+<p>Now fit a model using
+<code>spatial_varying ~ 0 + scaled_year</code>:</p>
+<p>(The <code>0 +</code> drops the intercept, although sdmTMB would take
+care of that anyways here.)</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sdmTMB.html">sdmTMB</a></span><span class="op">(</span><span class="va">density</span> <span class="op">~</span> <span class="va">scaled_year</span>, data <span class="op">=</span> <span class="va">d</span>,</span>
 <span>  mesh <span class="op">=</span> <span class="va">pcod_spde</span>, family <span class="op">=</span> <span class="fu"><a href="../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>,</span>
 <span>  spatial_varying <span class="op">=</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="va">scaled_year</span>, time <span class="op">=</span> <span class="st">"year"</span>,</span>
-<span>  spatiotemporal <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span></code></pre></div>
-<p>We have turned off spatiotemporal random fields for this example for simplicity, but they also could be <code>IID</code> or <code>AR1</code>.</p>
-<p>Let’s extract some parameter estimates. Look for <code>sigma_Z</code>:</p>
+<span>  spatiotemporal <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in checkMatrixPackageVersion(): Package version inconsistency detected.</span></span>
+<span><span class="co">#&gt; TMB was built with Matrix version 1.5.1</span></span>
+<span><span class="co">#&gt; Current Matrix version is 1.4.1</span></span>
+<span><span class="co">#&gt; Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package</span></span></code></pre></div>
+<p>We have turned off spatiotemporal random fields for this example for
+simplicity, but they also could be <code>IID</code> or
+<code>AR1</code>.</p>
+<p>Let’s extract some parameter estimates. Look for
+<code>sigma_Z</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">m1</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          term   estimate std.error   conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 (Intercept)  2.8458568 0.3464155  2.1668949  3.524819</span></span>
-<span><span class="co">#&gt; 2 scaled_year -0.1264752 0.1173538 -0.3564844  0.103534</span></span>
+<span><span class="co">#&gt; 1 (Intercept)  2.8458567 0.3464155  2.1668948  3.524819</span></span>
+<span><span class="co">#&gt; 2 scaled_year -0.1264751 0.1173538 -0.3564843  0.103534</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">m1</span>, <span class="st">"ran_pars"</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        term   estimate std.error   conf.low  conf.high</span></span>
-<span><span class="co">#&gt; 1     range 26.1922678        NA 18.1702885 37.7558614</span></span>
-<span><span class="co">#&gt; 3       phi 14.0994906        NA 13.2592421 14.9929863</span></span>
-<span><span class="co">#&gt; 4   sigma_O  2.1318730        NA  1.7505605  2.5962442</span></span>
-<span><span class="co">#&gt; 5   sigma_Z  0.6245254        NA  0.4590955  0.8495661</span></span>
-<span><span class="co">#&gt; 6 tweedie_p  1.5926880        NA  1.5726717  1.6124013</span></span></code></pre></div>
-<p>Let’s look at the predictions and estimates of the spatially varying coefficients on a grid:</p>
+<span><span class="co">#&gt;        term   estimate std.error   conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1     range 26.1922716        NA 18.1702930 37.755863</span></span>
+<span><span class="co">#&gt; 3       phi 14.0994915        NA 13.2592429 14.992987</span></span>
+<span><span class="co">#&gt; 4   sigma_O  2.1318727        NA  1.7505602  2.596244</span></span>
+<span><span class="co">#&gt; 5   sigma_Z  0.6245253        NA  0.4590954  0.849566</span></span>
+<span><span class="co">#&gt; 6 tweedie_p  1.5926880        NA  1.5726717  1.612401</span></span></code></pre></div>
+<p>Let’s look at the predictions and estimates of the spatially varying
+coefficients on a grid:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_map_raster</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span>, <span class="va">column</span> <span class="op">=</span> <span class="st">"est"</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_.html" class="external-link">aes_string</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span>, fill <span class="op">=</span> <span class="va">column</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -174,13 +167,16 @@
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>First, we need to predict on a grid. We also need to add a column for <code>scaled_year</code> to match the fitting:</p>
+<p>First, we need to predict on a grid. We also need to add a column for
+<code>scaled_year</code> to match the fitting:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="va">qcs_grid</span></span>
 <span><span class="va">nd</span><span class="op">$</span><span class="va">scaled_year</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">nd</span><span class="op">$</span><span class="va">year</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">m1</span>, newdata <span class="op">=</span> <span class="va">nd</span><span class="op">)</span></span></code></pre></div>
 <p>First let’s look at the spatial trends.</p>
-<p>We will just pick out a single year to plot since they should all be the same for the slopes. Note that these are in log space. <code>zeta_s</code> are the spatially varying coefficients.</p>
+<p>We will just pick out a single year to plot since they should all be
+the same for the slopes. Note that these are in log space.
+<code>zeta_s</code> are the spatially varying coefficients.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="st">"zeta_s_scaled_year"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="spatial-trend-models_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
@@ -188,39 +184,35 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="st">"omega_s"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_fill_gradient2</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="spatial-trend-models_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
-<p>These are the predictions including all fixed and random effects plotted in log space.</p>
+<p>These are the predictions including all fixed and random effects
+plotted in log space.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="st">"est"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="spatial-trend-models_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
-<p>And we can look at just the spatiotemporal random effects for models 2 and 3 (intercept + slope combined):</p>
+<p>And we can look at just the spatiotemporal random effects for models
+2 and 3 (intercept + slope combined):</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="st">"est_rf"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="spatial-trend-models_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main>
 </div>
 
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
 <p>Developed by Sean C. Anderson, Eric J. Ward, Lewis A. K. Barnett, Philina A. English.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 

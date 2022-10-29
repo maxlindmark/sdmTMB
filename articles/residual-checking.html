@@ -4,127 +4,102 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="sdmTMB">
 <title>Residual checking with sdmTMB • sdmTMB</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Residual checking with sdmTMB">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Residual checking with sdmTMB">
 <meta property="og:description" content="sdmTMB">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">sdmTMB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../reference/index.html">Reference</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/basic-intro.html">Introduction to modelling with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/bayesian.html">Bayesian estimation with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/cross-validation.html">Cross-validation for model evaluation and comparison</a>
-    </li>
-    <li>
-      <a href="../articles/delta-models.html">Fitting delta (hurdle) models with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/ggeffects.html">Visualizing marginal effects in sdmTMB models with ggeffects</a>
-    </li>
-    <li>
-      <a href="../articles/index-standardization.html">Index standardization with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/model-description.html">sdmTMB model description</a>
-    </li>
-    <li>
-      <a href="../articles/pretty-plots.html">Making pretty maps with sdmTMB output</a>
-    </li>
-    <li>
-      <a href="../articles/residual-checking.html">Residual checking with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/threshold-models.html">Threshold modeling with sdmTMB</a>
-    </li>
-    <li>
-      <a href="../articles/visreg.html">Visualizing sdmTMB conditional effects using visreg</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/pbs-assess/sdmTMB/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/basic-intro.html">Introduction to modelling with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/bayesian.html">Bayesian estimation with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/cross-validation.html">Cross-validation for model evaluation and comparison</a>
+    <a class="dropdown-item" href="../articles/delta-models.html">Fitting delta (hurdle) models with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/ggeffects.html">Visualizing marginal effects in sdmTMB models with ggeffects</a>
+    <a class="dropdown-item" href="../articles/index-standardization.html">Index standardization with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/model-description.html">sdmTMB model description</a>
+    <a class="dropdown-item" href="../articles/pretty-plots.html">Making pretty maps with sdmTMB output</a>
+    <a class="dropdown-item" href="../articles/residual-checking.html">Residual checking with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/threshold-models.html">Threshold modeling with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/visreg.html">Visualizing sdmTMB conditional effects using visreg</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/pbs-assess/sdmTMB/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><script src="residual-checking_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Residual checking with sdmTMB</h1>
+
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="" class="logo" alt=""><h1>Residual checking with sdmTMB</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/residual-checking.Rmd" class="external-link"><code>vignettes/residual-checking.Rmd</code></a></small>
-      <div class="hidden name"><code>residual-checking.Rmd</code></div>
-
+      <div class="d-none name"><code>residual-checking.Rmd</code></div>
     </div>
 
     
     
-<p><strong>If the code in this vignette has not been evaluated, a rendered version is available on the <a href="https://pbs-assess.github.io/sdmTMB/index.html" class="external-link">documentation site</a> under ‘Articles’.</strong></p>
+<p><strong>If the code in this vignette has not been evaluated, a
+rendered version is available on the <a href="https://pbs-assess.github.io/sdmTMB/index.html">documentation
+site</a> under ‘Articles’.</strong></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pbs-assess.github.io/sdmTMB/index.html" class="external-link">sdmTMB</a></span><span class="op">)</span></span></code></pre></div>
-<p>We will start with some data simulated from scratch. We will simulate from an NB2 negative binomial observation model, a spatial random field, an intercept, and one predictor named ‘a1’ that will have a linear effect on the observed data.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pbs-assess.github.io/sdmTMB/index.html">sdmTMB</a></span><span class="op">)</span></span></code></pre></div>
+<p>We will start with some data simulated from scratch. We will simulate
+from an NB2 negative binomial observation model, a spatial random field,
+an intercept, and one predictor named ‘a1’ that will have a linear
+effect on the observed data.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">predictor_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>, Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>, a1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span></span>
@@ -140,7 +115,10 @@
 <span>  seed <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.5</span><span class="op">)</span> <span class="co"># B0 = intercept, B1 = a1 slope</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>Next, we will fit versions with various responses and predictors. The first model will use the Poisson instead of the NB2. The 2nd model will match the simulated data. The third model is missing the ‘a1’ predictor. We’ll use a PC prior on the Matérn parameters to aid in estimation.</p>
+<p>Next, we will fit versions with various responses and predictors. The
+first model will use the Poisson instead of the NB2. The 2nd model will
+match the simulated data. The third model is missing the ‘a1’ predictor.
+We’ll use a PC prior on the Matérn parameters to aid in estimation.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/priors.html">pc_matern</a></span><span class="op">(</span>range_gt <span class="op">=</span> <span class="fl">0.1</span>, sigma_lt <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
@@ -201,8 +179,13 @@
 <span><span class="co">#&gt; ML criterion at convergence: 1572.703</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; See ?tidy.sdmTMB to extract these values as a data frame.</span></span></code></pre></div>
-<p>We can see just by looking at these fits that the Poisson model inflates the spatial random field standard deviation (SD) compared to the truth. The model missing the ‘a1’ predictor does so to a lesser degree.</p>
-<p>Here are randomized quantile residuals at fixed effect MLEs (Maximum Likelihood Estimates) and random effects that maximize the log likelihood at estimated fixed effects:</p>
+<p>We can see just by looking at these fits that the Poisson model
+inflates the spatial random field standard deviation (SD) compared to
+the truth. The model missing the ‘a1’ predictor does so to a lesser
+degree.</p>
+<p>Here are randomized quantile residuals at fixed effect MLEs (Maximum
+Likelihood Estimates) and random effects that maximize the log
+likelihood at estimated fixed effects:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rq_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">fit_pois</span><span class="op">)</span></span>
 <span><span class="va">rq_res</span> <span class="op">&lt;-</span> <span class="va">rq_res</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">rq_res</span><span class="op">)</span><span class="op">]</span> <span class="co"># some Inf</span></span>
@@ -213,18 +196,32 @@
 <span><span class="va">rq_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">fit_nb2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html" class="external-link">qqnorm</a></span><span class="op">(</span><span class="va">rq_res</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html" class="external-link">qqline</a></span><span class="op">(</span><span class="va">rq_res</span><span class="op">)</span></span></code></pre></div>
 <p><img src="residual-checking_files/figure-html/unnamed-chunk-3-2.png" width="672"></p>
-<p>These use the approach from Dunn and Smyth (1996). They are also known as PIT (probability-integral-transform) residuals. They apply randomization to integer response values, transform the residuals using the distribution function (e.g., <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">pnorm()</a></code>), simulate from a uniform distribution, and transform the samples such that they would be Gaussian if consistent with the model. You can see the source code at <a href="https://github.com/pbs-assess/sdmTMB/blob/master/R/residuals.R" class="external-link uri">https://github.com/pbs-assess/sdmTMB/blob/master/R/residuals.R</a></p>
-<p>We can see here that there are likely issues with the Poisson model in the tails.</p>
-<p>These types of residuals are known to have statistical issues for state-space models; even if the model is the ‘correct’ model, the QQ plot may appear to have problems (Thygesen et al. 2017).</p>
-<p>One-step-ahead residuals (Thygesen et al. 2017) are one option to fix this problem (although slow to calculate). Another option is to take a draw from the posterior with MCMC (e.g., Rufener et al. 2021). Also see <a href="https://kaskr.github.io/adcomp/_book/Validation.html" class="external-link uri">https://kaskr.github.io/adcomp/_book/Validation.html</a></p>
-<p>Here we will draw MCMC predictions and calculate residuals. The fixed effects will be fixed at their maximum likelihood estimates (MLE) and the random effects will be sampled. We will only take a single draw for speed:</p>
+<p>These use the approach from Dunn and Smyth (1996). They are also
+known as PIT (probability-integral-transform) residuals. They apply
+randomization to integer response values, transform the residuals using
+the distribution function (e.g., <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">pnorm()</a></code>), simulate from a
+uniform distribution, and transform the samples such that they would be
+Gaussian if consistent with the model. You can see the source code at <a href="https://github.com/pbs-assess/sdmTMB/blob/master/R/residuals.R" class="external-link uri">https://github.com/pbs-assess/sdmTMB/blob/master/R/residuals.R</a></p>
+<p>We can see here that there are likely issues with the Poisson model
+in the tails.</p>
+<p>These types of residuals are known to have statistical issues for
+state-space models; even if the model is the ‘correct’ model, the QQ
+plot may appear to have problems (Thygesen et al. 2017).</p>
+<p>One-step-ahead residuals (Thygesen et al. 2017) are one option to fix
+this problem (although slow to calculate). Another option is to take a
+draw from the posterior with MCMC (e.g., Rufener et al. 2021). Also see
+<a href="https://kaskr.github.io/adcomp/_book/Validation.html" class="external-link uri">https://kaskr.github.io/adcomp/_book/Validation.html</a></p>
+<p>Here we will draw MCMC predictions and calculate residuals. The fixed
+effects will be fixed at their maximum likelihood estimates (MLE) and
+the random effects will be sampled. We will only take a single draw for
+speed:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mcmc_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">fit_nb2</span>, type <span class="op">=</span> <span class="st">"mle-mcmc"</span>, mcmc_iter <span class="op">=</span> <span class="fl">201</span>, mcmc_warmup <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL 'tmb_generic' NOW (CHAIN 1).</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1: Gradient evaluation took 0.001062 seconds</span></span>
-<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10.62 seconds.</span></span>
+<span><span class="co">#&gt; Chain 1: Gradient evaluation took 0.001098 seconds</span></span>
+<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10.98 seconds.</span></span>
 <span><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
@@ -241,23 +238,27 @@
 <span><span class="co">#&gt; Chain 1: Iteration: 200 / 201 [ 99%]  (Warmup)</span></span>
 <span><span class="co">#&gt; Chain 1: Iteration: 201 / 201 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1:  Elapsed Time: 2.98034 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 1:                0.013585 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 1:                2.99393 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 1:  Elapsed Time: 3.00028 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 1:                0.013439 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1:                3.01372 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 1:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html" class="external-link">qqnorm</a></span><span class="op">(</span><span class="va">mcmc_res</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html" class="external-link">qqline</a></span><span class="op">(</span><span class="va">mcmc_res</span><span class="op">)</span></span></code></pre></div>
 <p><img src="residual-checking_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
-<p>We can see these look a bit better. Remember, this is the ‘correct’ model.</p>
-<p>We can take simulations from the fitted model to use with simulation-based residuals:</p>
+<p>We can see these look a bit better. Remember, this is the ‘correct’
+model.</p>
+<p>We can take simulations from the fitted model to use with
+simulation-based residuals:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">s_pois</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate</a></span><span class="op">(</span><span class="va">fit_pois</span>, nsim <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
 <span><span class="va">s_nb2_miss</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate</a></span><span class="op">(</span><span class="va">fit_nb2_miss</span>, nsim <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
 <span><span class="va">s_nb2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate</a></span><span class="op">(</span><span class="va">fit_nb2</span>, nsim <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></code></pre></div>
-<p>These return a matrix where each row represents a row of data and each column is a simulation draw:</p>
+<p>These return a matrix where each row represents a row of data and
+each column is a simulation draw:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">s_pois</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1000  500</span></span></code></pre></div>
-<p>Test whether fitted models are consistent with the observed number of zeros:</p>
+<p>Test whether fitted models are consistent with the observed number of
+zeros:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">observed</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">observed</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.634</span></span>
@@ -265,13 +266,15 @@
 <span><span class="co">#&gt; [1] 0.340728</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">s_nb2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">s_nb2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.638676</span></span></code></pre></div>
-<p>There are obviously too few zeros in the data simulated from the Poisson model.</p>
+<p>There are obviously too few zeros in the data simulated from the
+Poisson model.</p>
 <p>Plot DHARMa residuals:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate</a></span><span class="op">(</span><span class="va">fit_pois</span>, nsim <span class="op">=</span> <span class="fl">300</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/dharma_residuals.html">dharma_residuals</a></span><span class="op">(</span><span class="va">fit_pois</span><span class="op">)</span></span></code></pre></div>
 <p><img src="residual-checking_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
-<p>We could also do that manually, which lets us use other DHARMa tools:</p>
+<p>We could also do that manually, which lets us use other DHARMa
+tools:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># My reading of DHARMa documation is that the predicted response for the </span></span>
 <span><span class="co"># residuals vs. fitted plot should ideally not include the random effects:</span></span>
@@ -370,13 +373,18 @@
 <span><span class="co">#&gt; data:  simulationOutput</span></span>
 <span><span class="co">#&gt; ratioObsSim = 1.8607, p-value &lt; 2.2e-16</span></span>
 <span><span class="co">#&gt; alternative hypothesis: two.sided</span></span></code></pre>
-<p>In the QQ residual plots we clearly see evidence of over dispersion compared to the Poisson. Note the values clumping near 1.0 on the observed axis and deviating downwards towards 0.0 observed. This is indicative of too many zeros and especially too many large values compared to the assumed Poisson distribution.</p>
+<p>In the QQ residual plots we clearly see evidence of over dispersion
+compared to the Poisson. Note the values clumping near 1.0 on the
+observed axis and deviating downwards towards 0.0 observed. This is
+indicative of too many zeros and especially too many large values
+compared to the assumed Poisson distribution.</p>
 <p>Lets try with the correct model:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate</a></span><span class="op">(</span><span class="va">fit_nb2</span>, nsim <span class="op">=</span> <span class="fl">300</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/dharma_residuals.html">dharma_residuals</a></span><span class="op">(</span><span class="va">fit_nb2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="residual-checking_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
-<p>Everything looks fine. But, again, the MCMC-based residuals above are likely the best approach.</p>
+<p>Everything looks fine. But, again, the MCMC-based residuals above are
+likely the best approach.</p>
 <p>What about the model where we were missing a predictor?</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred_fixed</span> <span class="op">&lt;-</span> <span class="va">fit_nb2_miss</span><span class="op">$</span><span class="va">family</span><span class="op">$</span><span class="fu">linkinv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit_nb2_miss</span><span class="op">)</span><span class="op">$</span><span class="va">est_non_rf</span><span class="op">)</span></span>
@@ -387,12 +395,17 @@
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">r_nb2_miss</span><span class="op">)</span></span></code></pre></div>
 <p><img src="residual-checking_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
-<p>This looks fine so far, but the plot on the right represents simulated residuals against the prediction without the random effects, which here is just an intercept. Lets try plotting the residuals against the missing predictor:</p>
+<p>This looks fine so far, but the plot on the right represents
+simulated residuals against the prediction without the random effects,
+which here is just an intercept. Lets try plotting the residuals against
+the missing predictor:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">DHARMa</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DHARMa/man/plotResiduals.html" class="external-link">plotResiduals</a></span><span class="op">(</span><span class="va">r_nb2_miss</span>, form <span class="op">=</span> <span class="va">dat</span><span class="op">$</span><span class="va">a1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="residual-checking_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
-<p>We can see a slight trend in the residuals against ‘a1’ since we have missed including it in the model.</p>
-<p>We can also see the difference in the log likelihood or by using the <code><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">AIC()</a></code> method:</p>
+<p>We can see a slight trend in the residuals against ‘a1’ since we have
+missed including it in the model.</p>
+<p>We can also see the difference in the log likelihood or by using the
+<code><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">AIC()</a></code> method:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># negative log likelihood is lower; </span></span>
 <span><span class="co"># i.e. log likelihood is higher, but we do have one more parameter</span></span>
@@ -404,11 +417,17 @@
 <span><span class="co">#&gt;              df      AIC</span></span>
 <span><span class="co">#&gt; fit_nb2_miss  4 3153.407</span></span>
 <span><span class="co">#&gt; fit_nb2       5 3095.560</span></span></code></pre></div>
-<p>The above used simulations with the parameters fixed at their Maximum Likelihood Estimate (MLE) and predictions conditional on the fitted random effects. Alternatively, we could simulate with the parameters drawn from their joint precision matrix to encapsulate uncertainty about the parameters. This may be a better test for residual analysis, but this is an open area of research as far as I can tell.</p>
+<p>The above used simulations with the parameters fixed at their Maximum
+Likelihood Estimate (MLE) and predictions conditional on the fitted
+random effects. Alternatively, we could simulate with the parameters
+drawn from their joint precision matrix to encapsulate uncertainty about
+the parameters. This may be a better test for residual analysis, but
+this is an open area of research as far as I can tell.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># simulate with the parameters drawn from the joint precision matrix:</span></span>
 <span><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate</a></span><span class="op">(</span><span class="va">fit_nb2</span>, nsim <span class="op">=</span> <span class="fl">1</span>, params <span class="op">=</span> <span class="st">"MVN"</span><span class="op">)</span></span></code></pre></div>
-<p>Or we could simulate with new random fields based on the estimated parameters governing the random fields (range and SD):</p>
+<p>Or we could simulate with new random fields based on the estimated
+parameters governing the random fields (range and SD):</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># simulate with new random fields:</span></span>
 <span><span class="va">s3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate</a></span><span class="op">(</span><span class="va">fit_nb2</span>, nsim <span class="op">=</span> <span class="fl">1</span>, re_form <span class="op">=</span> <span class="op">~</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
@@ -425,41 +444,40 @@
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">r_nb2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="residual-checking_files/figure-html/unnamed-chunk-16-1.png" width="672"></p>
 <p>These also look OK.</p>
-<p>For help interpreting the DHARMa residual plots, see <code><a href="https://cran.rstudio.com/web/packages/DHARMa/vignettes/DHARMa.html" class="external-link">vignette("DHARMa", package="DHARMa")</a></code>.</p>
+<p>For help interpreting the DHARMa residual plots, see
+<code><a href="https://cran.rstudio.com/web/packages/DHARMa/vignettes/DHARMa.html" class="external-link">vignette("DHARMa", package="DHARMa")</a></code>.</p>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>Dunn, P.K., and Smyth, G.K. 1996. Randomized Quantile Residuals. Journal of Computational and Graphical Statistics 5(3): 236–244.</p>
-<p>Rufener, M.-C., Kristensen, K., Nielsen, J.R., and Bastardie, F. 2021. Bridging the gap between commercial fisheries and survey data to model the spatiotemporal dynamics of marine species. Ecological Applications In press: e02453.</p>
-<p>Thygesen, U.H., Albertsen, C.M., Berg, C.W., Kristensen, K., and Nielsen, A. 2017. Validation of ecological state space models using the Laplace approximation. Environ Ecol Stat 24(2): 317–339.</p>
+<p>Dunn, P.K., and Smyth, G.K. 1996. Randomized Quantile Residuals.
+Journal of Computational and Graphical Statistics 5(3): 236–244.</p>
+<p>Rufener, M.-C., Kristensen, K., Nielsen, J.R., and Bastardie, F.
+2021. Bridging the gap between commercial fisheries and survey data to
+model the spatiotemporal dynamics of marine species. Ecological
+Applications In press: e02453.</p>
+<p>Thygesen, U.H., Albertsen, C.M., Berg, C.W., Kristensen, K., and
+Nielsen, A. 2017. Validation of ecological state space models using the
+Laplace approximation. Environ Ecol Stat 24(2): 317–339.</p>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main>
 </div>
 
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
 <p>Developed by Sean C. Anderson, Eric J. Ward, Lewis A. K. Barnett, Philina A. English.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 

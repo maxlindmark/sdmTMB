@@ -1,174 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/articles/basic-intro.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/basic-intro.html</loc>
   </url>
   <url>
-    <loc>/articles/bayesian.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/bayesian.html</loc>
   </url>
   <url>
-    <loc>/articles/cross-validation.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/cross-validation.html</loc>
   </url>
   <url>
-    <loc>/articles/delta-models.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/delta-models.html</loc>
   </url>
   <url>
-    <loc>/articles/ggeffects.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/ggeffects.html</loc>
   </url>
   <url>
-    <loc>/articles/index-standardization.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/index-standardization.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/model-description.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/model-description.html</loc>
   </url>
   <url>
-    <loc>/articles/pretty-plots.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/pretty-plots.html</loc>
   </url>
   <url>
-    <loc>/articles/residual-checking.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/residual-checking.html</loc>
   </url>
   <url>
-    <loc>/articles/spatial-trend-models.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/spatial-trend-models.html</loc>
   </url>
   <url>
-    <loc>/articles/threshold-models.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/threshold-models.html</loc>
   </url>
   <url>
-    <loc>/articles/visreg.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/articles/visreg.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/authors.html</loc>
   </url>
   <url>
-    <loc>/header.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/header.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/Effect.sdmTMB.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/Effect.sdmTMB.html</loc>
   </url>
   <url>
-    <loc>/reference/add_barrier_mesh.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/add_barrier_mesh.html</loc>
   </url>
   <url>
-    <loc>/reference/add_utm_columns.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/add_utm_columns.html</loc>
   </url>
   <url>
-    <loc>/reference/bc_coast.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/bc_coast.html</loc>
   </url>
   <url>
-    <loc>/reference/bei.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/bei.html</loc>
   </url>
   <url>
-    <loc>/reference/dharma_residuals.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/dharma_residuals.html</loc>
   </url>
   <url>
-    <loc>/reference/emmeans.sdmTMB.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/emmeans.sdmTMB.html</loc>
   </url>
   <url>
-    <loc>/reference/extract_mcmc.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/extract_mcmc.html</loc>
   </url>
   <url>
-    <loc>/reference/families.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/families.html</loc>
   </url>
   <url>
-    <loc>/reference/gather_sims.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/gather_sims.html</loc>
   </url>
   <url>
-    <loc>/reference/get_index.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/get_index.html</loc>
   </url>
   <url>
-    <loc>/reference/get_index_sims.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/get_index_sims.html</loc>
   </url>
   <url>
-    <loc>/reference/get_pars.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/get_pars.html</loc>
   </url>
   <url>
-    <loc>/reference/ggplot2_installed.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/ggplot2_installed.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/inla_installed.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/inla_installed.html</loc>
   </url>
   <url>
-    <loc>/reference/make_mesh.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/make_mesh.html</loc>
   </url>
   <url>
-    <loc>/reference/pcod.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/pcod.html</loc>
   </url>
   <url>
-    <loc>/reference/pcod_2011.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/pcod_2011.html</loc>
   </url>
   <url>
-    <loc>/reference/pcod_mesh_2011.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/pcod_mesh_2011.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_anisotropy.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/plot_anisotropy.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_pc_matern.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/plot_pc_matern.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_smooth.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/plot_smooth.html</loc>
   </url>
   <url>
-    <loc>/reference/predict.sdmTMB.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/predict.sdmTMB.html</loc>
   </url>
   <url>
-    <loc>/reference/priors.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/priors.html</loc>
   </url>
   <url>
-    <loc>/reference/qcs_grid.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/qcs_grid.html</loc>
   </url>
   <url>
-    <loc>/reference/reexports.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/reexports.html</loc>
   </url>
   <url>
-    <loc>/reference/residuals.sdmTMB.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/residuals.sdmTMB.html</loc>
   </url>
   <url>
-    <loc>/reference/run_extra_optimization.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/run_extra_optimization.html</loc>
   </url>
   <url>
-    <loc>/reference/sanity.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/sanity.html</loc>
   </url>
   <url>
-    <loc>/reference/sdmTMB.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/sdmTMB.html</loc>
   </url>
   <url>
-    <loc>/reference/sdmTMB_cv.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/sdmTMB_cv.html</loc>
   </url>
   <url>
-    <loc>/reference/sdmTMB_simulate.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/sdmTMB_simulate.html</loc>
   </url>
   <url>
-    <loc>/reference/sdmTMB_stacking.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/sdmTMB_stacking.html</loc>
   </url>
   <url>
-    <loc>/reference/sdmTMBcontrol.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/sdmTMBcontrol.html</loc>
   </url>
   <url>
-    <loc>/reference/simulate.sdmTMB.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/simulate.sdmTMB.html</loc>
   </url>
   <url>
-    <loc>/reference/tidy.sdmTMB.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/tidy.sdmTMB.html</loc>
   </url>
   <url>
-    <loc>/reference/visreg_delta.html</loc>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/visreg_delta.html</loc>
   </url>
 </urlset>
