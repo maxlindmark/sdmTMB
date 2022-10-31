@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Bayesian estimation with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2022-10-29</h4>
+            <h4 data-toc-skip class="date">2022-10-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/bayesian.Rmd" class="external-link"><code>vignettes/bayesian.Rmd</code></a></small>
       <div class="d-none name"><code>bayesian.Rmd</code></div>
@@ -131,6 +131,7 @@ priors <span class="citation">(e.g., Monnahan <em>et al.</em>
 <span>  a1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">predictor_dat</span>, xy_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; as(&lt;dgCMatrix&gt;, "dgTMatrix") is deprecated since Matrix 1.5-0; do as(., "TsparseMatrix") instead</span></span>
 <span><span class="co"># plot(mesh)</span></span>
 <span><span class="co"># mesh$mesh$n</span></span>
 <span><span class="va">sim_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sdmTMB_simulate.html">sdmTMB_simulate</a></span><span class="op">(</span></span>
@@ -398,7 +399,7 @@ of required samples.</p>
 <span><span class="co">#&gt; omega_s[85]  -0.28    0.01 0.22  -0.71  -0.43  -0.28  -0.12   0.14   689 1.00</span></span>
 <span><span class="co">#&gt; lp__        136.37    0.65 9.24 117.97 129.82 136.75 142.72 153.39   204 1.01</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Samples were drawn using NUTS(diag_e) at Sat Oct 29 19:38:28 2022.</span></span>
+<span><span class="co">#&gt; Samples were drawn using NUTS(diag_e) at Mon Oct 31 19:44:57 2022.</span></span>
 <span><span class="co">#&gt; For each parameter, n_eff is a crude measure of effective sample size,</span></span>
 <span><span class="co">#&gt; and Rhat is the potential scale reduction factor on split chains (at </span></span>
 <span><span class="co">#&gt; convergence, Rhat=1).</span></span></code></pre></div>

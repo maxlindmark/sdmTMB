@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,7 +86,7 @@
                         <h4 data-toc-skip class="author">Julia Indivero,
 Philina English, Sean Anderson, Eric Ward, Lewis Barnett</h4>
             
-            <h4 data-toc-skip class="date">2022-10-29</h4>
+            <h4 data-toc-skip class="date">2022-10-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/delta-models.Rmd" class="external-link"><code>vignettes/delta-models.Rmd</code></a></small>
       <div class="d-none name"><code>delta-models.Rmd</code></div>
@@ -195,7 +195,8 @@ The density units are kg/km<sup>2</sup>. Here, X and Y are coordinates
 in UTM zone 9.</p>
 <p>We will first create a mesh that we will use for all the models.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pcod_mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pcod_mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span><span class="co">#&gt; as(&lt;dgCMatrix&gt;, "dgTMatrix") is deprecated since Matrix 1.5-0; do as(., "TsparseMatrix") instead</span></span></code></pre></div>
 <p>Then we can fit a model of Pacific cod density using a delta-gamma
 model, including a smoothed effect of depth.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">

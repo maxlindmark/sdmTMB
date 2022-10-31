@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,6 +61,11 @@
       <small>Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.2" id="sdmtmb-012">sdmTMB 0.1.2<a class="anchor" aria-label="anchor" href="#sdmtmb-012"></a></h2>
+<ul><li><p>Fix longstanding issue with predicting on newdata with mgcv’s <code>t2()</code>. Previously this was disabled because of issues. It now works as expected.</p></li>
+<li><p>Add <code>knots</code> argument in <code><a href="../reference/sdmTMB.html">sdmTMB()</a></code>, which is passed to mgcv. A common use would be to specify end points in a cyclical spline (e.g., <code>s(x, bs = 'cc', k = 4), knots = list(x = c(1, 3, 5, 7))</code>) when the data don’t extend fully to the boundaries that should match up.</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="sdmtmb-011">sdmTMB 0.1.1<a class="anchor" aria-label="anchor" href="#sdmtmb-011"></a></h2>
 <ul><li><p>Preparing for release on CRAN.</p></li>

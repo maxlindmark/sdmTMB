@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,7 +86,7 @@
                         <h4 data-toc-skip class="author">Julia Indivero,
 Sean Anderson, Lewis Barnett, Philina English, Eric Ward</h4>
             
-            <h4 data-toc-skip class="date">2022-10-29</h4>
+            <h4 data-toc-skip class="date">2022-10-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/ggeffects.Rmd" class="external-link"><code>vignettes/ggeffects.Rmd</code></a></small>
       <div class="d-none name"><code>ggeffects.Rmd</code></div>
@@ -130,16 +130,13 @@ effect of year using a Tweedie distribution.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pcod</span><span class="op">$</span><span class="va">fyear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
 <span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="co">#&gt; as(&lt;dgCMatrix&gt;, "dgTMatrix") is deprecated since Matrix 1.5-0; do as(., "TsparseMatrix") instead</span></span>
 <span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sdmTMB.html">sdmTMB</a></span><span class="op">(</span><span class="va">present</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html" class="external-link">poly</a></span><span class="op">(</span><span class="va">depth</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">fyear</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">pcod</span>,</span>
 <span>  mesh <span class="op">=</span> <span class="va">mesh</span>,</span>
 <span>  spatial <span class="op">=</span> <span class="st">"on"</span>,</span>
 <span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in checkMatrixPackageVersion(): Package version inconsistency detected.</span></span>
-<span><span class="co">#&gt; TMB was built with Matrix version 1.5.1</span></span>
-<span><span class="co">#&gt; Current Matrix version is 1.4.1</span></span>
-<span><span class="co">#&gt; Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package</span></span></code></pre></div>
+<span><span class="op">)</span></span></code></pre></div>
 <p>We can then use <code><a href="https://strengejacke.github.io/ggeffects/reference/ggpredict.html" class="external-link">ggeffects::ggeffect()</a></code> to see the effect
 of depth on the probability of Pacific cod being present. We can control
 what range and interval of depths are predicted within the function
