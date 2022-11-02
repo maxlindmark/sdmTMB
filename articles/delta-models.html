@@ -86,7 +86,7 @@
                         <h4 data-toc-skip class="author">Julia Indivero,
 Philina English, Sean Anderson, Eric Ward, Lewis Barnett</h4>
             
-            <h4 data-toc-skip class="date">2022-10-31</h4>
+            <h4 data-toc-skip class="date">2022-11-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/delta-models.Rmd" class="external-link"><code>vignettes/delta-models.Rmd</code></a></small>
       <div class="d-none name"><code>delta-models.Rmd</code></div>
@@ -299,25 +299,35 @@ dataframe. See <code><a href="../reference/tidy.sdmTMB.html">tidy.sdmTMB()</a></
 options.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">fit_dg</span><span class="op">)</span> <span class="co"># model = 1 is default</span></span>
-<span><span class="co">#&gt;          term   estimate std.error</span></span>
-<span><span class="co">#&gt; 1 (Intercept) -0.3430529 0.6135643</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 3</span></span></span>
+<span><span class="co">#&gt;   term        estimate std.error</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> (Intercept)   -<span style="color: #BB0000;">0.343</span>     0.614</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">fit_dg</span>, model <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt;          term   estimate std.error</span></span>
-<span><span class="co">#&gt; 1 (Intercept) -0.3430529 0.6135643</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 3</span></span></span>
+<span><span class="co">#&gt;   term        estimate std.error</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> (Intercept)   -<span style="color: #BB0000;">0.343</span>     0.614</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">fit_dg</span>, model <span class="op">=</span> <span class="fl">1</span>, <span class="st">"ran_pars"</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      term   estimate std.error   conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1   range 61.4083611        NA 39.1558812 96.307035</span></span>
-<span><span class="co">#&gt; 3 sigma_O  1.7088567        NA  1.2603714  2.316929</span></span>
-<span><span class="co">#&gt; 4 sigma_E  0.8055292        NA  0.5700553  1.138271</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 5</span></span></span>
+<span><span class="co">#&gt;   term    estimate std.error conf.low conf.high</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> range     61.4   <span style="color: #BB0000;">NA</span>          39.2       96.3 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> sigma_O    1.71  <span style="color: #BB0000;">NA</span>           1.26       2.32</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sigma_E    0.806 <span style="color: #BB0000;">NA</span>           0.570      1.14</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">fit_dg</span>, model <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;          term estimate std.error</span></span>
-<span><span class="co">#&gt; 1 (Intercept)   3.6709  0.120117</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 3</span></span></span>
+<span><span class="co">#&gt;   term        estimate std.error</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> (Intercept)     3.67     0.120</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">fit_dg</span>, model <span class="op">=</span> <span class="fl">2</span>, <span class="st">"ran_pars"</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      term   estimate std.error  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1   range 14.7994691        NA 7.6169214 28.754962</span></span>
-<span><span class="co">#&gt; 3     phi  1.0327286        NA 0.9387975  1.136058</span></span>
-<span><span class="co">#&gt; 4 sigma_O  0.6907763        NA 0.3614061  1.320321</span></span>
-<span><span class="co">#&gt; 5 sigma_E  0.8055292        NA 0.5700553  1.138271</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 5</span></span></span>
+<span><span class="co">#&gt;   term    estimate std.error conf.low conf.high</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> range     14.8   <span style="color: #BB0000;">NA</span>           7.62      28.8 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> phi        1.03  <span style="color: #BB0000;">NA</span>           0.939      1.14</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sigma_O    0.691 <span style="color: #BB0000;">NA</span>           0.361      1.32</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sigma_E    0.806 <span style="color: #BB0000;">NA</span>           0.570      1.14</span></span></code></pre></div>
 <p>We can use <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> to predict density in either log
 space (the default) or transformed into the response scale
 (<code>type = "response"</code>).</p>

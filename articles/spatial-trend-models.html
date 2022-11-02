@@ -84,7 +84,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Fitting spatial trend models with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2022-10-31</h4>
+            <h4 data-toc-skip class="date">2022-11-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/spatial-trend-models.Rmd" class="external-link"><code>vignettes/spatial-trend-models.Rmd</code></a></small>
       <div class="d-none name"><code>spatial-trend-models.Rmd</code></div>
@@ -144,16 +144,20 @@ simplicity, but they also could be <code>IID</code> or
 <code>sigma_Z</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">m1</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;          term   estimate std.error   conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 (Intercept)  2.8458567 0.3464155  2.1668948  3.524819</span></span>
-<span><span class="co">#&gt; 2 scaled_year -0.1264751 0.1173538 -0.3564843  0.103534</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 5</span></span></span>
+<span><span class="co">#&gt;   term        estimate std.error conf.low conf.high</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> (Intercept)    2.85      0.346    2.17      3.52 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> scaled_year   -<span style="color: #BB0000;">0.126</span>     0.117   -<span style="color: #BB0000;">0.356</span>     0.104</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">m1</span>, <span class="st">"ran_pars"</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        term   estimate std.error   conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1     range 26.1922716        NA 18.1702930 37.755863</span></span>
-<span><span class="co">#&gt; 3       phi 14.0994915        NA 13.2592429 14.992987</span></span>
-<span><span class="co">#&gt; 4   sigma_O  2.1318727        NA  1.7505602  2.596244</span></span>
-<span><span class="co">#&gt; 5   sigma_Z  0.6245253        NA  0.4590954  0.849566</span></span>
-<span><span class="co">#&gt; 6 tweedie_p  1.5926880        NA  1.5726717  1.612401</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 5</span></span></span>
+<span><span class="co">#&gt;   term      estimate std.error conf.low conf.high</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> range       26.2   <span style="color: #BB0000;">NA</span>          18.2      37.8  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> phi         14.1   <span style="color: #BB0000;">NA</span>          13.3      15.0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sigma_O      2.13  <span style="color: #BB0000;">NA</span>           1.75      2.60 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sigma_Z      0.625 <span style="color: #BB0000;">NA</span>           0.459     0.850</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> tweedie_p    1.59  <span style="color: #BB0000;">NA</span>           1.57      1.61</span></span></code></pre></div>
 <p>Let’s look at the predictions and estimates of the spatially varying
 coefficients on a grid:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
