@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -147,9 +147,9 @@ for spatiotemporal fields).</p></li>
 <caption>Table 2: Symbol notation, code representation (in model output
 or in model template code), and descriptions.</caption>
 <colgroup>
-<col width="23%">
-<col width="22%">
-<col width="54%">
+<col width="25%">
+<col width="16%">
+<col width="58%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">Symbol</th>
@@ -159,170 +159,170 @@ or in model template code), and descriptions.</caption>
 <tbody>
 <tr class="odd">
 <td align="left"><span class="math inline">\(y\)</span></td>
-<td align="left"></td>
+<td align="left"><code>y_i</code></td>
 <td align="left">Observed response data</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\mu\)</span></td>
-<td align="left"></td>
+<td align="left"><code>mu_i</code></td>
 <td align="left">Mean</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\phi\)</span></td>
-<td align="left"></td>
+<td align="left"><code>phi</code></td>
 <td align="left">A dispersion parameter for a distribution</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(f\)</span></td>
-<td align="left"></td>
+<td align="left"><code>fit$family$link</code></td>
 <td align="left">Link function</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(f^{-1}\)</span></td>
-<td align="left"></td>
+<td align="left"><code>fit$family$linkinv</code></td>
 <td align="left">Inverse link function</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\boldsymbol{\beta}\)</span></td>
-<td align="left"></td>
+<td align="left"><code>b_j</code></td>
 <td align="left">Parameter vector</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\boldsymbol{X}\)</span></td>
-<td align="left"></td>
+<td align="left"><code>X_ij</code></td>
 <td align="left">A predictor model matrix</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(O_{\boldsymbol{s},
 t}\)</span></td>
-<td align="left"></td>
+<td align="left"><code>offset</code></td>
 <td align="left">An offset variable at point <span class="math inline">\(\boldsymbol{s}\)</span> and time <span class="math inline">\(t\)</span>
 </td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\omega_{\boldsymbol{s}}\)</span></td>
-<td align="left"></td>
+<td align="left"><code>omega_s</code></td>
 <td align="left">Spatial random field at point <span class="math inline">\(\boldsymbol{s}\)</span> (knot)</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\omega_{\boldsymbol{s}}^*\)</span></td>
-<td align="left"></td>
+<td align="left"><code>omega_s_A</code></td>
 <td align="left">Spatial random field at point <span class="math inline">\(\boldsymbol{s}\)</span> (interpolated)</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\zeta_{\boldsymbol{s}}\)</span></td>
-<td align="left"></td>
+<td align="left"><code>zeta_s</code></td>
 <td align="left">Spatially varying coefficient random field at point
 <span class="math inline">\(\boldsymbol{s}\)</span> (knot)</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\zeta_{\boldsymbol{s}}^*\)</span></td>
-<td align="left"></td>
+<td align="left"><code>zeta_s_A</code></td>
 <td align="left">Spatially varying coefficient random field at point
 <span class="math inline">\(\boldsymbol{s}\)</span> (interpolated)</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\epsilon_{\boldsymbol{s},
 t}\)</span></td>
-<td align="left"></td>
+<td align="left"><code>epsilon_st</code></td>
 <td align="left">Spatiotemporal random field at point <span class="math inline">\(\boldsymbol{s}\)</span> and time <span class="math inline">\(t\)</span> (knot)</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\epsilon_{\boldsymbol{s},
 t}^*\)</span></td>
-<td align="left"></td>
+<td align="left"><code>epsilon_st_A</code></td>
 <td align="left">Spatiotemporal random field at point <span class="math inline">\(\boldsymbol{s}\)</span> and time <span class="math inline">\(t\)</span> (interpolated)</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\delta_{\boldsymbol{s},t}\)</span></td>
-<td align="left"></td>
+<td align="left"><code>b_t</code></td>
 <td align="left">AR(1) or random walk spatiotemporal deviations
 (knot)</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\alpha_g\)</span></td>
-<td align="left"></td>
+<td align="left"><code>RE</code></td>
 <td align="left">IID random intercept deviation for group <span class="math inline">\(g\)</span>
 </td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\boldsymbol{\Sigma}_\omega\)</span></td>
-<td align="left"></td>
+<td align="left"><code>-</code></td>
 <td align="left">Spatial random field covariance matrix</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\boldsymbol{\Sigma}_\zeta\)</span></td>
-<td align="left"></td>
+<td align="left"><code>-</code></td>
 <td align="left">Spatially varying coefficient random field covariance
 matrix</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\boldsymbol{\Sigma}_\epsilon\)</span></td>
-<td align="left"></td>
+<td align="left"><code>-</code></td>
 <td align="left">Spatiotemporal random field covariance matrix</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\boldsymbol{Q}_\omega\)</span></td>
-<td align="left"></td>
+<td align="left"><code>Q_s</code></td>
 <td align="left">Spatial random field precision matrix</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\boldsymbol{Q}_\zeta\)</span></td>
-<td align="left"></td>
+<td align="left"><code>Q_s</code></td>
 <td align="left">Spatially varying coefficient random field precision
 matrix</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\boldsymbol{Q}_\epsilon\)</span></td>
-<td align="left"></td>
+<td align="left"><code>Q_st</code></td>
 <td align="left">Spatiotemporal random field precision matrix</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\sigma_\alpha^2\)</span></td>
-<td align="left"></td>
+<td align="left"><code>sigma_G</code></td>
 <td align="left">IID random intercept variance</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\sigma_\epsilon^2\)</span></td>
-<td align="left"></td>
+<td align="left"><code>sigma_E</code></td>
 <td align="left">Spatiotemporal random field marginal variance</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\sigma_\omega^2\)</span></td>
-<td align="left"></td>
+<td align="left"><code>sigma_O</code></td>
 <td align="left">Spatial random field marginal variance</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\sigma_\zeta^2\)</span></td>
-<td align="left"></td>
+<td align="left"><code>sigma_Z</code></td>
 <td align="left">Spatially varying coefficient random field marginal
 variance</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\kappa_\omega\)</span></td>
-<td align="left"></td>
+<td align="left"><code>kappa(0)</code></td>
 <td align="left">Spatial decorrelation rate</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\kappa_\epsilon\)</span></td>
-<td align="left"></td>
+<td align="left"><code>kappa(1)</code></td>
 <td align="left">Spatiotemporal decorrelation rate</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\rho\)</span></td>
-<td align="left"></td>
+<td align="left"><code>ar1_rho</code></td>
 <td align="left">Correlation between random fields in subsequent time
 steps</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\boldsymbol{A}\)</span></td>
-<td align="left"></td>
+<td align="left"><code>A</code></td>
 <td align="left">Sparse projection matrix to interpolate between knot
 and data locations</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\boldsymbol{H}\)</span></td>
-<td align="left"></td>
+<td align="left"><code>H</code></td>
 <td align="left">2-parameter rotation matrix used to define
 anisotropy</td>
 </tr>
@@ -869,6 +869,51 @@ unconstrained variable.</p>
 code</a> is implemented as in the <a href="https://CRAN.R-project.org/package=cplm" class="external-link">cplm</a> package <span class="citation">(Zhang 2013)</span> and is based on <span class="citation">Dunn &amp; Smyth (2005)</span>. The TMB version is
 defined <a href="https://kaskr.github.io/adcomp/group__R__style__distribution.html#ga262f3c2d1cf36f322a62d902a608aae0" class="external-link">here</a>.</p>
 <p>Example: <code>family = tweedie(link = "log")</code></p>
+</div>
+<div class="section level3">
+<h3 id="gamma-mixture">Gamma mixture<a class="anchor" aria-label="anchor" href="#gamma-mixture"></a>
+</h3>
+<p>This is a 2 component mixture that extends the Gamma
+distribution,</p>
+<p><span class="math display">\[
+(1 - p) \cdot \operatorname{Gamma} \left( \phi,
+\frac{\mu_{1}}{\phi}  \right) + p \cdot \operatorname{Gamma} \left(
+\phi, \frac{\mu_{2}}{\phi}  \right),
+\]</span> where <span class="math inline">\(\phi\)</span> represents the
+Gamma shape, <span class="math inline">\(\mu_{1} / \phi\)</span>
+represents the scale for the first (smaller component) of the
+distribution, <span class="math inline">\(\mu_{2} / \phi\)</span>
+represents the scale for the second (larger component) of the
+distribution, and <span class="math inline">\(p\)</span> controls the
+contribution of each component to the mixture (also interpreted as the
+probability of larger events).</p>
+<p>The mean is <span class="math inline">\((1-p) \cdot \mu_{1} + p \cdot
+\mu_{2}\)</span> and the variance is <span class="math inline">\((1-p) ^
+2 \cdot \mu_{1} \cdot \phi^2 + (p) ^ 2 \cdot \mu_{2} \cdot
+\phi^2\)</span>.</p>
+<p>Example: <code>family = gamma_mix(link = "log")</code>. See also
+<code>family = delta_gamma_mix()</code> for an extension incorporating
+this distribution with delta models.</p>
+</div>
+<div class="section level3">
+<h3 id="lognormal-mixture">Lognormal mixture<a class="anchor" aria-label="anchor" href="#lognormal-mixture"></a>
+</h3>
+<p>This is a 2 component mixture that extends the lognormal
+distribution,</p>
+<p><span class="math display">\[
+(1 - p) \cdot \operatorname{Lognormal} \left( \log \mu_{1} -
+\frac{\phi^2}{2}, \phi^2 \right) + p \cdot \operatorname{Lognormal}
+\left( \log \mu_{2} - \frac{\phi^2}{2}, \phi^2 \right).
+\]</span></p>
+<p>Because of the bias correction, <span class="math inline">\(\mathbb{E}[y] = (1-p) \cdot \mu_{1} + p \cdot
+\mu_{2}\)</span> and <span class="math inline">\(\mathrm{Var}[\log y] =
+(1-p)^2 \cdot \phi^2 + p^2 \cdot \phi^2\)</span>.</p>
+<p>As with the Gamma mixture, <span class="math inline">\(p\)</span>
+controls the contribution of each component to the mixture (also
+interpreted as the probability of larger events).</p>
+<p>Example: <code>family = lognormal_mix(link = "log")</code>. See also
+<code>family = delta_lognormal_mix()</code> for an extension
+incorporating this distribution with delta models.</p>
 </div>
 </div>
 <div class="section level2">
