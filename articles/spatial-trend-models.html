@@ -84,7 +84,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Fitting spatial trend models with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2022-11-03</h4>
+            <h4 data-toc-skip class="date">2022-11-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/spatial-trend-models.Rmd" class="external-link"><code>vignettes/spatial-trend-models.Rmd</code></a></small>
       <div class="d-none name"><code>spatial-trend-models.Rmd</code></div>
@@ -136,7 +136,11 @@ care of that anyways here.)</p>
 <code class="sourceCode R"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sdmTMB.html">sdmTMB</a></span><span class="op">(</span><span class="va">density</span> <span class="op">~</span> <span class="va">scaled_year</span>, data <span class="op">=</span> <span class="va">d</span>,</span>
 <span>  mesh <span class="op">=</span> <span class="va">pcod_spde</span>, family <span class="op">=</span> <span class="fu"><a href="../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>,</span>
 <span>  spatial_varying <span class="op">=</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="va">scaled_year</span>, time <span class="op">=</span> <span class="st">"year"</span>,</span>
-<span>  spatiotemporal <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span></code></pre></div>
+<span>  spatiotemporal <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in checkMatrixPackageVersion(): Package version inconsistency detected.</span></span>
+<span><span class="co">#&gt; TMB was built with Matrix version 1.5.3</span></span>
+<span><span class="co">#&gt; Current Matrix version is 1.5.1</span></span>
+<span><span class="co">#&gt; Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package</span></span></code></pre></div>
 <p>We have turned off spatiotemporal random fields for this example for
 simplicity, but they also could be <code>IID</code> or
 <code>AR1</code>.</p>
@@ -161,8 +165,8 @@ simplicity, but they also could be <code>IID</code> or
 <p>Let’s look at the predictions and estimates of the spatially varying
 coefficients on a grid:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">plot_map_raster</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span>, <span class="va">column</span> <span class="op">=</span> <span class="st">"est"</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_.html" class="external-link">aes_string</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span>, fill <span class="op">=</span> <span class="va">column</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<code class="sourceCode R"><span><span class="va">plot_map_raster</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span>, <span class="va">column</span> <span class="op">=</span> <span class="va">est</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, fill <span class="op">=</span> <span class="op">{</span><span class="op">{</span> <span class="va">column</span> <span class="op">}</span><span class="op">}</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">year</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -179,21 +183,21 @@ coefficients on a grid:</p>
 the same for the slopes. Note that these are in log space.
 <code>zeta_s</code> are the spatially varying coefficients.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="st">"zeta_s_scaled_year"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="va">zeta_s_scaled_year</span><span class="op">)</span></span></code></pre></div>
 <p><img src="spatial-trend-models_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 <p>This is the spatially varying intercept:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="st">"omega_s"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_fill_gradient2</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="va">omega_s</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_fill_gradient2</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="spatial-trend-models_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
 <p>These are the predictions including all fixed and random effects
 plotted in log space.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="st">"est"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="va">est</span><span class="op">)</span></span></code></pre></div>
 <p><img src="spatial-trend-models_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 <p>And we can look at just the spatiotemporal random effects for models
 2 and 3 (intercept + slope combined):</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="st">"est_rf"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plot_map_raster</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span>, <span class="va">est_rf</span><span class="op">)</span></span></code></pre></div>
 <p><img src="spatial-trend-models_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
   </main>
 </div>
