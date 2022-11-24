@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,8 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.4" id="sdmtmb-014">sdmTMB 0.1.4<a class="anchor" aria-label="anchor" href="#sdmtmb-014"></a></h2>
-<ul><li><p>Fix bug when using <code><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals()</a></code> or <code><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate()</a></code> with binomial families specified via <code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind()</a></code> or <code>weights = N</code>. The binomial sample size wasn’t being passed through typically resulting in Inf/-Inf.</p></li>
+<ul><li><p>Add Pearson residuals for several families. <code>residuals(fit, type = "pearson")</code> Useful for checking for overdispersion with N &gt; 1 binomial or Poisson families, among other uses. See the <code>overdisp_fun()</code> function at: <a href="https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#testing-for-overdispersioncomputing-overdispersion-factor" class="external-link uri">https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#testing-for-overdispersioncomputing-overdispersion-factor</a></p></li>
+<li><p>Fix bug when using <code><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals()</a></code> or <code><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate()</a></code> with binomial families specified via <code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind()</a></code> or <code>weights = N</code>. The binomial sample size wasn’t being passed through typically resulting in Inf/-Inf.</p></li>
 <li><p>Add mixture families: <code><a href="../reference/families.html">gamma_mix()</a></code>, <code><a href="../reference/families.html">lognormal_mix()</a></code> and associated delta/hurdle families: <code><a href="../reference/families.html">delta_gamma_mix()</a></code>, <code><a href="../reference/families.html">delta_lognormal_mix()</a></code>. These families feature a mixture of two distributions with different means but shared variance parameters.</p></li>
 <li><p>Add <code><a href="../reference/families.html">delta_beta()</a></code> family.</p></li>
 </ul></div>
