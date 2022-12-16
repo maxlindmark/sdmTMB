@@ -3,7 +3,7 @@
 mixed effects model (GLMM) with the TMB (Template Model Builder) R package and
 the SPDE (stochastic partial differential equation) approach. This can be
 useful for (dynamic) species distribution models and relative abundance index
-standardization among many other uses."><title>Fit a spatial or spatiotemporal GLMM with TMB — sdmTMB • sdmTMB</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Fit a spatial or spatiotemporal GLMM with TMB — sdmTMB"><meta property="og:description" content="Fit a spatial or spatiotemporal Gaussian random field generalized linear
+standardization among many other uses."><title>Fit a spatial or spatiotemporal GLMM with TMB — sdmTMB • sdmTMB</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Fit a spatial or spatiotemporal GLMM with TMB — sdmTMB"><meta property="og:description" content="Fit a spatial or spatiotemporal Gaussian random field generalized linear
 mixed effects model (GLMM) with the TMB (Template Model Builder) R package and
 the SPDE (stochastic partial differential equation) approach. This can be
 useful for (dynamic) species distribution models and relative abundance index
@@ -18,7 +18,7 @@ standardization among many other uses."><!-- mathjax --><script src="https://cdn
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,13 +160,13 @@ section below.</p></dd>
 
 <dt>spatial</dt>
 <dd><p>Estimate spatial random fields? Options are <code>'on'</code> / <code>'off'</code>
-or <code>TRUE</code> / <code>FALSE</code>. Optionaly a list for delta models, e.g. <code>list('on', 'off')</code>.</p></dd>
+or <code>TRUE</code> / <code>FALSE</code>. Optionally, a list for delta models, e.g. <code>list('on', 'off')</code>.</p></dd>
 
 
 <dt>spatiotemporal</dt>
 <dd><p>Estimate the spatiotemporal random fields as <code>'iid'</code>
 (independent and identically distributed; default), stationary <code>'ar1'</code>
-(first-order autoregressive), as a random walk (<code>'rw'</code>), or as fixed at 0
+(first-order autoregressive), a random walk (<code>'rw'</code>), or fixed at 0
 <code>'off'</code>. Will be set to <code>'off'</code> if <code>time = NULL</code>. If a delta model, can be
 a list. E.g., <code>list('off', 'ar1')</code>. Note that the spatiotemporal standard
 deviation represents the marginal steady-state standard deviation of the
@@ -206,22 +206,22 @@ used, it will represent a local-time-trend model. See
 <a href="https://doi.org/10.1111/ecog.05176" class="external-link">doi:10.1111/ecog.05176</a>
  and the <a href="https://pbs-assess.github.io/sdmTMB/articles/spatial-trend-models.html">spatial trends vignette</a>.
 Note this predictor should be centered to have mean zero and have a
-standard deviation of approximately 1. Structure must
-currently be shared in delta models.</p></dd>
+standard deviation of approximately 1 and should likely also be included as
+a main effect. Structure must currently be shared in delta models.</p></dd>
 
 
 <dt>weights</dt>
 <dd><p>A numeric vector representing optional likelihood weights for
 the conditional model. Implemented as in <span class="pkg">glmmTMB</span>: weights do not have
 to sum to one and are not internally modified. Can also be used for trials
-with the binomial family; the weights argument needs to be a vector and not
+with the binomial family; the <code>weights</code> argument needs to be a vector and not
 a name of the variable in the data frame. See the Details section below.</p></dd>
 
 
 <dt>offset</dt>
 <dd><p>A numeric vector representing the model offset. In delta/hurdle
 models, this applies only to the positive component. Usually a log
-transformed variable. <em>Not included in any prediction.</em></p></dd>
+transformed variable. The <code>offset</code> argument needs to be a vector and not a name of the variable in the data frame.</p></dd>
 
 
 <dt>extra_time</dt>
@@ -258,8 +258,7 @@ be shared across delta models.</p></dd>
 
 <dt>knots</dt>
 <dd><p>Optional named list containing knot values to be used for basis
-construction of smoothing terms. See <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html" class="external-link">mgcv::gam()</a></code> and <code><a href="https://rdrr.io/pkg/mgcv/man/gamm.html" class="external-link">mgcv::gamm()</a></code> for
-more.
+construction of smoothing terms. See <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html" class="external-link">mgcv::gam()</a></code> and <code><a href="https://rdrr.io/pkg/mgcv/man/gamm.html" class="external-link">mgcv::gamm()</a></code>.
 E.g., <code>s(x, bs = 'cc', k = 4), knots = list(x = c(1, 2, 3, 4))</code></p></dd>
 
 
@@ -339,13 +338,13 @@ proportions, and the 'weights' argument is used to specify the Binomial size
 using <code>+ s(x)</code>, which implements a smooth from <code><a href="https://rdrr.io/pkg/mgcv/man/s.html" class="external-link">mgcv::s()</a></code>. <span class="pkg">sdmTMB</span> uses
 penalized smooths, constructed via <code><a href="https://rdrr.io/pkg/mgcv/man/smooth2random.html" class="external-link">mgcv::smooth2random()</a></code>. This is a similar
 approach implemented in <span class="pkg">gamm4</span> and <span class="pkg">brms</span>, among other packages.
-Within these smooths, the same syntax commonly used in <code><a href="https://rdrr.io/pkg/mgcv/man/s.html" class="external-link">mgcv::s()</a></code> can be
-applied, e.g. 2-dimensional smooths may be constructed with <code>+ s(x, y)</code>;
-smooths can be specific to various factor levels, <code>+ s(x, by = group)</code>; the
-basis function dimensions may be specified, e.g. <code>+ s(x, k = 4)</code>; and various
-types of splines may be constructed such as cyclic splines to model
-seasonality, <code>+ s(month, bs = "cc", k = 12)</code>. Prior to version 0.0.18,
-<span class="pkg">sdmTMB</span> implemented unpenalized splines.</p>
+Within these smooths, the same syntax commonly used in <code><a href="https://rdrr.io/pkg/mgcv/man/s.html" class="external-link">mgcv::s()</a></code> or
+<code><a href="https://rdrr.io/pkg/mgcv/man/t2.html" class="external-link">mgcv::t2()</a></code> can be applied, e.g. 2-dimensional smooths may be constructed
+with <code>+ s(x, y)</code> or <code>+ t2(x, y)</code>; smooths can be specific to various factor
+levels, <code>+ s(x, by = group)</code>; the basis function dimensions may be specified,
+e.g. <code>+ s(x, k = 4)</code>; and various types of splines may be constructed such as
+cyclic splines to model seasonality, <code>+ s(month, bs = "cc", k = 12)</code> (perhaps
+with the <code>knots</code> argument also be supplied).</p>
 <p><strong>Threshold models</strong></p>
 <p>A linear break-point relationship for a covariate can be included via
 <code>+ breakpt(variable)</code> in the formula, where <code>variable</code> is a single covariate
@@ -367,18 +366,18 @@ including extra time slices that the model remains identifiable. For example,
 including <code>+ as.factor(year)</code> in <code>formula</code> will render a model with no data
 to inform the expected value in a missing year. <code>sdmTMB()</code> makes no attempt
 to determine if the model makes sense for forecasting or interpolation. The
-options <code>time_varying</code>, <code>spatiotemporal = "rw"</code>, and <code>spatiotemporal = "ar1"</code>
-provide mechanisms to predict over missing time slices with process error.</p>
+options <code>time_varying</code>, <code>spatiotemporal = "rw"</code>, <code>spatiotemporal = "ar1"</code>,
+or a smoother on the time column provide mechanisms to predict over missing
+time slices with process error.</p>
 <p><code>extra_time</code> can also be used to fill in missing time steps for the purposes
-of a random walk or AR1 spatiotemporal field if their inclusion makes the gaps
-between time steps even.</p>
+of a random walk or AR(1) process if their inclusion makes the gaps between
+time steps even.</p>
 <p><strong>Index standardization</strong></p>
 <p>For index standardization, you may wish to include <code>0 + as.factor(year)</code>
 (or whatever the time column is called) in the formula. See a basic
 example of index standardization in the relevant
 <a href="https://pbs-assess.github.io/sdmTMB/articles/index-standardization.html">package vignette</a>.
-You will need to specify the <code>time</code> argument. See <code><a href="get_index.html">get_index()</a></code> and/or
-<code><a href="get_index_sims.html">get_index_sims()</a></code>.</p>
+You will need to specify the <code>time</code> argument. See <code><a href="get_index.html">get_index()</a></code>.</p>
 <p><strong>Regularization and priors</strong></p>
 <p>You can achieve regularization via penalties (priors) on the fixed effect
 parameters. See <code><a href="priors.html">sdmTMBpriors()</a></code>. You can fit the model once without
@@ -413,7 +412,7 @@ can be shared across the models.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p><em>Main reference introducing the package to cite when using sdmTMB:</em></p>
+    <p><strong>Main reference introducing the package to cite when using sdmTMB:</strong></p>
 <p>Anderson, S.C., E.J. Ward, P.A. English, L.A.K. Barnett. 2022. sdmTMB: an R
 package for fast, flexible, and user-friendly generalized linear mixed effects
 models with spatial and spatiotemporal random fields.
@@ -439,7 +438,7 @@ Essington, T.E. 2022. The shadow model: how and why small choices in
 spatially explicit species distribution models affect predictions. PeerJ 10:
 e12783. <a href="https://doi.org/10.7717/peerj.12783" class="external-link">doi:10.7717/peerj.12783</a>
 .</p>
-<p><em>Application and description of the threshold/break-point models:</em></p>
+<p><em>Application and description of threshold/break-point models:</em></p>
 <p>Essington, T.E. S.C. Anderson, L.A.K. Barnett, H.M. Berger, S.A. Siedlecki,
 E.J. Ward. Advancing statistical models to reveal the effect of dissolved
 oxygen on the spatial distribution of marine taxa using thresholds and a
@@ -732,8 +731,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              coef.est coef.se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      2.55    0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    34.28   24.22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2     1.79    1.07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    -1.78    1.07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2   -34.28   24.22</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Std. Dev.</span>
@@ -868,7 +867,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matern range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 1303.43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 1303.44</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2861.783</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1099,7 +1098,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer></div>
