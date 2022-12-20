@@ -547,8 +547,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> No standard errors look unreasonably large</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> No sigma parameters are &lt; 0.01</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> No sigma parameters are &gt; 100</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in vectbl_as_col_location2(j, length(x), names(x), j_arg = j_arg):</span> Can't extract column with `fit$mesh$xy_cols[1]`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Subscript `fit$mesh$xy_cols[1]` must be size 1, not 0.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Range parameter doesn't look unreasonably large</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Visualize depth effect: (see ?visreg_delta)</span></span></span>
 <span class="r-in"><span><span class="fu">visreg</span><span class="fu">::</span><span class="fu"><a href="http://pbreheny.github.io/visreg/reference/visreg.html" class="external-link">visreg</a></span><span class="op">(</span><span class="va">fit</span>, xvar <span class="op">=</span> <span class="st">"depth"</span><span class="op">)</span> <span class="co"># link space; randomized quantile residuals</span></span></span>
@@ -732,8 +731,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              coef.est coef.se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      2.55    0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    -1.78    1.07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2   -34.28   24.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    34.28   24.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2     1.79    1.07</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Std. Dev.</span>
@@ -868,7 +867,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matern range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 1303.44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 1303.43</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2861.783</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
