@@ -502,7 +502,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatial model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ s(depth)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
@@ -589,7 +589,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ 0 + as.factor(year)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time column: year</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
@@ -621,7 +621,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ s(depth)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time column: year</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
@@ -655,7 +655,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ s(depth)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time column: year</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
@@ -688,7 +688,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ s(depth, by = as.factor(year))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time column: year</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
@@ -725,14 +725,14 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ s(depth, year)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              coef.est coef.se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      2.55    0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    -1.78    1.07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2   -34.28   24.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    34.28   24.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2     1.79    1.07</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Std. Dev.</span>
@@ -754,7 +754,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: present ~ poly(log(depth))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: binomial(link = 'logit')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
@@ -812,7 +812,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit_dg</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ poly(log(depth), 2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: delta_gamma(link1 = 'logit', link2 = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -847,7 +847,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit_dg</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatial model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: list(density ~ depth_scaled, density ~ poly(depth_scaled, 2))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: delta_gamma(link1 = 'logit', link2 = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -867,7 +867,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matern range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 1303.44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 1303.43</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2861.783</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -884,7 +884,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit_nb2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: count ~ s(depth)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: delta_truncated_nbinom2(link1 = 'logit', link2 = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -925,7 +925,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit_nb2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: count ~ s(depth)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: nbinom2(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
@@ -952,7 +952,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatial model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ s(depth) + (1 | fyear)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
@@ -986,7 +986,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ year_scaled</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time column: year</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
@@ -1015,7 +1015,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ 0 + as.factor(year)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time column: year</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
@@ -1071,7 +1071,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">fit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatial model fit by ML ['sdmTMB']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: density ~ breakpt(depth_scaled)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mesh: mesh (isotropic covariance)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Data: pcod_2011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>

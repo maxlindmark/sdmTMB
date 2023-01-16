@@ -84,7 +84,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Index standardization with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2023-01-13</h4>
+            <h4 data-toc-skip class="date">2023-01-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/index-standardization.Rmd" class="external-link"><code>vignettes/web_only/index-standardization.Rmd</code></a></small>
       <div class="d-none name"><code>index-standardization.Rmd</code></div>
@@ -130,7 +130,6 @@ mesh for applied scenarios. You will want to make sure that increasing
 the number of knots does not change the conclusions.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pcod_spde</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">#&gt; as(&lt;dgCMatrix&gt;, "dgTMatrix") is deprecated since Matrix 1.5-0; do as(., "TsparseMatrix") instead</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pcod_spde</span><span class="op">)</span></span></code></pre></div>
 <p><img src="index-standardization_files/figure-html/spde-1.png" width="672"></p>
 <p>Let’s fit a GLMM. Note that if you want to use this model for index

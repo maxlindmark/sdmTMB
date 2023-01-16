@@ -84,7 +84,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Threshold modeling with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2023-01-13</h4>
+            <h4 data-toc-skip class="date">2023-01-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/threshold-models.Rmd" class="external-link"><code>vignettes/web_only/threshold-models.Rmd</code></a></small>
       <div class="d-none name"><code>threshold-models.Rmd</code></div>
@@ -127,8 +127,7 @@ between speed and accuracy. You will likely want to use more for applied
 scenarios. You will want to make sure that increasing the number of
 knots does not change the conclusions.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pcod_spde</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span>
-<span><span class="co">#&gt; as(&lt;dgCMatrix&gt;, "dgTMatrix") is deprecated since Matrix 1.5-0; do as(., "TsparseMatrix") instead</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pcod_spde</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span></code></pre></div>
 <p>We will extend the simple GLMM used in the index standardization
 vignette to include a threshold effect. For real applications, the
 threshold effect might be a function of habitat covariates,
@@ -171,7 +170,7 @@ we’re looking at ‘s50’, ‘s95’, and ‘smax’.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Spatiotemporal model fit by ML ['sdmTMB']</span></span>
 <span><span class="co">#&gt; Formula: density ~ 0 + logistic(depth_scaled) + as.factor(year)</span></span>
-<span><span class="co">#&gt; Mesh: pcod_spde</span></span>
+<span><span class="co">#&gt; Mesh: pcod_spde (isotropic covariance)</span></span>
 <span><span class="co">#&gt; Time column: year</span></span>
 <span><span class="co">#&gt; Data: pcod</span></span>
 <span><span class="co">#&gt; Family: tweedie(link = 'log')</span></span>
@@ -226,7 +225,7 @@ cutpoint model:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Spatiotemporal model fit by ML ['sdmTMB']</span></span>
 <span><span class="co">#&gt; Formula: density ~ 0 + breakpt(depth_scaled) + as.factor(year)</span></span>
-<span><span class="co">#&gt; Mesh: pcod_spde</span></span>
+<span><span class="co">#&gt; Mesh: pcod_spde (isotropic covariance)</span></span>
 <span><span class="co">#&gt; Time column: year</span></span>
 <span><span class="co">#&gt; Data: pcod</span></span>
 <span><span class="co">#&gt; Family: tweedie(link = 'log')</span></span>

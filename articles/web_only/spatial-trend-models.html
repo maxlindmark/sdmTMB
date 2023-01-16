@@ -84,7 +84,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Fitting spatial trend models with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2023-01-13</h4>
+            <h4 data-toc-skip class="date">2023-01-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/spatial-trend-models.Rmd" class="external-link"><code>vignettes/web_only/spatial-trend-models.Rmd</code></a></small>
       <div class="d-none name"><code>spatial-trend-models.Rmd</code></div>
@@ -114,7 +114,6 @@ scale the prediction grid.</li>
 that this vignette builds quickly:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pcod_spde</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span>
-<span><span class="co">#&gt; as(&lt;dgCMatrix&gt;, "dgTMatrix") is deprecated since Matrix 1.5-0; do as(., "TsparseMatrix") instead</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pcod_spde</span><span class="op">)</span></span></code></pre></div>
 <p><img src="spatial-trend-models_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
 <p>We will fit a model that includes a slope for ‘year’, an intercept
