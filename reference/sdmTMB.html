@@ -565,23 +565,22 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Predict on new data:</span></span></span>
-<span class="r-in"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">qcs_grid</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2017</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="va">nd</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="va">qcs_grid</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     X    Y    depth depth_scaled depth_scaled2 year       est est_non_rf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 456 5636 347.0834    1.5608122    2.43613479 2017 -4.726672  -4.567419</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 458 5636 223.3348    0.5697699    0.32463771 2017  2.342465   2.368309</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 460 5636 203.7408    0.3633693    0.13203724 2017  3.087509   2.979943</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 462 5636 183.2987    0.1257046    0.01580166 2017  3.878558   3.637582</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 464 5636 182.9998    0.1220368    0.01489297 2017  4.020912   3.646527</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 466 5636 186.3892    0.1632882    0.02666303 2017  4.050893   3.543100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        est_rf     omega_s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.15925278 -0.15925278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.02584346 -0.02584346</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.10756586  0.10756586</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.24097517  0.24097517</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.37438449  0.37438449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.50779380  0.50779380</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     X    Y    depth depth_scaled depth_scaled2       est est_non_rf      est_rf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 456 5636 347.0834    1.5608122    2.43613479 -4.726672  -4.567419 -0.15925278</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 458 5636 223.3348    0.5697699    0.32463771  2.342465   2.368309 -0.02584346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 460 5636 203.7408    0.3633693    0.13203724  3.087509   2.979943  0.10756586</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 462 5636 183.2987    0.1257046    0.01580166  3.878558   3.637582  0.24097517</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 464 5636 182.9998    0.1220368    0.01489297  4.020912   3.646527  0.37438449</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 466 5636 186.3892    0.1632882    0.02666303  4.050893   3.543100  0.50779380</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       omega_s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.15925278</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.02584346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.10756586</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.24097517</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.37438449</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.50779380</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Add spatiotemporal random fields:</span></span></span>
 <span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">sdmTMB</span><span class="op">(</span></span></span>

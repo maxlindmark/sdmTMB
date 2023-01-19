@@ -162,8 +162,8 @@ in <code><a href="predict.sdmTMB.html">predict.sdmTMB()</a></code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SAMPLING FOR MODEL 'tmb_generic' NOW (CHAIN 1).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Gradient evaluation took 0.004488 seconds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 44.88 seconds.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Gradient evaluation took 0.004429 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 44.29 seconds.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Adjust your expectations accordingly!</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
@@ -188,9 +188,9 @@ in <code><a href="predict.sdmTMB.html">predict.sdmTMB()</a></code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Iteration: 90 / 100 [ 90%]  (Sampling)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Iteration: 100 / 100 [100%]  (Sampling)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:  Elapsed Time: 32.9148 seconds (Warm-up)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                34.186 seconds (Sampling)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                67.1008 seconds (Total)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:  Elapsed Time: 32.8989 seconds (Warm-up)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                34.223 seconds (Sampling)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                67.1219 seconds (Total)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The largest R-hat is 1.19, indicating chains have not mixed.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> Running the chains for more iterations may help. See</span>
@@ -219,7 +219,7 @@ in <code><a href="predict.sdmTMB.html">predict.sdmTMB()</a></code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> omega_s[1]    -0.40    0.06 0.59 -1.31 -0.70 -0.45 -0.09  0.82    85 1.04</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> epsilon_st[1]  0.30    0.07 0.53 -0.46 -0.08  0.21  0.56  1.50    64 1.11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Samples were drawn using NUTS(diag_e) at Thu Jan 19 22:30:43 2023.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Samples were drawn using NUTS(diag_e) at Thu Jan 19 23:34:15 2023.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> For each parameter, n_eff is a crude measure of effective sample size,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> and Rhat is the potential scale reduction factor on split chains (at </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> convergence, Rhat=1).</span>
@@ -228,10 +228,10 @@ in <code><a href="predict.sdmTMB.html">predict.sdmTMB()</a></code>.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">post</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 223  50</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">qcs_grid</span>, <span class="va">year</span> <span class="op">&gt;=</span> <span class="fl">2011</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="replicate_df.html">replicate_df</a></span><span class="op">(</span><span class="va">qcs_grid</span>, <span class="st">"year"</span>, <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">pcod_2011</span><span class="op">$</span><span class="va">year</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit_mle</span>, newdata <span class="op">=</span> <span class="va">nd</span>, tmbstan_model <span class="op">=</span> <span class="va">m_stan</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p_last</span> <span class="op">&lt;-</span> <span class="va">p</span><span class="op">[</span><span class="va">nd</span><span class="op">$</span><span class="va">year</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">nd</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>, <span class="op">]</span> <span class="co"># just plot last year</span></span></span>
-<span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="va">qcs_grid</span><span class="op">[</span><span class="va">qcs_grid</span><span class="op">$</span><span class="va">year</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">qcs_grid</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>, <span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="va">nd</span><span class="op">[</span><span class="va">nd</span><span class="op">$</span><span class="va">year</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">nd</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>, <span class="op">]</span></span></span>
 <span class="r-in"><span><span class="va">pred</span><span class="op">$</span><span class="va">est</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">p_last</span><span class="op">)</span>, <span class="fl">1</span>, <span class="va">median</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">pred</span><span class="op">$</span><span class="va">lwr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">p_last</span><span class="op">)</span>, <span class="fl">1</span>, <span class="va">quantile</span>, probs <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">pred</span><span class="op">$</span><span class="va">upr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">p_last</span><span class="op">)</span>, <span class="fl">1</span>, <span class="va">quantile</span>, probs <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
