@@ -162,8 +162,8 @@ in <code><a href="predict.sdmTMB.html">predict.sdmTMB()</a></code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SAMPLING FOR MODEL 'tmb_generic' NOW (CHAIN 1).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Gradient evaluation took 0.005341 seconds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 53.41 seconds.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Gradient evaluation took 0.005306 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 53.06 seconds.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Adjust your expectations accordingly!</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
@@ -188,11 +188,11 @@ in <code><a href="predict.sdmTMB.html">predict.sdmTMB()</a></code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Iteration: 90 / 100 [ 90%]  (Sampling)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: Iteration: 100 / 100 [100%]  (Sampling)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:  Elapsed Time: 35.5348 seconds (Warm-up)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                44.0149 seconds (Sampling)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                79.5497 seconds (Total)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:  Elapsed Time: 30.0492 seconds (Warm-up)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                37.131 seconds (Sampling)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1:                67.1802 seconds (Total)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chain 1: </span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The largest R-hat is 1.27, indicating chains have not mixed.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The largest R-hat is 1.41, indicating chains have not mixed.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> Running the chains for more iterations may help. See</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> https://mc-stan.org/misc/warnings.html#r-hat</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.</span>
@@ -209,17 +209,17 @@ in <code><a href="predict.sdmTMB.html">predict.sdmTMB()</a></code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 chains, each with iter=100; warmup=50; thin=1; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> post-warmup draws per chain=50, total post-warmup draws=50.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                mean se_mean   sd  2.5%   25%   50%  75% 97.5% n_eff Rhat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b_j[1]         3.18    0.06 0.34  2.51  2.97  3.16 3.39  3.92    39 1.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b_j[2]         3.21    0.06 0.42  2.56  2.83  3.23 3.52  3.89    51 0.98</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b_j[3]         3.26    0.05 0.41  2.45  3.00  3.22 3.54  4.09    70 0.98</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b_j[4]         2.48    0.06 0.40  1.70  2.21  2.52 2.71  3.26    43 0.99</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> thetaf         0.38    0.01 0.07  0.26  0.33  0.38 0.44  0.49    49 1.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ln_phi         2.77    0.01 0.04  2.69  2.75  2.77 2.81  2.84    39 1.03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> omega_s[1]    -0.42    0.08 0.57 -1.48 -0.74 -0.50 0.01  0.51    51 0.99</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> epsilon_st[1]  0.33    0.09 0.59 -0.44 -0.06  0.20 0.71  1.63    44 0.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                mean se_mean   sd  2.5%   25%   50%   75% 97.5% n_eff Rhat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b_j[1]         3.14    0.04 0.41  2.52  2.82  3.10  3.40  3.95    85 1.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b_j[2]         3.10    0.05 0.35  2.53  2.87  3.07  3.36  3.70    44 0.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b_j[3]         3.25    0.05 0.39  2.49  3.06  3.24  3.54  3.92    53 1.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b_j[4]         2.48    0.06 0.41  1.73  2.28  2.51  2.79  3.09    41 0.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> thetaf         0.37    0.01 0.06  0.26  0.34  0.37  0.41  0.48    41 0.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ln_phi         2.76    0.01 0.05  2.68  2.72  2.76  2.79  2.85    69 1.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> omega_s[1]    -0.46    0.08 0.72 -1.90 -0.88 -0.44 -0.09  0.95    85 0.98</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> epsilon_st[1]  0.36    0.06 0.57 -0.74  0.05  0.40  0.63  1.37    85 0.98</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Samples were drawn using NUTS(diag_e) at Thu Jan 19 23:53:40 2023.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Samples were drawn using NUTS(diag_e) at Fri Jan 20 00:23:02 2023.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> For each parameter, n_eff is a crude measure of effective sample size,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> and Rhat is the potential scale reduction factor on split chains (at </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> convergence, Rhat=1).</span>
