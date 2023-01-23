@@ -219,9 +219,10 @@ a name of the variable in the data frame. See the Details section below.</p></dd
 
 
 <dt>offset</dt>
-<dd><p>A numeric vector representing the model offset. In delta/hurdle
-models, this applies only to the positive component. Usually a log
-transformed variable. The <code>offset</code> argument needs to be a vector and not a name of the variable in the data frame.</p></dd>
+<dd><p>A numeric vector representing the model offset <em>or</em> a character
+value representing the column name of the offset. In delta/hurdle models,
+this applies only to the positive component. Usually a log
+transformed variable.</p></dd>
 
 
 <dt>extra_time</dt>
