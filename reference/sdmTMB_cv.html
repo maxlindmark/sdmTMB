@@ -76,6 +76,9 @@
 <span>  time <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  k_folds <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>  fold_ids <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  lfo <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  lfo_forecast <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  lfo_validations <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  parallel <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  use_initial_fit <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  spde <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
@@ -115,7 +118,24 @@ spatial data.</p></dd>
 <dt>fold_ids</dt>
 <dd><p>Optional vector containing user fold IDs. Can also be a
 single string, e.g. <code>"fold_id"</code> representing the name of the variable in
-<code>data</code>.</p></dd>
+<code>data</code>. Ignored if <code>lfo</code> is TRUE</p></dd>
+
+
+<dt>lfo</dt>
+<dd><p>Whether to implement leave-future-out (LFO) cross validation where
+data are used to predict future folds. <code>time</code> argument in <code><a href="sdmTMB.html">sdmTMB()</a></code> must
+be specified. See Details section below.</p></dd>
+
+
+<dt>lfo_forecast</dt>
+<dd><p>If <code>lfo = TRUE</code>, number of time steps to forecast. Time
+steps 1, ..., T are used to predict T + <code>lfo_forecast</code> and the last
+forecasted time step is used for validation. See Details section below.</p></dd>
+
+
+<dt>lfo_validations</dt>
+<dd><p>If <code>lfo = TRUE</code>, number of times to step through the
+LFOCV process. Defaults to 5. See Details section below.</p></dd>
 
 
 <dt>parallel</dt>
@@ -154,11 +174,19 @@ and CV log likelihood.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Parallel processing can be used by setting a <code><a href="https://future.futureverse.org/reference/plan.html" class="external-link">future::plan()</a></code>.</p>
+    <p><strong>Parallel processing</strong></p>
+<p>Parallel processing can be used by setting a <code><a href="https://future.futureverse.org/reference/plan.html" class="external-link">future::plan()</a></code>.</p>
 <p>For example:</p>
 <p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(multisession)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># now use sdmTMB_cv() ...</span></span></code></pre><p></p></div>
+<p><strong>Leave-future-out cross validation (LFOCV)</strong></p>
+<p>An example of LFOCV with 9 time steps, <code>lfo_forecast = 1</code>, and <code>lfo_validations = 2</code>:</p><ul><li><p>Fit data to time steps 1 to 7, predict and validate step 8.</p></li>
+<li><p>Fit data to time steps 1 to 8, predict and validate step 9.</p></li>
+</ul><p>An example of LFOCV with 9 time steps, <code>lfo_forecast = 2</code>, and <code>lfo_validations = 3</code>:</p><ul><li><p>Fit data to time steps 1 to 5, predict and validate step 7.</p></li>
+<li><p>Fit data to time steps 1 to 6, predict and validate step 8.</p></li>
+<li><p>Fit data to time steps 1 to 7, predict and validate step 9.</p></li>
+</ul><p>See example below.</p>
     </div>
 
     <div class="section level2">
@@ -216,7 +244,7 @@ and CV log likelihood.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">max_gradients</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0003465444 0.0008065475</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0003465450 0.0008065475</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Create mesh each fold:</span></span></span>
@@ -237,6 +265,32 @@ and CV log likelihood.</p></li>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Running fits with `future.apply()`.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Set a parallel `future::plan()` to use parallel processing.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># LFOCV:</span></span></span>
+<span class="r-in"><span><span class="va">m_lfocv</span> <span class="op">&lt;-</span> <span class="fu">sdmTMB_cv</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">present</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">year</span>, k <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  data <span class="op">=</span> <span class="va">pcod</span>,</span></span>
+<span class="r-in"><span>  mesh <span class="op">=</span> <span class="va">mesh</span>,</span></span>
+<span class="r-in"><span>  lfo <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>  lfo_forecast <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>  lfo_validations <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  spatiotemporal <span class="op">=</span> <span class="st">"off"</span>,</span></span>
+<span class="r-in"><span>  time <span class="op">=</span> <span class="st">"year"</span> <span class="co"># must be specified</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Running fits with `future.apply()`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Set a parallel `future::plan()` to use parallel processing.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># See how the LFOCV folds were assigned:</span></span></span>
+<span class="r-in"><span><span class="va">example_data</span> <span class="op">&lt;-</span> <span class="va">m_lfocv</span><span class="op">$</span><span class="va">models</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">example_data</span><span class="op">$</span><span class="va">cv_fold</span>, <span class="va">example_data</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2003 2004 2005 2007 2009 2011 2013 2015 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1  232  230  224  255  233    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   2    0    0    0    0    0  251    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   3    0    0    0    0    0    0  240    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   4    0    0    0    0    0    0    0  238    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   5    0    0    0    0    0    0    0    0  240</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
