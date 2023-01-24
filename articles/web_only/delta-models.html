@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,7 +86,7 @@
                         <h4 data-toc-skip class="author">Julia Indivero,
 Philina English, Sean Anderson, Eric Ward, Lewis Barnett</h4>
             
-            <h4 data-toc-skip class="date">2023-01-23</h4>
+            <h4 data-toc-skip class="date">2023-01-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/delta-models.Rmd" class="external-link"><code>vignettes/web_only/delta-models.Rmd</code></a></small>
       <div class="d-none name"><code>delta-models.Rmd</code></div>
@@ -206,7 +206,7 @@ model, including a smoothed effect of depth.</p>
 <span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">delta_gamma</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>The default in built-in delta models is for the formula, spatial and
-spatio-temporal structure, and anisotropy to be shared between the two
+spatiotemporal structure, and anisotropy to be shared between the two
 model components. However, some elements (<code>formula</code>,
 <code>spatial</code>, <code>spatiotemporal</code>, and
 <code>share_range</code>) can also be specified independently for each
@@ -215,7 +215,7 @@ below). The first element of the list is for the binomial component and
 the second element is for the positive component (e.g., Gamma). Some
 elements must be shared for now (e.g., smoothers, spatially varying
 coefficients, and time-varying coefficients).</p>
-<p>To specify the settings for spatial and spatio-temporal effects in
+<p>To specify the settings for spatial and spatiotemporal effects in
 each model component, create a list of settings within the
 <code>spatial</code> and <code>spatiotemporal</code> arguments. For
 example,

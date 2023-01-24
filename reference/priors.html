@@ -28,7 +28,7 @@ covariance function."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,13 +117,13 @@ covariance function.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>matern_s</dt>
 <dd><p>A PC (Penalized Complexity) prior (<code>pc_matern()</code>) on the
-spatial random field Matern parameters.</p></dd>
+spatial random field Matérn parameters.</p></dd>
 
 
 <dt>matern_st</dt>
 <dd><p>Same as <code>matern_s</code> but for the spatiotemporal random field.
 Note that you will likely want to set <code>share_fields = FALSE</code> if you choose
-to set both a spatial and spatiotemporal Matern PC prior since they both
+to set both a spatial and spatiotemporal Matérn PC prior since they both
 include a prior on the spatial range parameter.</p></dd>
 
 

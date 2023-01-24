@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Index standardization with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2023-01-23</h4>
+            <h4 data-toc-skip class="date">2023-01-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/index-standardization.Rmd" class="external-link"><code>vignettes/web_only/index-standardization.Rmd</code></a></small>
       <div class="d-none name"><code>index-standardization.Rmd</code></div>
@@ -145,7 +145,11 @@ each time slice.</p>
 <span><span class="co">#&gt; Warning in checkMatrixPackageVersion(): Package version inconsistency detected.</span></span>
 <span><span class="co">#&gt; TMB was built with Matrix version 1.5.3</span></span>
 <span><span class="co">#&gt; Current Matrix version is 1.5.1</span></span>
-<span><span class="co">#&gt; Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package</span></span></code></pre></div>
+<span><span class="co">#&gt; Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package</span></span>
+<span><span class="co">#&gt; Warning in checkDepPackageVersion(dep_pkg = "TMB"): Package version inconsistency detected.</span></span>
+<span><span class="co">#&gt; glmmTMB was built with TMB version 1.9.1</span></span>
+<span><span class="co">#&gt; Current TMB version is 1.9.2</span></span>
+<span><span class="co">#&gt; Please re-install glmmTMB from source or restore original 'TMB' package (see '?reinstalling' for more information)</span></span></code></pre></div>
 <p>We can inspect randomized quantile residuals:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pcod</span><span class="op">$</span><span class="va">resids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="co"># randomized quantile residuals</span></span>
