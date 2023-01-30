@@ -36,7 +36,7 @@
     
     <a class="navbar-brand me-2" href="index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -136,8 +136,9 @@
 <p>Assuming you have a <a href="https://support.posit.co/hc/en-us/articles/200486498-Package-Development-Prerequisites" class="external-link">C++ compiler</a> installed, the development version can be installed:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pbs-assess/sdmTMB"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"pbs-assess/sdmTMB"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>If you have problems installing INLA, try <a href="https://www.r-inla.org/download-install" class="external-link">installing it directly</a> first.</p>
+<p>There are some extra utilities in the <a href="https://github.com/pbs-assess/sdmTMBextra" class="external-link">sdmTMBextra</a> package.</p>
 </div>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
@@ -490,13 +491,6 @@
 <span><span class="co">#&gt; [1,]    0 59.40310 83.20888  0.00000</span></span>
 <span><span class="co">#&gt; [2,]    0 34.56408  0.00000 19.99839</span></span>
 <span><span class="co">#&gt; [3,]    0  0.00000  0.00000  0.00000</span></span></code></pre></div>
-<p>Using those simulations to check DHARMa residuals:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># dharma_residuals(s, fit)</span></span>
-<span><span class="co"># or with the pipe, %&gt;%:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate</a></span><span class="op">(</span><span class="va">fit</span>, nsim <span class="op">=</span> <span class="fl">500</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="reference/dharma_residuals.html">dharma_residuals</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-plot-dharma-1.png" width="50%"></p>
 <p>See the vignette on <a href="https://pbs-assess.github.io/sdmTMB/articles/residual-checking.html">Residual checking with sdmTMB</a>, <a href="https://pbs-assess.github.io/sdmTMB/reference/simulate.sdmTMB.html"><code>?simulate.sdmTMB</code></a>, and <a href="https://pbs-assess.github.io/sdmTMB/reference/dharma_residuals.html"><code>?dharma_residuals</code></a> for more details.</p>
 </div>
 </div>
@@ -504,7 +498,7 @@
 <h3 id="sampling-from-the-joint-precision-matrix">Sampling from the joint precision matrix<a class="anchor" aria-label="anchor" href="#sampling-from-the-joint-precision-matrix"></a>
 </h3>
 <p>We can take samples from the implied parameter distribution assuming an MVN covariance matrix on the internal parameterization:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">samps</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gather_sims.html">gather_sims</a></span><span class="op">(</span><span class="va">fit</span>, nsim <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">samps</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">.value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">.variable</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span></span>
@@ -516,7 +510,7 @@
 <h3 id="calculating-uncertainty-on-spatial-predictions">Calculating uncertainty on spatial predictions<a class="anchor" aria-label="anchor" href="#calculating-uncertainty-on-spatial-predictions"></a>
 </h3>
 <p>The fastest way to get point-wise prediction uncertainty is to use the MVN samples:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="va">predictor_dat</span>, nsim <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
 <span><span class="va">predictor_dat</span><span class="op">$</span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">p</span>, <span class="fl">1</span>, <span class="va">sd</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">predictor_dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, fill <span class="op">=</span> <span class="va">se</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -529,7 +523,7 @@
 <h3 id="cross-validation">Cross validation<a class="anchor" aria-label="anchor" href="#cross-validation"></a>
 </h3>
 <p>sdmTMB has built-in functionality for cross-validation. If we were to set a <code><a href="https://future.futureverse.org/reference/plan.html" class="external-link">future::plan()</a></code>, the folds would be fit in parallel:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">## Set parallel processing if desired:</span></span>
 <span><span class="co"># library(future)</span></span>
@@ -554,7 +548,7 @@
 <h3 id="priors">Priors<a class="anchor" aria-label="anchor" href="#priors"></a>
 </h3>
 <p>Priors/penalties can be placed on most parameters. For example, here we place a PC (penalized complexity) prior on the Matérn random field parameters, a standard normal prior on the effect of depth, a Normal(0, 10^2) prior on the intercept, and a half-normal prior on the Tweedie dispersion parameter (<code>phi</code>):</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sdmTMB.html">sdmTMB</a></span><span class="op">(</span></span>
 <span>  <span class="va">density</span> <span class="op">~</span> <span class="va">depth_scaled</span>,</span>
@@ -567,7 +561,7 @@
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>We can visualize the PC Matérn prior:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_pc_matern.html">plot_pc_matern</a></span><span class="op">(</span>range_gt <span class="op">=</span> <span class="fl">10</span>, sigma_lt <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-plot-pc-matern-1.png" width="50%"></p>
 <p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/priors.html"><code>?sdmTMBpriors</code></a> for more details.</p>
@@ -575,38 +569,13 @@
 <div class="section level3">
 <h3 id="bayesian-mcmc-sampling-with-stan">Bayesian MCMC sampling with Stan<a class="anchor" aria-label="anchor" href="#bayesian-mcmc-sampling-with-stan"></a>
 </h3>
-<p>The fitted model can be passed to the tmbstan package to sample from the posterior with Stan. Note this can be slow for large or poorly identified models. See examples of fixing parameters in <a href="https://pbs-assess.github.io/sdmTMB/reference/extract_mcmc.html"><code>?extract_mcmc</code></a>.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># only 1 chain and 400 iterations for speed:</span></span>
-<span><span class="va">fit_mcmc</span> <span class="op">&lt;-</span> <span class="fu">tmbstan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmbstan/man/tmbstan.html" class="external-link">tmbstan</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">tmb_obj</span>, chains <span class="op">=</span> <span class="fl">1</span>, iter <span class="op">=</span> <span class="fl">400</span><span class="op">)</span></span></code></pre></div>
-<p>Internal parameter posteriors:</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">fit_mcmc</span>, pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b_j"</span>, <span class="st">"omega_s[1]"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Inference for Stan model: sdmTMB.</span></span>
-<span><span class="co">#&gt; 1 chains, each with iter=400; warmup=200; thin=1; </span></span>
-<span><span class="co">#&gt; post-warmup draws per chain=200, total post-warmup draws=200.</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;             mean se_mean   sd  2.5%   25%   50%  75% 97.5% n_eff Rhat</span></span>
-<span><span class="co">#&gt; b_j         0.99    0.03 0.15  0.62  0.93  1.00 1.06  1.27    35 1.00</span></span>
-<span><span class="co">#&gt; omega_s[1] -0.07    0.03 0.23 -0.50 -0.23 -0.06 0.10  0.33    63 1.01</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Samples were drawn using NUTS(diag_e).</span></span>
-<span><span class="co">#&gt; For each parameter, n_eff is a crude measure of effective sample size,</span></span>
-<span><span class="co">#&gt; and Rhat is the potential scale reduction factor on split chains (at </span></span>
-<span><span class="co">#&gt; convergence, Rhat=1).</span></span></code></pre></div>
-<p>Predicting with the Stan/tmbstan model:</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pred_mcmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="va">qcs_grid</span>, tmbstan_model <span class="op">=</span> <span class="va">fit_mcmc</span><span class="op">)</span></span>
-<span><span class="co"># Each row has 200 posterior samples for a row of the `newdata` data frame:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">pred_mcmc</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 7314   200</span></span></code></pre></div>
-<p>See <a href="https://pbs-assess.github.io/sdmTMB/reference/extract_mcmc.html"><code>?extract_mcmc</code></a> for more details.</p>
+<p>The fitted model can be passed to the tmbstan package to sample from the posterior with Stan. See the <a href="https://pbs-assess.github.io/sdmTMB/articles/web_only/bayesian.html">Bayesian vignette</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="turning-off-random-fields">Turning off random fields<a class="anchor" aria-label="anchor" href="#turning-off-random-fields"></a>
 </h3>
 <p>We can turn off the random fields for model comparison:</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_sdmTMB</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sdmTMB.html">sdmTMB</a></span><span class="op">(</span></span>
 <span>  <span class="va">present</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html" class="external-link">poly</a></span><span class="op">(</span><span class="va">depth_scaled</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">pcod</span>, mesh <span class="op">=</span> <span class="va">mesh</span>,</span>
@@ -638,7 +607,7 @@
 <h3 id="using-a-custom-inla-mesh">Using a custom INLA mesh<a class="anchor" aria-label="anchor" href="#using-a-custom-inla-mesh"></a>
 </h3>
 <p>Defining a mesh directly with INLA:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bnd</span> <span class="op">&lt;-</span> <span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/inla.nonconvex.hull.html" class="external-link">inla.nonconvex.hull</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">X</span>, <span class="va">pcod</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span>, convex <span class="op">=</span> <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span></span>
 <span><span class="va">mesh_inla</span> <span class="op">&lt;-</span> <span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/inla.mesh.2d.html" class="external-link">inla.mesh.2d</a></span><span class="op">(</span></span>
 <span>  boundary <span class="op">=</span> <span class="va">bnd</span>,</span>
@@ -647,7 +616,7 @@
 <span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, mesh <span class="op">=</span> <span class="va">mesh_inla</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-inla-mesh-1.png" width="30%"></p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sdmTMB.html">sdmTMB</a></span><span class="op">(</span></span>
 <span>  <span class="va">density</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">depth</span>, k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">pcod</span>, mesh <span class="op">=</span> <span class="va">mesh</span>,</span>

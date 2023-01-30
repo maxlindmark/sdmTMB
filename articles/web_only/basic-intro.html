@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Introduction to modelling with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2023-01-25</h4>
+            <h4 data-toc-skip class="date">2023-01-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/basic-intro.Rmd" class="external-link"><code>vignettes/web_only/basic-intro.Rmd</code></a></small>
       <div class="d-none name"><code>basic-intro.Rmd</code></div>
@@ -403,17 +403,20 @@ then:</p>
 <p><img src="basic-intro_files/figure-html/residuals-2.png" width="768"></p>
 <p>Those were fast to calculate but can look ‘off’ even when the model
 is consistent with the data. MCMC-based residuals are more reliable but
-slow. In practice you would like want more <code>mcmc_iter</code> and
+slow. We can calculate them through some help from the sdmTMBextra
+package. <a href="https://github.com/pbs-assess/sdmTMBextra" class="external-link uri">https://github.com/pbs-assess/sdmTMBextra</a>. In practice
+you would like want more <code>mcmc_iter</code> and
 <code>mcmc_warmup</code>. Total samples is
 <code>mcmc_iter - mcmc_warmup</code>. We will also just use the spatial
 model here so the vignette builds quickly.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">m3</span>, <span class="st">"mle-mcmc"</span>, mcmc_warmup <span class="op">=</span> <span class="fl">100</span>, mcmc_iter <span class="op">=</span> <span class="fl">101</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">samps</span> <span class="op">&lt;-</span> <span class="fu">sdmTMBextra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sdmTMBextra/man/predict_mle_mcmc.html" class="external-link">predict_mle_mcmc</a></span><span class="op">(</span><span class="va">m3</span>, mcmc_warmup <span class="op">=</span> <span class="fl">100</span>, mcmc_iter <span class="op">=</span> <span class="fl">101</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL 'tmb_generic' NOW (CHAIN 1).</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1: Gradient evaluation took 0.013251 seconds</span></span>
-<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 132.51 seconds.</span></span>
+<span><span class="co">#&gt; Chain 1: Gradient evaluation took 0.015654 seconds</span></span>
+<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 156.54 seconds.</span></span>
 <span><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
@@ -438,10 +441,11 @@ model here so the vignette builds quickly.</p>
 <span><span class="co">#&gt; Chain 1: Iteration: 100 / 101 [ 99%]  (Warmup)</span></span>
 <span><span class="co">#&gt; Chain 1: Iteration: 101 / 101 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1:  Elapsed Time: 31.5143 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 1:                0.243226 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 1:                31.7575 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 1:  Elapsed Time: 33.507 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 1:                0.280449 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1:                33.7875 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 1:</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">m3</span>, <span class="st">"mle-mcmc"</span>, mcmc_samples <span class="op">=</span> <span class="va">samps</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html" class="external-link">qqnorm</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html" class="external-link">qqline</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code></pre></div>
 <p><img src="basic-intro_files/figure-html/residuals-mcmc-1.png" width="768"></p>
@@ -605,8 +609,6 @@ progress.</p>
 <span><span class="co">#&gt; Detected irregular time spacing with an AR(1) or random walk process.</span></span>
 <span><span class="co">#&gt; Consider filling in the missing time slices with `extra_time`.</span></span>
 <span><span class="co">#&gt; `extra_time = c(2006, 2008, 2010, 2012, 2014, 2016)`</span></span>
-<span><span class="co">#&gt; Warning: The model may not have converged: non-positive-definite Hessian</span></span>
-<span><span class="co">#&gt; matrix.</span></span>
 <span><span class="va">m4</span></span>
 <span><span class="co">#&gt; Spatiotemporal model fit by ML ['sdmTMB']</span></span>
 <span><span class="co">#&gt; Formula: density ~ 0 + as.factor(year)</span></span>
@@ -614,52 +616,6 @@ progress.</p>
 <span><span class="co">#&gt; Time column: year</span></span>
 <span><span class="co">#&gt; Data: pcod</span></span>
 <span><span class="co">#&gt; Family: tweedie(link = 'log')</span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in sqrt(diag(object$cov.fixed)): NaNs produced</span></span>
 <span><span class="co">#&gt;  </span></span>
 <span><span class="co">#&gt;                     coef.est coef.se</span></span>
 <span><span class="co">#&gt; as.factor(year)2003     3.36    0.30</span></span>

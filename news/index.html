@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,6 +61,24 @@
       <small>Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="sdmtmb-development-version">sdmTMB (development version)<a class="anchor" aria-label="anchor" href="#sdmtmb-development-version"></a></h2>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.0" id="sdmtmb-030">sdmTMB 0.3.0<a class="anchor" aria-label="anchor" href="#sdmtmb-030"></a></h2><p class="text-muted">CRAN release: 2023-01-28</p>
+<ul><li><p>Create the sdmTMBextra package to remove rstan/tmbstan helpers, which were causing memory sanitizer errors on CRAN. <a href="https://github.com/pbs-assess/sdmTMBextra" class="external-link uri">https://github.com/pbs-assess/sdmTMBextra</a></p></li>
+<li>
+<p>The following functions are affected:</p>
+<ul><li>
+<code><a href="../reference/predict.sdmTMB.html">predict.sdmTMB()</a></code> now takes <code>mcmc_samples</code>, which is output from <code><a href="https://rdrr.io/pkg/sdmTMBextra/man/extract_mcmc.html" class="external-link">sdmTMBextra::extract_mcmc()</a></code>.</li>
+<li>
+<code><a href="../reference/simulate.sdmTMB.html">simulate.sdmTMB()</a></code> now takes <code>mcmc_samples</code>, which is output from <code><a href="https://rdrr.io/pkg/sdmTMBextra/man/extract_mcmc.html" class="external-link">sdmTMBextra::extract_mcmc()</a></code>.</li>
+<li>
+<code><a href="../reference/residuals.sdmTMB.html">residuals.sdmTMB()</a></code> now takes <code>mcmc_samples</code>, which is output <code><a href="https://rdrr.io/pkg/sdmTMBextra/man/predict_mle_mcmc.html" class="external-link">sdmTMBextra::predict_mle_mcmc()</a></code>. This only affects <code>residuals(..., type = "mle-mcmc")</code>.</li>
+</ul></li>
+<li><p>Move <code><a href="../reference/dharma_residuals.html">dharma_residuals()</a></code> to <a href="https://github.com/pbs-assess/sdmTMBextra" class="external-link">sdmTMBextra</a> to reduce heavy dependencies.</p></li>
+<li><p>See examples in the Bayesian and residuals vignettes or in the help files for those functions within sdmTMBextra.</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.2" id="sdmtmb-022">sdmTMB 0.2.2<a class="anchor" aria-label="anchor" href="#sdmtmb-022"></a></h2>
 <ul><li><p>Various fixes to pass CRAN checks. <a href="https://github.com/pbs-assess/sdmTMB/issues/158" class="external-link">#158</a></p></li>

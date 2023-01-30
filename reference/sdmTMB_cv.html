@@ -16,7 +16,7 @@ folds can be manually assigned."><!-- mathjax --><script src="https://cdnjs.clou
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -216,14 +216,14 @@ and CV log likelihood.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Set a parallel `future::plan()` to use parallel processing.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_elpd</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.058983 -1.035476</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.058697 -1.031947</span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">elpd</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.046859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.045089</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_loglik</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -3288.382 -3326.460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -3387.397 -3329.670</span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">sum_loglik</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -6614.843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -6717.068</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">m_cv</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 15</span></span>
@@ -244,18 +244,18 @@ and CV log likelihood.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled     -1.81    0.19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2    -1.28    0.10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled     -2.06    0.19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2    -1.27    0.10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 14.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 13.10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matern range: 117.49</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2.61</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3282.890</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matern range: 96.42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2.78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3206.009</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">max_gradients</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0003465450 0.0008065475</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0001137804 0.0000106584</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Create mesh each fold:</span></span></span>

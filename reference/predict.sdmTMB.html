@@ -12,7 +12,7 @@ data."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathj
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +83,8 @@ data.</p>
 <span>  sims_var <span class="op">=</span> <span class="st">"est"</span>,</span>
 <span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>  offset <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  tmbstan_model <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tmbstan_model <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  mcmc_samples <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  return_tmb_object <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  return_tmb_report <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  return_tmb_data <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -149,8 +150,8 @@ Other options will be passed verbatim.</p></dd>
 
 
 <dt>model</dt>
-<dd><p>Type of prediction if a delta/hurdle model <em>and</em> <code>nsim &gt; 0</code> or a
-<code>tmbstan_model</code> is supplied: <code>NA</code> returns the combined prediction from both
+<dd><p>Type of prediction if a delta/hurdle model <em>and</em> <code>nsim &gt; 0</code> or
+<code>mcmc_samples</code> is supplied: <code>NA</code> returns the combined prediction from both
 components on the link scale for the positive component; <code>1</code> or <code>2</code> return
 the first or second model component only on the link or response scale
 depending on the argument <code>type</code>.</p></dd>
@@ -162,10 +163,15 @@ depending on the argument <code>type</code>.</p></dd>
 
 
 <dt>tmbstan_model</dt>
-<dd><p>A model fit with <code><a href="https://rdrr.io/pkg/tmbstan/man/tmbstan.html" class="external-link">tmbstan::tmbstan()</a></code>. See
-<code><a href="extract_mcmc.html">extract_mcmc()</a></code> for more details and an example. If specified, the
-predict function will return a matrix of a similar form as if <code>nsim &gt; 0</code>
-but representing Bayesian posterior samples from the Stan model.</p></dd>
+<dd><p>Deprecated. See <code>mcmc_samples</code>.</p></dd>
+
+
+<dt>mcmc_samples</dt>
+<dd><p>See <code><a href="extract_mcmc.html">extract_mcmc()</a></code> in the
+<a href="https://github.com/pbs-assess/sdmTMBextra" class="external-link">sdmTMBextra</a> package for
+more details and the Bayesian vignette. If specified, the predict function
+will return a matrix of a similar form as if <code>nsim &gt; 0</code> but representing
+Bayesian posterior samples from the Stan model.</p></dd>
 
 
 <dt>return_tmb_object</dt>
@@ -177,7 +183,7 @@ functions.</p></dd>
 <dt>return_tmb_report</dt>
 <dd><p>Logical: return the output from the TMB
 report? For regular prediction this is all the reported variables
-at the MLE parameter values. For <code>nsim &gt; 0</code> or when <code>tmbstan_model</code>
+at the MLE parameter values. For <code>nsim &gt; 0</code> or when <code>mcmc_samples</code>
 is supplied, this is a list where each element is a sample and the
 contents of each element is the output of the report for that sample.</p></dd>
 
@@ -203,7 +209,7 @@ internally.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>If <code>return_tmb_object = FALSE</code> (and <code>nsim = 0</code> and <code>tmbstan_model = NULL</code>):</p>
+<p>If <code>return_tmb_object = FALSE</code> (and <code>nsim = 0</code> and <code>mcmc_samples = NULL</code>):</p>
 
 
 <p>A data frame:</p><ul><li><p><code>est</code>: Estimate in link space (everything is in link space)</p></li>
@@ -213,7 +219,7 @@ internally.</p></dd>
 <li><p><code>zeta_s</code>: Spatial slope random field</p></li>
 <li><p><code>epsilon_st</code>: Spatiotemporal (intercept) random fields, could be
 off (zero), IID, AR1, or random walk</p></li>
-</ul><p>If <code>return_tmb_object = TRUE</code> (and <code>nsim = 0</code> and <code>tmbstan_model = NULL</code>):</p>
+</ul><p>If <code>return_tmb_object = TRUE</code> (and <code>nsim = 0</code> and <code>mcmc_samples = NULL</code>):</p>
 
 
 <p>A list:</p><ul><li><p><code>data</code>: The data frame described above</p></li>
@@ -224,7 +230,7 @@ off (zero), IID, AR1, or random walk</p></li>
 The other elements are included for other functions.</p>
 
 
-<p>If <code>nsim &gt; 0</code> or <code>tmbstan_model</code> is not <code>NULL</code>:</p>
+<p>If <code>nsim &gt; 0</code> or <code>mcmc_samples</code> is not <code>NULL</code>:</p>
 
 
 <p>A matrix:</p><ul><li><p>Columns represent samples</p></li>
