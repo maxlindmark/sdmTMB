@@ -86,7 +86,7 @@
                         <h4 data-toc-skip class="author">Julia Indivero,
 Sean Anderson, Lewis Barnett, Philina English, Eric Ward</h4>
             
-            <h4 data-toc-skip class="date">2023-02-02</h4>
+            <h4 data-toc-skip class="date">2023-02-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/visreg.Rmd" class="external-link"><code>vignettes/web_only/visreg.Rmd</code></a></small>
       <div class="d-none name"><code>visreg.Rmd</code></div>
@@ -116,11 +116,7 @@ Tweedie distribution.</p>
 <span><span class="co">#&gt; Warning in checkMatrixPackageVersion(): Package version inconsistency detected.</span></span>
 <span><span class="co">#&gt; TMB was built with Matrix version 1.5.3</span></span>
 <span><span class="co">#&gt; Current Matrix version is 1.5.1</span></span>
-<span><span class="co">#&gt; Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package</span></span>
-<span><span class="co">#&gt; Warning in checkDepPackageVersion(dep_pkg = "TMB"): Package version inconsistency detected.</span></span>
-<span><span class="co">#&gt; glmmTMB was built with TMB version 1.9.1</span></span>
-<span><span class="co">#&gt; Current TMB version is 1.9.2</span></span>
-<span><span class="co">#&gt; Please re-install glmmTMB from source or restore original 'TMB' package (see '?reinstalling' for more information)</span></span></code></pre></div>
+<span><span class="co">#&gt; Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package</span></span></code></pre></div>
 <p>We can then plot the effect of depth in link space. This shows the
 value of depth on the x-axis and the change in response on the y-axis,
 holding all other variables constant.</p>
@@ -218,10 +214,14 @@ Gamma, lognormal). For example:</p>
 <span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">delta_gamma</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../../reference/visreg_delta.html">visreg_delta</a></span><span class="op">(</span><span class="va">fit_dg</span>, xvar <span class="op">=</span> <span class="st">"depth_scaled"</span>, model <span class="op">=</span> <span class="fl">1</span>, gg <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../../reference/visreg_delta.html">visreg_delta</a></span><span class="op">(</span><span class="va">fit_dg</span>, xvar <span class="op">=</span> <span class="st">"depth_scaled"</span>, model <span class="op">=</span> <span class="fl">1</span>, gg <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; These are residuals for delta model component 1. Use the `model` argument to</span></span>
+<span><span class="co">#&gt; select the other component.</span></span></code></pre></div>
 <p><img src="visreg_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/visreg_delta.html">visreg_delta</a></span><span class="op">(</span><span class="va">fit_dg</span>, xvar <span class="op">=</span> <span class="st">"depth_scaled"</span>, model <span class="op">=</span> <span class="fl">2</span>, gg <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/visreg_delta.html">visreg_delta</a></span><span class="op">(</span><span class="va">fit_dg</span>, xvar <span class="op">=</span> <span class="st">"depth_scaled"</span>, model <span class="op">=</span> <span class="fl">2</span>, gg <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; These are residuals for delta model component 2. Use the `model` argument to</span></span>
+<span><span class="co">#&gt; select the other component.</span></span></code></pre></div>
 <p><img src="visreg_files/figure-html/unnamed-chunk-12-2.png" width="672"></p>
 <p>Note that for plotting with <code><a href="../../reference/visreg_delta.html">visreg_delta()</a></code>, categorical
 variables like year need to be designated as a factor in the data frame,

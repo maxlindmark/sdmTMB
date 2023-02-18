@@ -84,7 +84,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Introduction to modelling with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2023-02-02</h4>
+            <h4 data-toc-skip class="date">2023-02-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/basic-intro.Rmd" class="external-link"><code>vignettes/web_only/basic-intro.Rmd</code></a></small>
       <div class="d-none name"><code>basic-intro.Rmd</code></div>
@@ -175,10 +175,6 @@ tows as a function of depth and depth squared. We will first use
 <span><span class="co">#&gt; TMB was built with Matrix version 1.5.3</span></span>
 <span><span class="co">#&gt; Current Matrix version is 1.5.1</span></span>
 <span><span class="co">#&gt; Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package</span></span>
-<span><span class="co">#&gt; Warning in checkDepPackageVersion(dep_pkg = "TMB"): Package version inconsistency detected.</span></span>
-<span><span class="co">#&gt; glmmTMB was built with TMB version 1.9.1</span></span>
-<span><span class="co">#&gt; Current TMB version is 1.9.2</span></span>
-<span><span class="co">#&gt; Please re-install glmmTMB from source or restore original 'TMB' package (see '?reinstalling' for more information)</span></span>
 <span><span class="va">m</span></span>
 <span><span class="co">#&gt; Model fit by ML ['sdmTMB']</span></span>
 <span><span class="co">#&gt; Formula: present ~ depth_scaled + depth_scaled2</span></span>
@@ -253,7 +249,7 @@ changes coefficient estimates:</p>
 <span><span class="co">#&gt; depth_scaled     -2.17    0.21</span></span>
 <span><span class="co">#&gt; depth_scaled2    -1.59    0.13</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Matern range: 43.54</span></span>
+<span><span class="co">#&gt; Matérn range: 43.54</span></span>
 <span><span class="co">#&gt; Spatial SD: 1.65</span></span>
 <span><span class="co">#&gt; ML criterion at convergence: 1042.157</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -292,7 +288,7 @@ examples.</p>
 <span><span class="co">#&gt; depth_scaled     -2.47    0.25</span></span>
 <span><span class="co">#&gt; depth_scaled2    -1.83    0.15</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Matern range: 49.96</span></span>
+<span><span class="co">#&gt; Matérn range: 49.96</span></span>
 <span><span class="co">#&gt; Spatial SD: 1.91</span></span>
 <span><span class="co">#&gt; Spatiotemporal SD: 0.95</span></span>
 <span><span class="co">#&gt; ML criterion at convergence: 1014.753</span></span>
@@ -326,7 +322,7 @@ easier.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Dispersion parameter: 11.03</span></span>
 <span><span class="co">#&gt; Tweedie p: 1.50</span></span>
-<span><span class="co">#&gt; Matern range: 19.75</span></span>
+<span><span class="co">#&gt; Matérn range: 19.75</span></span>
 <span><span class="co">#&gt; Spatial SD: 1.40</span></span>
 <span><span class="co">#&gt; Spatiotemporal SD: 1.55</span></span>
 <span><span class="co">#&gt; ML criterion at convergence: 6277.624</span></span>
@@ -415,8 +411,8 @@ model here so the vignette builds quickly.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL 'tmb_generic' NOW (CHAIN 1).</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1: Gradient evaluation took 0.01334 seconds</span></span>
-<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 133.4 seconds.</span></span>
+<span><span class="co">#&gt; Chain 1: Gradient evaluation took 0.017034 seconds</span></span>
+<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 170.34 seconds.</span></span>
 <span><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
@@ -441,9 +437,9 @@ model here so the vignette builds quickly.</p>
 <span><span class="co">#&gt; Chain 1: Iteration: 100 / 101 [ 99%]  (Warmup)</span></span>
 <span><span class="co">#&gt; Chain 1: Iteration: 101 / 101 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1:  Elapsed Time: 31.7468 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 1:                0.246925 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 1:                31.9938 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 1:  Elapsed Time: 39.763 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 1:                0.28666 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1:                40.0497 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 1:</span></span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">m3</span>, <span class="st">"mle-mcmc"</span>, mcmc_samples <span class="op">=</span> <span class="va">samps</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html" class="external-link">qqnorm</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
@@ -651,7 +647,7 @@ progress.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Dispersion parameter: 10.86</span></span>
 <span><span class="co">#&gt; Tweedie p: 1.50</span></span>
-<span><span class="co">#&gt; Matern range: 13.58</span></span>
+<span><span class="co">#&gt; Matérn range: 13.58</span></span>
 <span><span class="co">#&gt; Spatial SD: 1.63</span></span>
 <span><span class="co">#&gt; Spatiotemporal SD: 1.66</span></span>
 <span><span class="co">#&gt; ML criterion at convergence: 6251.146</span></span>
@@ -685,9 +681,7 @@ the time-varying covariate and time. This is easily created using
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">x</span> <span class="op">*</span> <span class="va">pcod</span><span class="op">$</span><span class="va">depth_sd</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">pcod</span><span class="op">$</span><span class="va">depth_mean</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Depth (m)"</span>, y <span class="op">=</span> <span class="st">"Biomass density (kg/km2)"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Depth (m)"</span>, y <span class="op">=</span> <span class="st">"Biomass density (kg/km2)"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="basic-intro_files/figure-html/tv-depth-eff-1.png" width="576"></p>
 </div>
 </div>

@@ -84,7 +84,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Threshold modeling with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2023-02-02</h4>
+            <h4 data-toc-skip class="date">2023-02-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/threshold-models.Rmd" class="external-link"><code>vignettes/web_only/threshold-models.Rmd</code></a></small>
       <div class="d-none name"><code>threshold-models.Rmd</code></div>
@@ -163,11 +163,7 @@ at which the function reaches 95%. The parameter <span class="math inline">\(s50
 <span><span class="co">#&gt; Warning in checkMatrixPackageVersion(): Package version inconsistency detected.</span></span>
 <span><span class="co">#&gt; TMB was built with Matrix version 1.5.3</span></span>
 <span><span class="co">#&gt; Current Matrix version is 1.5.1</span></span>
-<span><span class="co">#&gt; Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package</span></span>
-<span><span class="co">#&gt; Warning in checkDepPackageVersion(dep_pkg = "TMB"): Package version inconsistency detected.</span></span>
-<span><span class="co">#&gt; glmmTMB was built with TMB version 1.9.1</span></span>
-<span><span class="co">#&gt; Current TMB version is 1.9.2</span></span>
-<span><span class="co">#&gt; Please re-install glmmTMB from source or restore original 'TMB' package (see '?reinstalling' for more information)</span></span></code></pre></div>
+<span><span class="co">#&gt; Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package</span></span></code></pre></div>
 <p>We can then look at the important coefficients from the model. Here
 we’re looking at ‘s50’, ‘s95’, and ‘smax’.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -195,7 +191,7 @@ we’re looking at ‘s50’, ‘s95’, and ‘smax’.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Dispersion parameter: 12.33</span></span>
 <span><span class="co">#&gt; Tweedie p: 1.53</span></span>
-<span><span class="co">#&gt; Matern range: 22.09</span></span>
+<span><span class="co">#&gt; Matérn range: 22.09</span></span>
 <span><span class="co">#&gt; Spatial SD: 2.02</span></span>
 <span><span class="co">#&gt; Spatiotemporal SD: 1.40</span></span>
 <span><span class="co">#&gt; ML criterion at convergence: 6435.001</span></span>
@@ -249,7 +245,7 @@ cutpoint model:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Dispersion parameter: 12.14</span></span>
 <span><span class="co">#&gt; Tweedie p: 1.51</span></span>
-<span><span class="co">#&gt; Matern range: 15.93</span></span>
+<span><span class="co">#&gt; Matérn range: 15.93</span></span>
 <span><span class="co">#&gt; Spatial SD: 1.82</span></span>
 <span><span class="co">#&gt; Spatiotemporal SD: 1.70</span></span>
 <span><span class="co">#&gt; ML criterion at convergence: 6397.346</span></span>
