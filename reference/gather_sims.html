@@ -111,27 +111,27 @@ long-format data frame. The format matches the format in the <span class="pkg">t
 <span class="r-in"><span>  spatiotemporal <span class="op">=</span> <span class="st">"AR1"</span>, time <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">spread_sims</span><span class="op">(</span><span class="va">m</span>, nsim <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .iteration depth_scaled depth_scaled2    range      phi tweedie_p   ar1_rho</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1    -1.724229     -1.239978 59.20597 13.56982  1.535910 0.7677040</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2    -1.975852     -1.336957 51.06773 12.67182  1.573141 0.8312684</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3    -1.471168     -1.161708 68.90820 13.73527  1.525259 0.8790398</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4    -1.807767     -1.260083 67.47032 12.62994  1.563359 0.8887037</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5    -2.026025     -1.342357 62.47075 13.30531  1.564159 0.9195095</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6    -1.793621     -1.282831 53.66923 12.96081  1.549470 0.8483802</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        sigma_O  sigma_E</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          Inf 2.578727</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2.173922e-53 3.078701</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.000000e+00 3.240359</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 4.043531e-65 2.755012</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.000000e+00 3.026041</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 2.960719e-82 3.144813</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1    -1.723420     -1.239501 59.20573 13.56981  1.535910 0.7677258</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2    -1.975947     -1.337013 51.06758 12.67182  1.573140 0.8312792</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3    -1.471611     -1.161968 68.90814 13.73527  1.525259 0.8790436</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4    -1.807872     -1.260145 67.47024 12.62994  1.563359 0.8887063</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5    -2.027082     -1.342981 62.47076 13.30531  1.564159 0.9195087</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6    -1.793759     -1.282912 53.66913 12.96081  1.549470 0.8483883</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         sigma_O  sigma_E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           Inf 2.578915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2.680026e-83 3.078770</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.000000e+00 3.240282</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 4.199118e-107 2.755055</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.000000e+00 3.025966</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 9.498708e-129 3.144829</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">gather_sims</span><span class="op">(</span><span class="va">m</span>, nsim <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .iteration    .variable    .value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 depth_scaled -1.925741</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2 depth_scaled -1.626653</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3 depth_scaled -1.591341</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4 depth_scaled -1.979919</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5 depth_scaled -1.368293</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6 depth_scaled -2.177634</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 depth_scaled -1.926309</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2 depth_scaled -1.625672</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3 depth_scaled -1.590939</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4 depth_scaled -1.979694</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5 depth_scaled -1.368575</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6 depth_scaled -2.177121</span>
 <span class="r-in"><span><span class="va">samps</span> <span class="op">&lt;-</span> <span class="fu">gather_sims</span><span class="op">(</span><span class="va">m</span>, nsim <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -139,7 +139,7 @@ long-format data frame. The format matches the format in the <span class="pkg">t
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">.variable</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 334 rows containing non-finite values (`stat_bin()`).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 397 rows containing non-finite values (`stat_bin()`).</span>
 <span class="r-plt img"><img src="gather_sims-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

@@ -509,7 +509,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             coef.est coef.se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     2.16    0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth        -20.26   32.63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth        -20.26   32.62</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Std. Dev.</span>
@@ -567,19 +567,19 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="va">qcs_grid</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     X    Y    depth depth_scaled depth_scaled2       est est_non_rf      est_rf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 456 5636 347.0834    1.5608122    2.43613479 -4.726672  -4.567419 -0.15925278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 458 5636 223.3348    0.5697699    0.32463771  2.342465   2.368309 -0.02584346</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 460 5636 203.7408    0.3633693    0.13203724  3.087509   2.979943  0.10756586</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 462 5636 183.2987    0.1257046    0.01580166  3.878558   3.637582  0.24097517</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 464 5636 182.9998    0.1220368    0.01489297  4.020912   3.646527  0.37438449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 466 5636 186.3892    0.1632882    0.02666303  4.050893   3.543100  0.50779380</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 456 5636 347.0834    1.5608122    2.43613479 -4.726638  -4.567385 -0.15925308</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 458 5636 223.3348    0.5697699    0.32463771  2.342470   2.368314 -0.02584421</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 460 5636 203.7408    0.3633693    0.13203724  3.087513   2.979948  0.10756466</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 462 5636 183.2987    0.1257046    0.01580166  3.878560   3.637586  0.24097353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 464 5636 182.9998    0.1220368    0.01489297  4.020914   3.646532  0.37438240</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 466 5636 186.3892    0.1632882    0.02666303  4.050895   3.543104  0.50779127</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       omega_s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.15925278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.02584346</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.10756586</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.24097517</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.37438449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.50779380</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.15925308</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.02584421</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.10756466</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.24097353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.37438240</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.50779127</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Add spatiotemporal random fields:</span></span></span>
 <span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">sdmTMB</span><span class="op">(</span></span></span>
@@ -605,7 +605,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 14.83</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.57</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 13.31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 3.17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 3.16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 1.79</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3007.552</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -697,10 +697,10 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             coef.est coef.se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)                     1.76    0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2011    -0.81   42.80</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2013   -48.98   35.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2015   -63.68   64.10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2017    21.04   34.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2011    -0.71   42.82</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2013   -48.95   35.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2015   -63.69   64.09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2017    21.05   34.33</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                 Std. Dev.</span>
@@ -733,8 +733,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              coef.est coef.se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      2.55    0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    -1.78    1.07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2   -34.28   24.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    34.27   24.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2     1.79    1.07</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Std. Dev.</span>
@@ -869,7 +869,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 1303.44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2149.18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2861.783</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -960,7 +960,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             coef.est coef.se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     2.13    0.37</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth        -18.95   31.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth        -18.95   31.25</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Std. Dev.</span>
@@ -1041,9 +1041,9 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.80</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.56</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 1560.43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 1266.29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2572.78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2087.82</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2911.371</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
@@ -1052,16 +1052,16 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">sd_report</span>, <span class="st">"Std. Error"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">est</span><span class="op">$</span><span class="va">b_rw_t</span><span class="op">[</span>, , <span class="fl">1</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.8738039 -1.9199724</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.8738038 -1.9199722</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.8115162 -0.9195934</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.7514767 -1.5858305</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -1.1064061 -2.1992576</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.7514766 -1.5858307</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -1.1064060 -2.1992575</span>
 <span class="r-in"><span><span class="va">se</span><span class="op">$</span><span class="va">b_rw_t</span><span class="op">[</span>, , <span class="fl">1</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.1619744 0.2944086</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.1619744 0.2944087</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.1287059 0.1386946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.1346181 0.2197914</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.2305926 0.3514650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.1346182 0.2197914</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.2305927 0.3514650</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Linear break-point effect of depth:</span></span></span>
 <span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">sdmTMB</span><span class="op">(</span></span></span>
