@@ -90,7 +90,7 @@ standardization among many other uses.</p>
 <span>  spatiotemporal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"iid"</span>, <span class="st">"ar1"</span>, <span class="st">"rw"</span>, <span class="st">"off"</span><span class="op">)</span>,</span>
 <span>  share_range <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  time_varying <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  time_varying_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rw"</span>, <span class="st">"ar1"</span><span class="op">)</span>,</span>
+<span>  time_varying_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rw"</span>, <span class="st">"rw0"</span>, <span class="st">"ar1"</span><span class="op">)</span>,</span>
 <span>  spatial_varying <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  weights <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  offset <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -171,30 +171,37 @@ or <code>TRUE</code> / <code>FALSE</code>. Optionally, a list for delta models, 
 a list. E.g., <code>list('off', 'ar1')</code>. Note that the spatiotemporal standard
 deviation represents the marginal steady-state standard deviation of the
 process in the case of the AR1. I.e., it is scaled according to the
-correlation. See the <a href="https://kaskr.github.io/adcomp/classdensity_1_1AR1__t.html" class="external-link">TMB documentation</a>. If the AR1
-correlation coefficient (rho) is estimated close to 1, say &gt; 0.99, then you
-may wish to switch to the random walk <code>'rw'</code>. Capitalization is ignored.
-<code>TRUE</code> gets converted to <code>'iid'</code> and <code>FALSE</code> gets converted to <code>'off'</code>.</p></dd>
+correlation. See the <a href="https://kaskr.github.io/adcomp/classdensity_1_1AR1__t.html" class="external-link">TMB documentation</a>.
+If the AR1 correlation coefficient (rho) is estimated close to 1,
+say &gt; 0.99, then you may wish to switch to the random walk <code>'rw'</code>.
+Capitalization is ignored. <code>TRUE</code> gets converted to <code>'iid'</code> and <code>FALSE</code>
+gets converted to <code>'off'</code>.</p></dd>
 
 
 <dt>share_range</dt>
 <dd><p>Logical: estimate a shared spatial and spatiotemporal
-range parameter (<code>TRUE</code>, default) or independent range parameters (<code>FALSE</code>). If a
-delta model, can be a list. E.g., <code>list(TRUE, FALSE)</code>.</p></dd>
+range parameter (<code>TRUE</code>, default) or independent range parameters
+(<code>FALSE</code>). If a delta model, can be a list. E.g., <code>list(TRUE, FALSE)</code>.</p></dd>
 
 
 <dt>time_varying</dt>
-<dd><p>An optional one-sided formula describing covariates that
-should be modelled as a random walk through time. Be careful not to include
-covariates (including the intercept) in both the main and time-varying
-formula since the first time step is estimated independently. I.e., at
-least one should have <code>~ 0</code> or <code>~ -1</code>. Structure must currently be shared
-in delta models.</p></dd>
+<dd><p>An optional one-sided formula describing covariates
+that should be modelled as a time-varying process. Set the type of
+process with <code>time_varying_type</code>. See the help for <code>time_varying_type</code>
+for warnings about modelling the first time step. Structure shared in
+delta models.</p></dd>
 
 
 <dt>time_varying_type</dt>
 <dd><p>Type of time-varying process to apply to
-<code>time_varying</code> formula.</p></dd>
+<code>time_varying</code> formula. <code>'rw'</code> indicates a random walk with the first
+time step estimated independently (included for legacy reasons), <code>'rw0'</code>
+indicates a random walk with the first time step estimated with
+a mean-zero normal prior, <code>'ar1'</code> indicates a <a href="https://kaskr.github.io/adcomp/classdensity_1_1AR1__t.html" class="external-link">stationary first-order autoregressive process</a>
+with the first time step estimated with a mean-zero prior. In the case of
+<code>'rw'</code>, be careful not to include covariates (including the intercept) in
+both the main and time-varying formula since the first time step is
+estimated independently. I.e., in this case, at least one should have <code>~ 0</code> or <code>~ -1</code>. Structure shared in delta models.</p></dd>
 
 
 <dt>spatial_varying</dt>
@@ -1042,8 +1049,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.80</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2573.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2088.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2572.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2087.97</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2911.371</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>

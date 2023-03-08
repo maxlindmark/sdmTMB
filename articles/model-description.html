@@ -327,12 +327,18 @@ variance</td>
 steps</td>
 </tr>
 <tr class="even">
+<td align="left"><span class="math inline">\(\rho_{\gamma}\)</span></td>
+<td align="left"><code>rho_time</code></td>
+<td align="left">Correlation between time-varying coefficients in
+subsequent time steps</td>
+</tr>
+<tr class="odd">
 <td align="left"><span class="math inline">\(\boldsymbol{A}\)</span></td>
 <td align="left"><code>A</code></td>
 <td align="left">Sparse projection matrix to interpolate between knot
 and data locations</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><span class="math inline">\(\boldsymbol{H}\)</span></td>
 <td align="left"><code>H</code></td>
 <td align="left">2-parameter rotation matrix used to define
@@ -620,32 +626,65 @@ steady-state marginal variance.</p>
 <div class="section level3">
 <h3 id="time-varying-regression-parameters">Time-varying regression parameters<a class="anchor" aria-label="anchor" href="#time-varying-regression-parameters"></a>
 </h3>
-<p>Parameters can be modelled as time varying (a random walk) according
-to the form</p>
+<p>Parameters can be modelled as time-varying according to a random walk
+or first-order autoregressive, AR(1), process. The time-series model is
+defined by <code>time_varying_type</code>. For all types:</p>
 <p><span class="math display">\[
 \begin{aligned}
   \mu_{\boldsymbol{s},t} &amp;= f^{-1} \left( \ldots
 +  \boldsymbol{X}^{\mathrm{tvc}}_{\boldsymbol{s},t}
-\boldsymbol{\gamma_{t}} + \ldots \right),\\
+\boldsymbol{\gamma_{t}} + \ldots \right),
+\end{aligned}
+\]</span> where <span class="math inline">\(\boldsymbol{\gamma_t}\)</span> is an optional
+vector of time-varying regression parameters and <span class="math inline">\(\boldsymbol{X}^{\mathrm{tvc}}_{\boldsymbol{s},t}\)</span>
+is the corresponding model matrix with covariate values. This is defined
+via the <code>time_varying</code> argument, assuming that the
+<code>time</code> argument is also supplied a column name.
+<code>time_varying</code> takes a <em>one-sided</em> formula.
+<code>~ 1</code> implies a time-varying intercept.</p>
+<p>For <code>time_varying_type = 'rw'</code>, the first time step is
+estimated independently:</p>
+<p><span class="math display">\[
+\begin{aligned}
   \gamma_{t=1} &amp;\sim \operatorname{Uniform} \left(-\infty, \infty
 \right),\\
   \gamma_{t&gt;1} &amp;\sim \operatorname{Normal} \left(\gamma_{t-1},
-\sigma^2_{\gamma} \right),
+\sigma^2_{\gamma} \right).
 \end{aligned}
 \]</span></p>
-<p>where <span class="math inline">\(\boldsymbol{\gamma_t}\)</span> is
-an optional vector of time-varying regression parameters and <span class="math inline">\(\boldsymbol{X}^{\mathrm{tvc}}_{\boldsymbol{s},t}\)</span>
-is the corresponding model matrix with covariate values. This is defined
-via the <code>time_varying</code> argument, assuming that the
-<code>time</code> argument is also supplied a column name. For example,
-<code>time_varying ~ 0 + x</code>. The first value is given an implicit
-uniform prior. I.e., the same variable should not appear in the fixed
-effect formula since the initial value is estimated as part of the
-time-varying formula. The formula <code>time_varying = ~ 1</code>
-implicitly represents a time-varying intercept and, this case, the
-intercept should be omitted from the main effects
-(<code>formula ~ + 0 + ...</code> or
+<p>In this case, the first time-step value is given an implicit uniform
+prior. I.e., the same variable should not appear in the fixed effect
+formula since the initial value is estimated as part of the time-varying
+formula. The formula <code>time_varying = ~ 1</code> implicitly
+represents a time-varying intercept (assuming the <code>time</code>
+argument has been supplied) and, this case, the intercept should be
+omitted from the main effects (<code>formula ~ + 0 + ...</code> or
 <code>formula ~ -1 + ...</code>).</p>
+<p>For <code>time_varying_type = 'rw0'</code>, the first time step is
+estimated from a mean-zero prior:</p>
+<p><span class="math display">\[
+\begin{aligned}
+  \gamma_{t=1} &amp;\sim \operatorname{Normal} \left(0,
+\sigma^2_{\gamma} \right),\\
+  \gamma_{t&gt;1} &amp;\sim \operatorname{Normal} \left(\gamma_{t-1},
+\sigma^2_{\gamma} \right).
+\end{aligned}
+\]</span> In this case, the time-varying variable (including the
+intercept) <em>should</em> be included in the main effects. We suggest
+using this formulation, but leave the <code>'rw'</code> option so that
+legacy code works.</p>
+<p>For <code>time_varying_type = 'ar1'</code>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+  \gamma_{t=1} &amp;\sim \operatorname{Normal} \left(0,
+\sigma^2_{\gamma} \right),\\
+  \gamma_{t&gt;1} &amp;\sim \operatorname{Normal}
+\left(\rho_\gamma\gamma_{t-1}, \sqrt{1 - \rho_\gamma^2}
+\sigma^2_{\gamma} \right),
+\end{aligned}
+\]</span> where <span class="math inline">\(\rho_{\gamma}\)</span> is
+the correlation between subsequent time steps. The first time step is
+given a mean-zero prior.</p>
 </div>
 <div class="section level3">
 <h3 id="spatially-varying-coefficients-svc">Spatially varying coefficients (SVC)<a class="anchor" aria-label="anchor" href="#spatially-varying-coefficients-svc"></a>
