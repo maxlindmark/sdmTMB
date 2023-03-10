@@ -237,17 +237,19 @@ effects.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P value adjustment: tukey method for comparing a family of 4 estimates </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  year contrast             emmean    SE  df lower.CL upper.CL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2011 .                   -0.6064 0.551 963   -2.157    0.944</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2013 .                    0.3837 0.550 963   -1.163    1.931</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2015 .                    0.1432 0.551 963   -1.406    1.692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2017 .                   -0.5937 0.551 963   -2.143    0.955</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2011 - year2013 -0.9901 0.222 963   -1.614   -0.367</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2011 - year2015 -0.7496 0.220 963   -1.369   -0.130</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2011 - year2017 -0.0127 0.221 963   -0.634    0.609</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2013 - year2015  0.2405 0.217 963   -0.369    0.850</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2013 - year2017  0.9774 0.223 963    0.351    1.604</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2015 - year2017  0.7369 0.222 963    0.112    1.361</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Note: 'as.data.frame' has combined your 2 sets of results into one object,</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> and this affects things like adjusted P values. Refer to the annotations.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  year contrast                emmean        SE  df   lower.CL   upper.CL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2011 .                   -0.6063952 0.5511170 963 -2.1569729  0.9441824</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2013 .                    0.3836816 0.5497815 963 -1.1631386  1.9305018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2015 .                    0.1431957 0.5505275 963 -1.4057236  1.6921150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2017 .                   -0.5937169 0.5506319 963 -2.1429298  0.9554960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2011 - year2013 -0.9900768 0.2216228 963 -1.6136166 -0.3665369</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2011 - year2015 -0.7495909 0.2201979 963 -1.3691217 -0.1300601</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2011 - year2017 -0.0126783 0.2209364 963 -0.6342868  0.6089302</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2013 - year2015  0.2404859 0.2167459 963 -0.3693327  0.8503044</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2013 - year2017  0.9773985 0.2226493 963  0.3509706  1.6038264</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .    year2015 - year2017  0.7369126 0.2219749 963  0.1123823  1.3614430</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Results are given on the logit (not the response) scale. </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Confidence level used: 0.95 </span>
