@@ -881,6 +881,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2861.783</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **Possible issues detected! Check output of sanity().**</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Delta/hurdle truncated NB2:</span></span></span>
 <span class="r-in"><span><span class="va">pcod_2011</span><span class="op">$</span><span class="va">count</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">pcod_2011</span><span class="op">$</span><span class="va">density</span><span class="op">)</span></span></span>
@@ -1049,11 +1051,13 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.80</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2573.43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2088.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2572.36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2087.48</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2911.371</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **Possible issues detected! Check output of sanity().**</span>
 <span class="r-in"><span><span class="co"># Extract values:</span></span></span>
 <span class="r-in"><span><span class="va">est</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">sd_report</span>, <span class="st">"Estimate"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">sd_report</span>, <span class="st">"Std. Error"</span><span class="op">)</span></span></span>
