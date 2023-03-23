@@ -118,7 +118,7 @@ try increasing this to <code>2</code>.</p></dd>
 <dd><p>How many Newton optimization steps to try after running
 <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">stats::nlminb()</a></code>. This sometimes aids convergence by further reducing the
 log-likelihood gradient with respect to the fixed effects. This calculates
-the Hessian at the current MLE <code>with stats::optimHess()</code> using a
+the Hessian at the current MLE with <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">stats::optimHess()</a></code> using a
 finite-difference approach and uses this to update the fixed effect
 estimates.</p></dd>
 
