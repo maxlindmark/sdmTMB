@@ -105,12 +105,15 @@ that estimated anisotropy.</p>
 anisotropy. The ellipses are centered at coordinates of zero in the space of
 the X-Y coordinates being modeled. The ellipses show the spatial and/or
 spatiotemporal range (distance at which correlation is effectively
-independent) in any direction from zero. Uses <span class="pkg">ggplot2</span>.</p>
+independent) in any direction from zero. Uses <span class="pkg">ggplot2</span>. If anisotropy
+was turned off when fitting the model, <code>NULL</code> is returned instead of a
+ggplot2 object.</p>
 
 
 <p><code>plot_anisotropy2()</code>: A plot of eigenvectors illustrating the estimated
 anisotropy. A list of the plotted data is invisibly returned. Uses base
-graphics.</p>
+graphics. If anisotropy was turned off when fitting the model, <code>NULL</code> is
+returned instead of a plot object.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

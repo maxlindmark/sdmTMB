@@ -212,9 +212,15 @@ random field is assumed to have a mean of 0. If a (scaled) time column is
 used, it will represent a local-time-trend model. See
 <a href="https://doi.org/10.1111/ecog.05176" class="external-link">doi:10.1111/ecog.05176</a>
  and the <a href="https://pbs-assess.github.io/sdmTMB/articles/spatial-trend-models.html">spatial trends vignette</a>.
-Note this predictor should be centered to have mean zero and have a
+Note this predictor should usually be centered to have mean zero and have a
 standard deviation of approximately 1 and should likely also be included as
-a main effect. Structure must currently be shared in delta models.</p></dd>
+a main effect.
+<strong>The spatial intercept is controlled by the <code>spatial</code> argument</strong>; therefore,
+include or exclude the spatial intercept by setting <code>spatial = 'on'</code> or
+<code>'off'</code>. The only time when it matters whether <code>spatial_varying</code> excludes
+an intercept is in the case of factor predictors. In this case, if
+<code>spatial_varying</code> excludes the intercept (<code>~ 0</code> or <code>~ -1</code>), you should set
+<code>spatial = 'off'</code> to match.  Structure must be shared in delta models.</p></dd>
 
 
 <dt>weights</dt>
@@ -740,8 +746,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              coef.est coef.se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      2.55    0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    34.27   24.22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2     1.79    1.07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    -1.78    1.07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2   -34.27   24.22</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Std. Dev.</span>
@@ -872,7 +878,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2149.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2148.97</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2861.783</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1047,8 +1053,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.80</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2573.58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2088.46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2572.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2087.99</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2911.371</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
