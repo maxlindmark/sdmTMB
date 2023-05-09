@@ -949,6 +949,16 @@ larger mean to the smaller mean can be obtained from
 <code>1 + exp(fit$model$par[["log_ratio_mix"]])</code>. The standard
 errors are available in the TMB sdreport:
 <code>fit$sd_report</code>.</p>
+<p>If you wish to fix the probability of a large (i.e., extreme) mean,
+which can be hard to estimate, you can use the <code>map</code> list.
+E.g.:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sdmTMB.html">sdmTMB</a></span><span class="op">(</span><span class="va">...</span>,</span>
+<span>  control <span class="op">=</span> <span class="fu"><a href="../reference/sdmTMBcontrol.html">sdmTMBcontrol</a></span><span class="op">(</span></span>
+<span>    start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>logit_p_mix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Logistic.html" class="external-link">qlogis</a></span><span class="op">(</span><span class="fl">0.05</span><span class="op">)</span><span class="op">)</span>, <span class="co"># 5% probability of 'mu2'</span></span>
+<span>    map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>logit_p_mix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="co"># don't estimate</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Example: <code>family = gamma_mix(link = "log")</code>. See also
 <code>family = delta_gamma_mix()</code> for an extension incorporating
 this distribution with delta models.</p>
