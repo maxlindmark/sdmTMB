@@ -942,6 +942,13 @@ probability of larger events).</p>
 \mu_{2}\)</span> and the variance is <span class="math inline">\((1-p) ^
 2 \cdot \mu_{1} \cdot \phi^2 + (p) ^ 2 \cdot \mu_{2} \cdot
 \phi^2\)</span>.</p>
+<p>Here, and for the other mixture distributions, the probability of the
+larger mean can be obtained from
+<code>plogis(fit$model$par[["logit_p_mix"]])</code> and the ratio of the
+larger mean to the smaller mean can be obtained from
+<code>1 + exp(fit$model$par[["log_ratio_mix"]])</code>. The standard
+errors are available in the TMB sdreport:
+<code>fit$sd_report</code>.</p>
 <p>Example: <code>family = gamma_mix(link = "log")</code>. See also
 <code>family = delta_gamma_mix()</code> for an extension incorporating
 this distribution with delta models.</p>
@@ -965,6 +972,20 @@ interpreted as the probability of larger events).</p>
 <p>Example: <code>family = lognormal_mix(link = "log")</code>. See also
 <code>family = delta_lognormal_mix()</code> for an extension
 incorporating this distribution with delta models.</p>
+</div>
+<div class="section level3">
+<h3 id="negative-binomial-2-mixture">Negative binomial 2 mixture<a class="anchor" aria-label="anchor" href="#negative-binomial-2-mixture"></a>
+</h3>
+<p>This is a 2 component mixture that extends the NB2 distribution,</p>
+<p><span class="math display">\[
+(1 - p) \cdot \operatorname{NB2} \left( \mu_1, \phi \right) + p \cdot
+\operatorname{NB2} \left( \mu_2, \phi \right)
+\]</span></p>
+<p>where <span class="math inline">\(\mu_1\)</span> is the mean of the
+first (smaller component) of the distribution, <span class="math inline">\(\mu_2\)</span> is the mean of the larger
+component, and <span class="math inline">\(p\)</span> controls the
+contribution of each component to the mixture.</p>
+<p>Example: <code>family = nbinom2_mix(link = "log")</code></p>
 </div>
 </div>
 <div class="section level2">
