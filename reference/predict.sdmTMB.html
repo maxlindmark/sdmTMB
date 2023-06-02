@@ -83,11 +83,11 @@ data.</p>
 <span>  sims_var <span class="op">=</span> <span class="st">"est"</span>,</span>
 <span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>  offset <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  tmbstan_model <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  mcmc_samples <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  return_tmb_object <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  return_tmb_report <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  return_tmb_data <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  tmbstan_model <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  sims <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  area <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -162,10 +162,6 @@ depending on the argument <code>type</code>.</p></dd>
 <code>NULL</code>, the offset is implicitly left at 0.</p></dd>
 
 
-<dt>tmbstan_model</dt>
-<dd><p>Deprecated. See <code>mcmc_samples</code>.</p></dd>
-
-
 <dt>mcmc_samples</dt>
 <dd><p>See <code><a href="extract_mcmc.html">extract_mcmc()</a></code> in the
 <a href="https://github.com/pbs-assess/sdmTMBextra" class="external-link">sdmTMBextra</a> package for
@@ -191,6 +187,10 @@ contents of each element is the output of the report for that sample.</p></dd>
 <dt>return_tmb_data</dt>
 <dd><p>Logical: return formatted data for TMB? Used
 internally.</p></dd>
+
+
+<dt>tmbstan_model</dt>
+<dd><p>Deprecated. See <code>mcmc_samples</code>.</p></dd>
 
 
 <dt>sims</dt>
