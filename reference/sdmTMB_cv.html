@@ -16,7 +16,7 @@ folds can be manually assigned."><!-- mathjax --><script src="https://cdnjs.clou
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -174,13 +174,16 @@ exception of <code>weights</code>, which are used to define the folds.</p></dd>
 and CV log likelihood.</p></li>
 <li><p><code>models</code>: A list of models; one per fold.</p></li>
 <li><p><code>fold_loglik</code>: Sum of left-out log likelihoods per fold.</p></li>
-<li><p><code>fold_elpd</code>: Expected log predictive density per fold on left-out data.</p></li>
+<li><p><code>fold_elpd</code>: Expected log predictive density per fold on left-out data (same as <code>fold_elpd</code>).</p></li>
 <li><p><code>sum_loglik</code>: Sum of <code>fold_loglik</code> across all left-out data.</p></li>
-<li><p><code>elpd</code>: Expected log predictive density across all left-out data.</p></li>
+<li><p><code>elpd</code>: Expected log predictive density across all left-out data (same as <code>sum_loglik</code>)</p></li>
 <li><p><code>pdHess</code>: Logical vector: Hessian was invertible each fold?</p></li>
 <li><p><code>converged</code>: Logical: all <code>pdHess</code> <code>TRUE</code>?</p></li>
 <li><p><code>max_gradients</code>: Max gradient per fold.</p></li>
-</ul></div>
+</ul><p>Prior to <span class="pkg">sdmTMB</span> version '0.3.0.9002', <code>elpd</code> was incorrectly returned as
+the log average likelihood, which is another metric you could compare models
+with, but not ELPD. For maximum likelihood, <a href="https://github.com/pbs-assess/sdmTMB/issues/235" class="external-link">ELPD is equivalent to the sum of the log likelihoods</a>.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><strong>Parallel processing</strong></p>
@@ -216,9 +219,9 @@ and CV log likelihood.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Set a parallel `future::plan()` to use parallel processing.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_elpd</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.058697 -1.031947</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -3387.398 -3329.670</span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">elpd</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.045089</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -6717.068</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_loglik</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -3387.398 -3329.670</span>
@@ -254,7 +257,7 @@ and CV log likelihood.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">max_gradients</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.814629e-10 3.766876e-12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.814759e-10 3.560097e-12</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Create mesh each fold:</span></span></span>
