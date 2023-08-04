@@ -142,7 +142,10 @@ convenience options.</p></dd>
 <code><a href="https://rdrr.io/pkg/INLA/man/inla.spde2.matern.html" class="external-link">INLA::inla.spde2.matern()</a></code>.</p>
 
 
-<p><code>plot.sdmTMB()</code>: A plot of the mesh and data points.</p>
+<p><code>plot.sdmTMBmesh()</code>: A plot of the mesh and data points. If
+<span class="pkg">inlabru</span> and <span class="pkg">ggplot2</span> are installed, a <span class="pkg">ggplot2</span> object is
+returned, otherwise a base graphics R plot is returned. To make your own,
+pass <code>your_mesh$mesh</code> to  <code><a href="https://inlabru-org.github.io/inlabru/reference/gg.html" class="external-link">inlabru::gg()</a></code>.</p>
     </div>
 
     <div class="section level2">

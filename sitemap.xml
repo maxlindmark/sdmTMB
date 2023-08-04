@@ -64,9 +64,6 @@
     <loc>https://pbs-assess.github.io/sdmTMB/reference/add_utm_columns.html</loc>
   </url>
   <url>
-    <loc>https://pbs-assess.github.io/sdmTMB/reference/bc_coast.html</loc>
-  </url>
-  <url>
     <loc>https://pbs-assess.github.io/sdmTMB/reference/dharma_residuals.html</loc>
   </url>
   <url>
@@ -103,15 +100,6 @@
     <loc>https://pbs-assess.github.io/sdmTMB/reference/make_mesh.html</loc>
   </url>
   <url>
-    <loc>https://pbs-assess.github.io/sdmTMB/reference/pcod.html</loc>
-  </url>
-  <url>
-    <loc>https://pbs-assess.github.io/sdmTMB/reference/pcod_2011.html</loc>
-  </url>
-  <url>
-    <loc>https://pbs-assess.github.io/sdmTMB/reference/pcod_mesh_2011.html</loc>
-  </url>
-  <url>
     <loc>https://pbs-assess.github.io/sdmTMB/reference/plot_anisotropy.html</loc>
   </url>
   <url>
@@ -125,9 +113,6 @@
   </url>
   <url>
     <loc>https://pbs-assess.github.io/sdmTMB/reference/priors.html</loc>
-  </url>
-  <url>
-    <loc>https://pbs-assess.github.io/sdmTMB/reference/qcs_grid.html</loc>
   </url>
   <url>
     <loc>https://pbs-assess.github.io/sdmTMB/reference/reexports.html</loc>
@@ -161,6 +146,9 @@
   </url>
   <url>
     <loc>https://pbs-assess.github.io/sdmTMB/reference/simulate.sdmTMB.html</loc>
+  </url>
+  <url>
+    <loc>https://pbs-assess.github.io/sdmTMB/reference/surveydata.html</loc>
   </url>
   <url>
     <loc>https://pbs-assess.github.io/sdmTMB/reference/tidy.sdmTMB.html</loc>
