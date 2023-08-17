@@ -48,6 +48,7 @@
     <a class="dropdown-item" href="../../articles/web_only/delta-models.html">Fitting delta (hurdle) models with sdmTMB</a>
     <a class="dropdown-item" href="../../articles/web_only/ggeffects.html">Visualizing marginal effects in sdmTMB models with ggeffects</a>
     <a class="dropdown-item" href="../../articles/web_only/index-standardization.html">Index standardization with sdmTMB</a>
+    <a class="dropdown-item" href="../../articles/web_only/poisson-link.html">Poisson-link delta models</a>
     <a class="dropdown-item" href="../../articles/web_only/pretty-plots.html">Making pretty maps with sdmTMB output</a>
     <a class="dropdown-item" href="../../articles/web_only/residual-checking.html">Residual checking with sdmTMB</a>
     <a class="dropdown-item" href="../../articles/web_only/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a>
@@ -84,7 +85,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Cross-validation for model evaluation and comparison</h1>
             
-            <h4 data-toc-skip class="date">2023-08-15</h4>
+            <h4 data-toc-skip class="date">2023-08-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/cross-validation.Rmd" class="external-link"><code>vignettes/web_only/cross-validation.Rmd</code></a></small>
       <div class="d-none name"><code>cross-validation.Rmd</code></div>
@@ -237,7 +238,7 @@ test set is given ID = 1, and the training set is given ID = 2).</p>
 on the first elements of these lists, e.g.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_loglik</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt; [1] -668.6631</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] -559.1479</span></span></code></pre></div>
 <p>If we wanted to do LFOCV, we could also use the
 <code><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv()</a></code> function—though either way, it gets complicated
 because we need to change the data for each prediction. With the

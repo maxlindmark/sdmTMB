@@ -35,6 +35,7 @@ spread_draws() and gather_draws() functions."><!-- mathjax --><script src="https
     <a class="dropdown-item" href="../articles/web_only/delta-models.html">Fitting delta (hurdle) models with sdmTMB</a>
     <a class="dropdown-item" href="../articles/web_only/ggeffects.html">Visualizing marginal effects in sdmTMB models with ggeffects</a>
     <a class="dropdown-item" href="../articles/web_only/index-standardization.html">Index standardization with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/web_only/poisson-link.html">Poisson-link delta models</a>
     <a class="dropdown-item" href="../articles/web_only/pretty-plots.html">Making pretty maps with sdmTMB output</a>
     <a class="dropdown-item" href="../articles/web_only/residual-checking.html">Residual checking with sdmTMB</a>
     <a class="dropdown-item" href="../articles/web_only/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a>
@@ -119,11 +120,11 @@ long-format data frame. The format matches the format in the <span class="pkg">t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6          6    -1.793759     -1.282912 53.66913 12.96081  1.549470 0.8483883</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         sigma_O  sigma_E</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1           Inf 2.578915</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2.673603e-83 3.078770</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2.655159e-83 3.078770</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.000000e+00 3.240282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 4.188824e-107 2.755055</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 4.149757e-107 2.755055</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.000000e+00 3.025966</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 9.463777e-129 3.144829</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 9.360566e-129 3.144829</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">gather_sims</span><span class="op">(</span><span class="va">m</span>, nsim <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .iteration    .variable    .value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 depth_scaled -1.926309</span>

@@ -9,12 +9,13 @@ articles:
   delta-models: web_only/delta-models.html
   ggeffects: web_only/ggeffects.html
   index-standardization: web_only/index-standardization.html
+  poisson-link: web_only/poisson-link.html
   pretty-plots: web_only/pretty-plots.html
   residual-checking: web_only/residual-checking.html
   spatial-trend-models: web_only/spatial-trend-models.html
   threshold-models: web_only/threshold-models.html
   visreg: web_only/visreg.html
-last_built: 2023-08-15T18:19Z
+last_built: 2023-08-17T20:50Z
 urls:
   reference: https://pbs-assess.github.io/sdmTMB/reference
   article: https://pbs-assess.github.io/sdmTMB/articles

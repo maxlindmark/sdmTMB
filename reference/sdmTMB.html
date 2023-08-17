@@ -39,6 +39,7 @@ standardization among many other uses."><!-- mathjax --><script src="https://cdn
     <a class="dropdown-item" href="../articles/web_only/delta-models.html">Fitting delta (hurdle) models with sdmTMB</a>
     <a class="dropdown-item" href="../articles/web_only/ggeffects.html">Visualizing marginal effects in sdmTMB models with ggeffects</a>
     <a class="dropdown-item" href="../articles/web_only/index-standardization.html">Index standardization with sdmTMB</a>
+    <a class="dropdown-item" href="../articles/web_only/poisson-link.html">Poisson-link delta models</a>
     <a class="dropdown-item" href="../articles/web_only/pretty-plots.html">Making pretty maps with sdmTMB output</a>
     <a class="dropdown-item" href="../articles/web_only/residual-checking.html">Residual checking with sdmTMB</a>
     <a class="dropdown-item" href="../articles/web_only/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a>
@@ -744,8 +745,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              coef.est coef.se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      2.55    0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1     0.15    0.09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2     2.93    2.07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    -2.93    2.07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2    -0.15    0.09</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Std. Dev.</span>
@@ -876,7 +877,7 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2148.90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2148.91</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3034.512</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1051,8 +1052,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.80</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2573.54</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2088.44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2574.32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2089.06</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2911.371</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>

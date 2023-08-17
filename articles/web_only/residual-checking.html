@@ -48,6 +48,7 @@
     <a class="dropdown-item" href="../../articles/web_only/delta-models.html">Fitting delta (hurdle) models with sdmTMB</a>
     <a class="dropdown-item" href="../../articles/web_only/ggeffects.html">Visualizing marginal effects in sdmTMB models with ggeffects</a>
     <a class="dropdown-item" href="../../articles/web_only/index-standardization.html">Index standardization with sdmTMB</a>
+    <a class="dropdown-item" href="../../articles/web_only/poisson-link.html">Poisson-link delta models</a>
     <a class="dropdown-item" href="../../articles/web_only/pretty-plots.html">Making pretty maps with sdmTMB output</a>
     <a class="dropdown-item" href="../../articles/web_only/residual-checking.html">Residual checking with sdmTMB</a>
     <a class="dropdown-item" href="../../articles/web_only/spatial-trend-models.html">Fitting spatial trend models with sdmTMB</a>
@@ -223,8 +224,8 @@ take a single draw for speed:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL 'tmb_generic' NOW (CHAIN 1).</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1: Gradient evaluation took 0.001284 seconds</span></span>
-<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 12.84 seconds.</span></span>
+<span><span class="co">#&gt; Chain 1: Gradient evaluation took 0.001297 seconds</span></span>
+<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 12.97 seconds.</span></span>
 <span><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
@@ -241,9 +242,9 @@ take a single draw for speed:</p>
 <span><span class="co">#&gt; Chain 1: Iteration: 200 / 201 [ 99%]  (Warmup)</span></span>
 <span><span class="co">#&gt; Chain 1: Iteration: 201 / 201 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1:  Elapsed Time: 3.697 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 1:                0.016 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 1:                3.713 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 1:  Elapsed Time: 3.558 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 1:                0.015 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1:                3.573 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 1:</span></span>
 <span><span class="va">mcmc_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">fit_nb2</span>, type <span class="op">=</span> <span class="st">"mle-mcmc"</span>, mcmc_samples <span class="op">=</span> <span class="va">samps</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html" class="external-link">qqnorm</a></span><span class="op">(</span><span class="va">mcmc_res</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html" class="external-link">qqline</a></span><span class="op">(</span><span class="va">mcmc_res</span><span class="op">)</span></span></code></pre></div>
