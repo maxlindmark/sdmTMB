@@ -102,7 +102,8 @@ covariance function.</p>
 <span>  phi <span class="op">=</span> <span class="fu">halfnormal</span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
 <span>  ar1_rho <span class="op">=</span> <span class="fu">normal</span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
 <span>  tweedie_p <span class="op">=</span> <span class="fu">normal</span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
-<span>  b <span class="op">=</span> <span class="fu">normal</span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span></span>
+<span>  b <span class="op">=</span> <span class="fu">normal</span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>  sigma_G <span class="op">=</span> <span class="fu">halfnormal</span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">normal</span><span class="op">(</span>location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -145,6 +146,10 @@ parameter has support <code>1 &lt; tweedie_p &lt; 2</code> so choose a mean appr
 
 <dt>b</dt>
 <dd><p><code>normal()</code> priors for the main population-level 'beta' effects.</p></dd>
+
+
+<dt>sigma_G</dt>
+<dd><p><code>halfnormal()</code> priors for the random intercept SDs.</p></dd>
 
 
 <dt>location</dt>
