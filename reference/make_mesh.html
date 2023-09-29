@@ -139,8 +139,7 @@ convenience options.</p></dd>
     
 
 <p><code>make_mesh()</code>: A list of class <code>sdmTMBmesh</code>. The element <code>mesh</code> is the output from
-<code><a href="https://rdrr.io/pkg/INLA/man/inla.mesh.create.html" class="external-link">INLA::inla.mesh.create()</a></code> and the element <code>spde</code> is the output from
-<code><a href="https://rdrr.io/pkg/INLA/man/inla.spde2.matern.html" class="external-link">INLA::inla.spde2.matern()</a></code>.</p>
+<code><a href="https://inlabru-org.github.io/fmesher/reference/fm_rcdt_2d.html" class="external-link">fmesher::fm_rcdt_2d_inla()</a></code>.</p>
 
 
 <p><code>plot.sdmTMBmesh()</code>: A plot of the mesh and data points. If
@@ -161,14 +160,13 @@ pass <code>your_mesh$mesh</code> to  <code><a href="https://inlabru-org.github.i
 <span class="r-plt img"><img src="make_mesh-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu">make_mesh</span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, n_knots <span class="op">=</span> <span class="fl">50</span>, type <span class="op">=</span> <span class="st">"cutoff_search"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 1.00 | knots = 2641 | ↓ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 100.00 | knots = 26 | ↑ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 10.00 | knots = 205 | ↓ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 31.62 | knots = 49 | ↑ </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 1.00 | knots = 2639 | ↓ </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 100.00 | knots = 21 | ↑ </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 10.00 | knots = 202 | ↓ </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 31.62 | knots = 45 | ↑ </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 17.78 | knots = 89 | ↓ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 23.71 | knots = 61 | ↓ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 27.38 | knots = 53 | ↓ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 29.43 | knots = 50 | ✔ </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 23.71 | knots = 59 | ↓ </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 27.38 | knots = 50 | ✔ </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="make_mesh-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -176,18 +174,6 @@ pass <code>your_mesh$mesh</code> to  <code><a href="https://inlabru-org.github.i
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="make_mesh-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Defining a mesh directly with INLA:</span></span></span>
-<span class="r-in"><span><span class="va">bnd</span> <span class="op">&lt;-</span> <span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/inla.nonconvex.hull.html" class="external-link">inla.nonconvex.hull</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">X</span>, <span class="va">pcod</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span>, convex <span class="op">=</span> <span class="op">-</span><span class="fl">0.05</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">inla_mesh</span> <span class="op">&lt;-</span> <span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/inla.mesh.2d.html" class="external-link">inla.mesh.2d</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  boundary <span class="op">=</span> <span class="va">bnd</span>,</span></span>
-<span class="r-in"><span>  max.edge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">50</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  offset <span class="op">=</span> <span class="op">-</span><span class="fl">0.05</span>,</span></span>
-<span class="r-in"><span>  cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  min.angle <span class="op">=</span> <span class="fl">10</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu">make_mesh</span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, mesh <span class="op">=</span> <span class="va">inla_mesh</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="make_mesh-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

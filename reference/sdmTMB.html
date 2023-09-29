@@ -522,18 +522,18 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     2.16    0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth         -1.94    3.13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     2.13    0.35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth         -1.95    3.11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Std. Dev.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth)     13.07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth)     13.01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 13.68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 13.66</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 16.84</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2.20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2937.789</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 17.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2.21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2936.720</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-in"><span></span></span>
@@ -542,14 +542,14 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   term        estimate std.error conf.low conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> (Intercept)     2.16     0.340     1.50      2.83</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> (Intercept)     2.13     0.349     1.45      2.82</span>
 <span class="r-in"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">fit</span>, effects <span class="op">=</span> <span class="st">"ran_par"</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   term      estimate std.error conf.low conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> range        16.8    13.7       3.40      83.3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> phi          13.7     0.663    12.4       15.0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> sigma_O       2.20    1.23      0.735      6.59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> range        18.0    13.3       4.20      77.0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> phi          13.7     0.662    12.4       15.0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> sigma_O       2.21    1.01      0.902      5.42</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> tweedie_p     1.58    0.015<span style="text-decoration: underline;">3</span>    1.55       1.61</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Perform several 'sanity' checks:</span></span></span>
@@ -579,19 +579,19 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="va">qcs_grid</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     X    Y    depth depth_scaled depth_scaled2       est est_non_rf      est_rf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 456 5636 347.0834    1.5608122    2.43613479 -4.726638  -4.567385 -0.15925308</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 458 5636 223.3348    0.5697699    0.32463771  2.342470   2.368314 -0.02584421</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 460 5636 203.7408    0.3633693    0.13203724  3.087513   2.979948  0.10756466</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 462 5636 183.2987    0.1257046    0.01580166  3.878560   3.637586  0.24097353</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 464 5636 182.9998    0.1220368    0.01489297  4.020914   3.646532  0.37438240</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 466 5636 186.3892    0.1632882    0.02666303  4.050895   3.543104  0.50779127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 456 5636 347.0834    1.5608122    2.43613479 -5.035235  -4.532176 -0.50305964</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 458 5636 223.3348    0.5697699    0.32463771  2.013516   2.339187 -0.32567038</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 460 5636 203.7408    0.3633693    0.13203724  2.779209   2.927490 -0.14828113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 462 5636 183.2987    0.1257046    0.01580166  3.598010   3.568902  0.02910812</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 464 5636 182.9998    0.1220368    0.01489297  3.784205   3.577708  0.20649737</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 466 5636 186.3892    0.1632882    0.02666303  3.859928   3.476041  0.38388662</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       omega_s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.15925308</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.02584421</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.10756466</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.24097353</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.37438240</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.50779127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.50305964</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.32567038</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.14828113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.02910812</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.20649737</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.38388662</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Add spatiotemporal random fields:</span></span></span>
 <span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">sdmTMB</span><span class="op">(</span></span></span>
@@ -609,19 +609,21 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2011     2.76    0.36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2013     3.10    0.35</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2015     3.21    0.35</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2017     2.47    0.36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2011     2.69    0.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2013     3.04    0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2015     3.19    0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2017     2.38    0.35</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 14.83</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 14.71</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 13.31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 3.16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 1.79</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3007.552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2396.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 1290.87</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3005.146</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> **Possible issues detected! Check output of sanity().**</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Make the fields AR1:</span></span></span>
 <span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">sdmTMB</span><span class="op">(</span></span></span>
@@ -641,19 +643,19 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     1.84    0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth         -1.96    3.27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     1.81    0.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth         -1.96    3.26</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Std. Dev.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth)      13.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth)     13.57</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.83</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.55</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal AR1 correlation (rho): 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 12.22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 3.28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2914.393</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal AR1 correlation (rho): 0.68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 15.15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2.86</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2913.197</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-in"><span></span></span>
@@ -675,18 +677,18 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     1.95    0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth         -1.96    3.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     1.92    0.35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth         -1.96    3.19</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Std. Dev.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth)     13.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth)     13.28</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.84</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.56</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 14.66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2.17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2919.181</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 17.15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 1.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2917.876</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-in"><span></span></span>
@@ -708,24 +710,24 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)                     1.76    0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2011    -0.07    4.02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2013    -4.59    3.28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2015    -5.97    6.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2017     1.97    3.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)                     1.79    0.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2011     0.01    3.88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2013    -4.34    3.20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2015    -5.65    5.88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth):as.factor(year)2017     1.73    3.21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                 Std. Dev.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth):as.factor(year)2011)     16.62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth):as.factor(year)2013)     13.57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth):as.factor(year)2015)     28.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth):as.factor(year)2017)     18.65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth):as.factor(year)2011)     15.97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth):as.factor(year)2013)     13.17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth):as.factor(year)2015)     27.46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth):as.factor(year)2017)     17.69</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.77</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.55</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 8.62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 3.14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2924.193</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 12.63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2.26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2923.902</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-in"><span></span></span>
@@ -871,15 +873,15 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Delta/hurdle model 2: -----------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: Gamma(link = 'log') </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)                4.08    0.14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> poly(depth_scaled, 2)1    -6.15    4.52</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> poly(depth_scaled, 2)2   -12.58    4.14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)                4.06    0.14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> poly(depth_scaled, 2)1    -7.09    4.42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> poly(depth_scaled, 2)2   -13.51    4.05</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2148.90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2166.39</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3034.512</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3034.322</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -969,22 +971,22 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     2.13    0.37</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth         -1.82    2.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     2.10    0.37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepth         -1.82    2.97</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Std. Dev.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth)     12.51</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sds(depth)     12.42</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Random intercepts:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Std. Dev.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> fyear       0.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 13.55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 13.54</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 16.66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2.21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2933.138</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 17.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2.26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2932.113</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-in"><span></span></span>
@@ -1004,16 +1006,16 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     2.86    0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> year_scaled    -0.06    0.15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)     2.81    0.32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> year_scaled    -0.06    0.14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 14.79</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 14.68</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.56</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 20.56</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2.38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatially varying coefficient SD (year_scaled): 0.81</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 1.11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3008.886</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 13.66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 3.52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatially varying coefficient SD (year_scaled): 1.07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 1.58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3007.599</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-in"><span></span></span>
@@ -1033,47 +1035,45 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2011     3.73    0.30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2013     3.64    0.28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2015     4.00    0.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2017     3.31    0.32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2011     3.64    0.30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2013     3.60    0.28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2015     3.96    0.29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> as.factor(year)2017     3.22    0.32</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time-varying parameters:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-2011     -0.87    0.16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-2013     -0.81    0.13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-2015     -0.75    0.13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-2017     -1.11    0.23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2-2011    -1.92    0.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2-2013    -0.92    0.14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2-2015    -1.59    0.22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2-2017    -2.20    0.35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-2011     -0.82    0.15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-2013     -0.78    0.12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-2015     -0.74    0.14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-2017     -1.00    0.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2-2011    -1.82    0.28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2-2013    -0.91    0.13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2-2015    -1.54    0.21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2-2017    -1.99    0.33</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.80</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.56</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2571.93</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 2087.12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2911.371</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.86</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 3.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 9.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal SD: 7.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2910.809</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> **Possible issues detected! Check output of sanity().**</span>
 <span class="r-in"><span><span class="co"># Extract values:</span></span></span>
 <span class="r-in"><span><span class="va">est</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">sd_report</span>, <span class="st">"Estimate"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">sd_report</span>, <span class="st">"Std. Error"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">est</span><span class="op">$</span><span class="va">b_rw_t</span><span class="op">[</span>, , <span class="fl">1</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.8738038 -1.9199722</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.8115162 -0.9195934</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.7514766 -1.5858307</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -1.1064060 -2.1992575</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.8229448 -1.8230844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.7841457 -0.9068911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.7444743 -1.5387991</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -1.0013970 -1.9947937</span>
 <span class="r-in"><span><span class="va">se</span><span class="op">$</span><span class="va">b_rw_t</span><span class="op">[</span>, , <span class="fl">1</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.1619744 0.2944087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.1287059 0.1386946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.1346182 0.2197914</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.2305927 0.3514650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.1496204 0.2804568</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.1194084 0.1342355</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.1363472 0.2147146</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.2205058 0.3267520</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Linear break-point effect of depth:</span></span></span>
 <span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">sdmTMB</span><span class="op">(</span></span></span>
@@ -1090,15 +1090,15 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)              4.11    0.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-slope       1.07    0.22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-breakpt    -1.30    0.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)              4.07    0.30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-slope       1.04    0.21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled-breakpt    -1.38    0.26</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 15.19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 15.12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 23.57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 1.92</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2997.241</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 9.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 3.78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2995.187</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 </code></pre></div>

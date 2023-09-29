@@ -85,7 +85,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Threshold modeling with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2023-08-18</h4>
+            <h4 data-toc-skip class="date">2023-09-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/threshold-models.Rmd" class="external-link"><code>vignettes/web_only/threshold-models.Rmd</code></a></small>
       <div class="d-none name"><code>threshold-models.Rmd</code></div>
@@ -173,25 +173,25 @@ we’re looking at ‘s50’, ‘s95’, and ‘smax’.</p>
 <span><span class="co">#&gt; Family: tweedie(link = 'log')</span></span>
 <span><span class="co">#&gt;  </span></span>
 <span><span class="co">#&gt;                     coef.est coef.se</span></span>
-<span><span class="co">#&gt; as.factor(year)2003    -0.52    0.63</span></span>
-<span><span class="co">#&gt; as.factor(year)2004     0.06    0.62</span></span>
-<span><span class="co">#&gt; as.factor(year)2005    -0.08    0.62</span></span>
-<span><span class="co">#&gt; as.factor(year)2007    -1.28    0.63</span></span>
-<span><span class="co">#&gt; as.factor(year)2009    -0.80    0.63</span></span>
-<span><span class="co">#&gt; as.factor(year)2011    -0.33    0.62</span></span>
-<span><span class="co">#&gt; as.factor(year)2013    -0.13    0.61</span></span>
-<span><span class="co">#&gt; as.factor(year)2015    -0.16    0.62</span></span>
-<span><span class="co">#&gt; as.factor(year)2017    -0.75    0.63</span></span>
-<span><span class="co">#&gt; depth_scaled-s50       -1.48    0.12</span></span>
-<span><span class="co">#&gt; depth_scaled-s95       -0.53    0.22</span></span>
-<span><span class="co">#&gt; depth_scaled-smax       3.22    0.53</span></span>
+<span><span class="co">#&gt; as.factor(year)2003    -0.74    0.65</span></span>
+<span><span class="co">#&gt; as.factor(year)2004    -0.14    0.64</span></span>
+<span><span class="co">#&gt; as.factor(year)2005    -0.29    0.64</span></span>
+<span><span class="co">#&gt; as.factor(year)2007    -1.50    0.66</span></span>
+<span><span class="co">#&gt; as.factor(year)2009    -1.01    0.65</span></span>
+<span><span class="co">#&gt; as.factor(year)2011    -0.53    0.65</span></span>
+<span><span class="co">#&gt; as.factor(year)2013    -0.37    0.63</span></span>
+<span><span class="co">#&gt; as.factor(year)2015    -0.35    0.65</span></span>
+<span><span class="co">#&gt; as.factor(year)2017    -0.93    0.66</span></span>
+<span><span class="co">#&gt; depth_scaled-s50       -1.54    0.13</span></span>
+<span><span class="co">#&gt; depth_scaled-s95       -0.48    0.21</span></span>
+<span><span class="co">#&gt; depth_scaled-smax       3.38    0.56</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Dispersion parameter: 12.33</span></span>
+<span><span class="co">#&gt; Dispersion parameter: 12.39</span></span>
 <span><span class="co">#&gt; Tweedie p: 1.53</span></span>
-<span><span class="co">#&gt; Matérn range: 22.09</span></span>
-<span><span class="co">#&gt; Spatial SD: 2.02</span></span>
-<span><span class="co">#&gt; Spatiotemporal SD: 1.40</span></span>
-<span><span class="co">#&gt; ML criterion at convergence: 6435.001</span></span>
+<span><span class="co">#&gt; Matérn range: 20.84</span></span>
+<span><span class="co">#&gt; Spatial SD: 2.08</span></span>
+<span><span class="co">#&gt; Spatiotemporal SD: 1.46</span></span>
+<span><span class="co">#&gt; ML criterion at convergence: 6434.343</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; See ?tidy.sdmTMB to extract these values as a data frame.</span></span></code></pre></div>
 <p>We can visualize the effect:</p>
@@ -228,24 +228,24 @@ cutpoint model:</p>
 <span><span class="co">#&gt; Family: tweedie(link = 'log')</span></span>
 <span><span class="co">#&gt;  </span></span>
 <span><span class="co">#&gt;                      coef.est coef.se</span></span>
-<span><span class="co">#&gt; as.factor(year)2003      3.63    0.33</span></span>
-<span><span class="co">#&gt; as.factor(year)2004      4.19    0.32</span></span>
-<span><span class="co">#&gt; as.factor(year)2005      4.00    0.32</span></span>
-<span><span class="co">#&gt; as.factor(year)2007      2.89    0.33</span></span>
-<span><span class="co">#&gt; as.factor(year)2009      3.38    0.33</span></span>
-<span><span class="co">#&gt; as.factor(year)2011      3.78    0.32</span></span>
-<span><span class="co">#&gt; as.factor(year)2013      4.09    0.32</span></span>
-<span><span class="co">#&gt; as.factor(year)2015      3.94    0.32</span></span>
-<span><span class="co">#&gt; as.factor(year)2017      3.39    0.33</span></span>
-<span><span class="co">#&gt; depth_scaled-slope       1.12    0.17</span></span>
-<span><span class="co">#&gt; depth_scaled-breakpt    -1.59    0.23</span></span>
+<span><span class="co">#&gt; as.factor(year)2003      3.59    0.33</span></span>
+<span><span class="co">#&gt; as.factor(year)2004      4.16    0.31</span></span>
+<span><span class="co">#&gt; as.factor(year)2005      3.96    0.31</span></span>
+<span><span class="co">#&gt; as.factor(year)2007      2.85    0.33</span></span>
+<span><span class="co">#&gt; as.factor(year)2009      3.35    0.32</span></span>
+<span><span class="co">#&gt; as.factor(year)2011      3.75    0.31</span></span>
+<span><span class="co">#&gt; as.factor(year)2013      3.99    0.31</span></span>
+<span><span class="co">#&gt; as.factor(year)2015      3.95    0.31</span></span>
+<span><span class="co">#&gt; as.factor(year)2017      3.37    0.32</span></span>
+<span><span class="co">#&gt; depth_scaled-slope       1.10    0.17</span></span>
+<span><span class="co">#&gt; depth_scaled-breakpt    -1.61    0.24</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Dispersion parameter: 12.14</span></span>
+<span><span class="co">#&gt; Dispersion parameter: 12.22</span></span>
 <span><span class="co">#&gt; Tweedie p: 1.51</span></span>
-<span><span class="co">#&gt; Matérn range: 15.93</span></span>
+<span><span class="co">#&gt; Matérn range: 15.74</span></span>
 <span><span class="co">#&gt; Spatial SD: 1.82</span></span>
-<span><span class="co">#&gt; Spatiotemporal SD: 1.70</span></span>
-<span><span class="co">#&gt; ML criterion at convergence: 6397.346</span></span>
+<span><span class="co">#&gt; Spatiotemporal SD: 1.75</span></span>
+<span><span class="co">#&gt; ML criterion at convergence: 6397.312</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; See ?tidy.sdmTMB to extract these values as a data frame.</span></span></code></pre></div>
 <p>We can visualize the linear breakpoint effect:</p>

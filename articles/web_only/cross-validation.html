@@ -85,7 +85,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Cross-validation for model evaluation and comparison</h1>
             
-            <h4 data-toc-skip class="date">2023-08-18</h4>
+            <h4 data-toc-skip class="date">2023-09-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/cross-validation.Rmd" class="external-link"><code>vignettes/web_only/cross-validation.Rmd</code></a></small>
       <div class="d-none name"><code>cross-validation.Rmd</code></div>
@@ -143,15 +143,33 @@ but this can be turned off with the <code>parallel</code> argument.</p>
 <span><span class="va">pcod</span><span class="op">$</span><span class="va">fyear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Set parallel processing if desired:</span></span>
-<span><span class="co"># library(future)</span></span>
-<span><span class="co"># plan(multisession)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://future.futureverse.org" class="external-link">future</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="va">multisession</span>, workers <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">m_cv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv</a></span><span class="op">(</span></span>
 <span>  <span class="va">density</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">depth_scaled</span><span class="op">)</span> <span class="op">+</span> <span class="va">fyear</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">pcod</span>,</span>
 <span>  mesh <span class="op">=</span> <span class="va">mesh</span>,</span>
 <span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>,</span>
 <span>  k_folds <span class="op">=</span> <span class="fl">4</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Running fits with `future.apply()`.</span></span>
+<span><span class="co">#&gt; Set a parallel `future::plan()` to use parallel processing.</span></span>
+<span><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
+<span><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
+<span><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
+<span><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
+<span><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
+<span><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
+<span><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
+<span><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span>
+<span><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
+<span><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
+<span><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
+<span><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
+<span><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
+<span><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
+<span><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
+<span><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span></code></pre></div>
 <p>In the above example, folds are assigned randomly—but these can be
 modified to specific spatial or temporal applications. Without getting
 into the complexities of the <code>blockCV</code> or
@@ -165,9 +183,10 @@ into the complexities of the <code>blockCV</code> or
 <span>  data <span class="op">=</span> <span class="va">pcod</span>,</span>
 <span>  mesh <span class="op">=</span> <span class="va">mesh</span>,</span>
 <span>  fold_ids <span class="op">=</span> <span class="va">clust</span>,</span>
-<span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>,</span>
-<span>  k_folds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">clust</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Running fits with `future.apply()`.</span></span>
+<span><span class="co">#&gt; Set a parallel `future::plan()` to use parallel processing.</span></span></code></pre></div>
 <p>Or similarly, these clusters could be assigned in time—here, each
 year to a unique fold. Note that year is not included as a factor and
 spatiotemporal fields are turned off because they cannot be estimated in
@@ -181,23 +200,23 @@ missing years.</p>
 <span>  mesh <span class="op">=</span> <span class="va">mesh</span>,</span>
 <span>  fold_ids <span class="op">=</span> <span class="va">clust</span>,</span>
 <span>  spatiotemporal <span class="op">=</span> <span class="st">"off"</span>,</span>
-<span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>,</span>
-<span>  k_folds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">clust</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Running fits with `future.apply()`.</span></span>
+<span><span class="co">#&gt; Set a parallel `future::plan()` to use parallel processing.</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="measuring-model-performance">Measuring model performance<a class="anchor" aria-label="anchor" href="#measuring-model-performance"></a>
 </h2>
 <p>Lots of measures of predictive accuracy can be used to evaluate model
 performance. By default, <code><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv()</a></code> returns a list that
-contains 2 measures: the log likelihoods for each fold (and total), and
-the expected log predictive density for each fold (and total). The
-latter (ELPD) is a measure of the predictive ability of the model for
-new observations, while the log-likelihood of the hold out data
-corresponds to the density for those particular observations. These can
-be accessed as below, and inspecting the quantities across folds may
-help elucidate whether there are particular folds that are difficult to
-predict.</p>
+contains the sum of the log likelihoods for each left-out fold and the
+total summed across the left-out folds. This is roughly equivalent to
+the expected log predictive density (ELPD) in the Bayesian literature
+and can be interpreted as the predictive ability of the model for new
+observations. These can be accessed as below, and inspecting the
+quantities across folds may help elucidate whether there are particular
+folds that are difficult to predict.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m_cv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv</a></span><span class="op">(</span></span>
 <span>  <span class="va">density</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">depth_scaled</span><span class="op">)</span> <span class="op">+</span> <span class="va">fyear</span>,</span>
@@ -206,25 +225,26 @@ predict.</p>
 <span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>,</span>
 <span>  k_folds <span class="op">=</span> <span class="fl">4</span></span>
 <span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_elpd</span> <span class="co"># fold ELPD</span></span>
-<span><span class="va">m_cv</span><span class="op">$</span><span class="va">elpd</span> <span class="co"># total ELPD</span></span>
+<span><span class="co">#&gt; Running fits with `future.apply()`.</span></span>
+<span><span class="co">#&gt; Set a parallel `future::plan()` to use parallel processing.</span></span>
 <span></span>
 <span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_loglik</span> <span class="co"># fold log-likelihood</span></span>
-<span><span class="va">m_cv</span><span class="op">$</span><span class="va">sum_loglik</span> <span class="co"># total log-likelihood</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] -1445.106 -1828.581 -1643.766 -1783.430</span></span>
+<span><span class="va">m_cv</span><span class="op">$</span><span class="va">sum_loglik</span> <span class="co"># total log-likelihood</span></span>
+<span><span class="co">#&gt; [1] -6700.882</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="single-splits-and-leave-future-out-cross-validation">Single splits and Leave Future Out Cross-Validation<a class="anchor" aria-label="anchor" href="#single-splits-and-leave-future-out-cross-validation"></a>
+<h2 id="single-splits">Single splits<a class="anchor" aria-label="anchor" href="#single-splits"></a>
 </h2>
-<p>In cases where only a single test set is evaluated (e.g. 10% of the
+<p>In cases where only a single test set is evaluated (e.g., 10% of the
 data), using the <code><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv()</a></code> function may be overkill
 because two <code><a href="../../reference/sdmTMB.html">sdmTMB()</a></code> models will be fit, but using this
 function may be worthwhile to reduce coding errors (in the
-log-likelihood or ELPD calculations). For example, here we assign two
-folds, randomly holding out 10% of the observations as a test set (the
-test set is given ID = 1, and the training set is given ID = 2).</p>
+log-likelihood calculations). For example, here we assign two folds,
+randomly holding out 10% of the observations as a test set (the test set
+is given ID = 1, and the training set is given ID = 2).</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">clust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">T</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">clust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">m_cv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv</a></span><span class="op">(</span></span>
 <span>  <span class="va">density</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">depth_scaled</span><span class="op">)</span> <span class="op">+</span> <span class="va">fyear</span>,</span>
@@ -234,50 +254,16 @@ test set is given ID = 1, and the training set is given ID = 2).</p>
 <span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>,</span>
 <span>  k_folds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">clust</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>We can ignore the total log-likelihood and total ELPD, and just focus
-on the first elements of these lists, e.g.</p>
+<p>We can ignore the total log-likelihood, and just focus on the first
+element of list list:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_loglik</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt; [1] -567.0697</span></span></code></pre></div>
-<p>If we wanted to do LFOCV, we could also use the
-<code><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv()</a></code> function—though either way, it gets complicated
-because we need to change the data for each prediction. With the
-<code>pcod</code> dataset, the years are</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 2003 2004 2005 2007 2009 2011 2013 2015 2017</span></span></code></pre></div>
-<p>As above with temporal folds, we cannot include year as a factor and
-turn spatiotemporal fields off. We can use years 2011-2017 as test
-years. Two things to note are that if we specified time varying
-coefficients or a smooth on year effects ~ s(year), we’d want to specify
-missing years with the <code>extra_time</code> argument. Second, given
-the ways the folds are set up below, we have to extract the
-log-likelihood values for just the years of interest ourselves. Finally,
-it’s also possible to do this same procedure using <code><a href="../../reference/sdmTMB.html">sdmTMB()</a></code>
-rather than <code><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv()</a></code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">test_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2013</span>, <span class="fl">2015</span>, <span class="fl">2017</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">log_lik</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">test_years</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">clust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">clust</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">year</span> <span class="op">&lt;</span> <span class="va">test_years</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
-<span></span>
-<span>  <span class="va">models</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv</a></span><span class="op">(</span></span>
-<span>    <span class="va">density</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">depth_scaled</span><span class="op">)</span>,</span>
-<span>    data <span class="op">=</span> <span class="va">pcod</span>,</span>
-<span>    mesh <span class="op">=</span> <span class="va">mesh</span>,</span>
-<span>    spatiotemporal <span class="op">=</span> <span class="st">"off"</span>,</span>
-<span>    fold_ids <span class="op">=</span> <span class="va">clust</span>,</span>
-<span>    family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>,</span>
-<span>    k_folds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">clust</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span>  <span class="va">log_lik</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">m_cv</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">cv_loglik</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">m_cv</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">year</span> <span class="op">==</span> <span class="va">test_years</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p>Note: in the above model, we’re not using year as a factor because
-doing so would not make it possible to predict on new years.</p>
+<span><span class="co">#&gt; [1] -598.8847</span></span></code></pre></div>
+<!-- # Leave Future Out Cross-Validation -->
+<!-- We can do LFOCV using the relevant arguments. Our dataset has 9 time steps. Therefore, if we use the arguments `lfo_forecast=2` and `lfo_validations=3`, the cross validation will: -->
+<!-- - Fit data to time steps 1 to 5, predict and validate step 7. -->
+<!-- - Fit data to time steps 1 to 6, predict and validate step 8. -->
+<!-- - Fit data to time steps 1 to 7, predict and validate step 9. -->
 </div>
 <div class="section level2">
 <h2 id="comparing-two-or-more-models">Comparing two or more models<a class="anchor" aria-label="anchor" href="#comparing-two-or-more-models"></a>
@@ -289,34 +275,34 @@ important that the folds be the same across the two models). In this
 example, using either the predictive log-likelihood or ELPD would lead
 one to conclude that including depth improves the predictive accuracy of
 the model.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">clust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">clust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv</a></span><span class="op">(</span></span>
 <span>  <span class="va">density</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="va">fyear</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">pcod</span>,</span>
 <span>  mesh <span class="op">=</span> <span class="va">mesh</span>,</span>
 <span>  fold_ids <span class="op">=</span> <span class="va">clust</span>,</span>
-<span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>,</span>
-<span>  k_folds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">clust</span><span class="op">)</span><span class="op">)</span></span>
+<span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co">#&gt; Running fits with `future.apply()`.</span></span>
+<span><span class="co">#&gt; Set a parallel `future::plan()` to use parallel processing.</span></span>
 <span></span>
 <span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv</a></span><span class="op">(</span></span>
 <span>  <span class="va">density</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="va">fyear</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">depth_scaled</span><span class="op">)</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">pcod</span>,</span>
 <span>  mesh <span class="op">=</span> <span class="va">mesh</span>,</span>
 <span>  fold_ids <span class="op">=</span> <span class="va">clust</span>,</span>
-<span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>,</span>
-<span>  k_folds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">clust</span><span class="op">)</span><span class="op">)</span></span>
+<span>  family <span class="op">=</span> <span class="fu"><a href="../../reference/families.html">tweedie</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co">#&gt; Running fits with `future.apply()`.</span></span>
+<span><span class="co">#&gt; Set a parallel `future::plan()` to use parallel processing.</span></span>
 <span></span>
 <span><span class="co"># Compare log-likelihoods -- higher is better!</span></span>
 <span><span class="va">m1</span><span class="op">$</span><span class="va">sum_loglik</span></span>
+<span><span class="co">#&gt; [1] -6706.154</span></span>
 <span><span class="va">m2</span><span class="op">$</span><span class="va">sum_loglik</span></span>
-<span></span>
-<span><span class="co"># Compare ELPD -- higher is better!</span></span>
-<span><span class="va">m1</span><span class="op">$</span><span class="va">elpd</span></span>
-<span><span class="va">m2</span><span class="op">$</span><span class="va">elpd</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] -6552.602</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="model-ensembling">Model ensembling<a class="anchor" aria-label="anchor" href="#model-ensembling"></a>
@@ -327,9 +313,10 @@ implemented the model stacking procedure described by <span class="citation">(Ya
 <code><a href="../../reference/sdmTMB_stacking.html">sdmTMB_stacking()</a></code> function. This procedure uses
 optimization to find the normalized weights that maximize the total
 log-likelihood across models (other metrics may also be used). Inputs to
-the function are a list of models, where each list element is the output
-of a call to <code><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv()</a></code>:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+the function are a list of models (a fictitious
+<code>model_list</code>), where each list element is the output of a
+call to <code><a href="../../reference/sdmTMB_cv.html">sdmTMB_cv()</a></code>:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sdmTMB_stacking.html">sdmTMB_stacking</a></span><span class="op">(</span><span class="va">model_list</span><span class="op">)</span></span></code></pre></div>
 <p>By default this calculation uses data from each fold. If instead, we
 had split the data into the 10/90 split (as in the example above), we
@@ -337,7 +324,7 @@ wouldn’t want to use the 2nd model fit to generate these weights. If we
 had just wanted to use the predictions from the first fold onto the 10%
 test set, we could specify that using the <code>include_folds</code>
 argument.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sdmTMB_stacking.html">sdmTMB_stacking</a></span><span class="op">(</span><span class="va">model_list</span>, include_folds <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">

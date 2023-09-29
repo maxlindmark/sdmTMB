@@ -85,7 +85,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Index standardization with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2023-08-18</h4>
+            <h4 data-toc-skip class="date">2023-09-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/index-standardization.Rmd" class="external-link"><code>vignettes/web_only/index-standardization.Rmd</code></a></small>
       <div class="d-none name"><code>index-standardization.Rmd</code></div>
@@ -251,66 +251,66 @@ number of grid cells.</p>
 <tbody>
 <tr class="odd">
 <td align="right">2003</td>
-<td align="right">936176</td>
-<td align="right">653699</td>
-<td align="right">1340716</td>
+<td align="right">906752</td>
+<td align="right">635430</td>
+<td align="right">1293925</td>
 <td align="right">0.18</td>
 </tr>
 <tr class="even">
 <td align="right">2004</td>
-<td align="right">1832130</td>
-<td align="right">1359020</td>
-<td align="right">2469943</td>
-<td align="right">0.15</td>
+<td align="right">1847508</td>
+<td align="right">1350791</td>
+<td align="right">2526879</td>
+<td align="right">0.16</td>
 </tr>
 <tr class="odd">
 <td align="right">2005</td>
-<td align="right">1757227</td>
-<td align="right">1224189</td>
-<td align="right">2522360</td>
+<td align="right">1761001</td>
+<td align="right">1211908</td>
+<td align="right">2558877</td>
 <td align="right">0.19</td>
 </tr>
 <tr class="even">
 <td align="right">2007</td>
-<td align="right">452112</td>
-<td align="right">328786</td>
-<td align="right">621698</td>
+<td align="right">438807</td>
+<td align="right">319120</td>
+<td align="right">603383</td>
 <td align="right">0.16</td>
 </tr>
 <tr class="odd">
 <td align="right">2009</td>
-<td align="right">722982</td>
-<td align="right">518713</td>
-<td align="right">1007692</td>
+<td align="right">741381</td>
+<td align="right">533278</td>
+<td align="right">1030692</td>
 <td align="right">0.17</td>
 </tr>
 <tr class="even">
 <td align="right">2011</td>
-<td align="right">1357885</td>
-<td align="right">1028851</td>
-<td align="right">1792147</td>
+<td align="right">1364031</td>
+<td align="right">1036747</td>
+<td align="right">1794632</td>
 <td align="right">0.14</td>
 </tr>
 <tr class="odd">
 <td align="right">2013</td>
-<td align="right">1422648</td>
-<td align="right">1037721</td>
-<td align="right">1950358</td>
+<td align="right">1376302</td>
+<td align="right">1010576</td>
+<td align="right">1874385</td>
 <td align="right">0.16</td>
 </tr>
 <tr class="even">
 <td align="right">2015</td>
-<td align="right">1487473</td>
-<td align="right">1116301</td>
-<td align="right">1982062</td>
+<td align="right">1491816</td>
+<td align="right">1115642</td>
+<td align="right">1994829</td>
 <td align="right">0.15</td>
 </tr>
 <tr class="odd">
 <td align="right">2017</td>
-<td align="right">750051</td>
-<td align="right">543622</td>
-<td align="right">1034867</td>
-<td align="right">0.17</td>
+<td align="right">737778</td>
+<td align="right">537654</td>
+<td align="right">1012391</td>
+<td align="right">0.16</td>
 </tr>
 </tbody>
 </table>
@@ -326,12 +326,12 @@ intersect the polygon on the prediction grid using something like
 <span><span class="va">index_south</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_index.html">get_index</a></span><span class="op">(</span><span class="va">predictions_south</span>, area <span class="op">=</span> <span class="fl">4</span>, bias_correct <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">index_south</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   year      est      lwr      upr  log_est        se</span></span>
-<span><span class="co">#&gt; 1 2003 264679.9 156368.9 448013.9 12.48628 0.2685270</span></span>
-<span><span class="co">#&gt; 2 2004 602466.8 403037.0 900577.8 13.30879 0.2051079</span></span>
-<span><span class="co">#&gt; 3 2005 411739.0 263138.9 644256.8 12.92814 0.2284265</span></span>
-<span><span class="co">#&gt; 4 2007 184945.7 117598.4 290861.9 12.12782 0.2310178</span></span>
-<span><span class="co">#&gt; 5 2009 316483.8 203600.9 491952.5 12.66503 0.2250603</span></span>
-<span><span class="co">#&gt; 6 2011 432243.6 292909.8 637857.0 12.97674 0.1985366</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 2003 263773.3 152939.9 454926.1 12.48285 0.2780893</span></span>
+<span><span class="co">#&gt; 2 2004 600881.0 400193.7 902208.0 13.30615 0.2073753</span></span>
+<span><span class="co">#&gt; 3 2005 401173.7 258296.1 623084.6 12.90215 0.2246408</span></span>
+<span><span class="co">#&gt; 4 2007 181138.3 115788.5 283370.9 12.10702 0.2283183</span></span>
+<span><span class="co">#&gt; 5 2009 338404.8 215442.5 531546.7 12.73200 0.2303861</span></span>
+<span><span class="co">#&gt; 6 2011 450963.9 304771.0 667282.7 13.01914 0.1999152</span></span></code></pre></div>
 <p>We can visually compare the two indexes:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">index</span>, region <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>

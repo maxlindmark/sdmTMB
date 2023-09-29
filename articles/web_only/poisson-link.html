@@ -181,20 +181,16 @@ survey off the west coast of Vancouver Island, Canada. The dataset
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dogfish</span><span class="op">$</span><span class="va">log_depth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">dogfish</span><span class="op">$</span><span class="va">depth</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dogfish</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   year longitude latitude        X        Y present catch_weight area_swept</span></span>
-<span><span class="co">#&gt; 1 2004 -125.1928 48.68167 780.2098 5399.066       1         22.7    0.10288</span></span>
-<span><span class="co">#&gt; 2 2004 -125.8362 48.22183 734.9809 5345.797       0          0.0    0.10288</span></span>
-<span><span class="co">#&gt; 3 2004 -125.7952 48.30733 737.6287 5355.425       0          0.0    0.11574</span></span>
-<span><span class="co">#&gt; 4 2004 -125.6383 48.29017 749.3395 5354.015       1        221.1    0.12217</span></span>
-<span><span class="co">#&gt; 5 2004 -125.7022 48.36000 744.2715 5361.570       1        439.8    0.09645</span></span>
-<span><span class="co">#&gt; 6 2004 -125.7940 48.36450 737.4493 5361.782       1         48.2    0.12217</span></span>
-<span><span class="co">#&gt;   depth log_depth</span></span>
-<span><span class="co">#&gt; 1    73  4.290459</span></span>
-<span><span class="co">#&gt; 2   455  6.120297</span></span>
-<span><span class="co">#&gt; 3   171  5.141664</span></span>
-<span><span class="co">#&gt; 4   137  4.919981</span></span>
-<span><span class="co">#&gt; 5   140  4.941642</span></span>
-<span><span class="co">#&gt; 6   145  4.976734</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 10</span></span></span>
+<span><span class="co">#&gt;    year longitude latitude     X     Y present catch_weight area_swept depth</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>004     -<span style="color: #BB0000;">125.</span>     48.7  780. <span style="text-decoration: underline;">5</span>399.       1         22.7     0.103     73</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>004     -<span style="color: #BB0000;">126.</span>     48.2  735. <span style="text-decoration: underline;">5</span>346.       0          0       0.103    455</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>004     -<span style="color: #BB0000;">126.</span>     48.3  738. <span style="text-decoration: underline;">5</span>355.       0          0       0.116    171</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>004     -<span style="color: #BB0000;">126.</span>     48.3  749. <span style="text-decoration: underline;">5</span>354.       1        221.      0.122    137</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>004     -<span style="color: #BB0000;">126.</span>     48.4  744. <span style="text-decoration: underline;">5</span>362.       1        440.      0.096<span style="text-decoration: underline;">4</span>   140</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>004     -<span style="color: #BB0000;">126.</span>     48.4  737. <span style="text-decoration: underline;">5</span>362.       1         48.2     0.122    145</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: log_depth &lt;dbl&gt;</span></span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">dogfish</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -281,49 +277,49 @@ point in space that has a different random field value.</p>
 <span><span class="co">#&gt; Delta/hurdle model 1: -----------------------------------</span></span>
 <span><span class="co">#&gt; Family: binomial(link = 'log') </span></span>
 <span><span class="co">#&gt;                     coef.est coef.se</span></span>
-<span><span class="co">#&gt; as.factor(year)2004     1.96    0.77</span></span>
-<span><span class="co">#&gt; as.factor(year)2006     2.89    0.77</span></span>
-<span><span class="co">#&gt; as.factor(year)2008     2.57    0.76</span></span>
-<span><span class="co">#&gt; as.factor(year)2010     2.43    0.77</span></span>
-<span><span class="co">#&gt; as.factor(year)2012     1.94    0.76</span></span>
-<span><span class="co">#&gt; as.factor(year)2014     1.93    0.76</span></span>
-<span><span class="co">#&gt; as.factor(year)2016     2.20    0.76</span></span>
-<span><span class="co">#&gt; as.factor(year)2018     2.03    0.76</span></span>
-<span><span class="co">#&gt; as.factor(year)2021     1.18    0.76</span></span>
-<span><span class="co">#&gt; as.factor(year)2022     1.75    0.76</span></span>
-<span><span class="co">#&gt; slog_depth             -0.15    0.54</span></span>
+<span><span class="co">#&gt; as.factor(year)2004     2.08    0.74</span></span>
+<span><span class="co">#&gt; as.factor(year)2006     3.01    0.74</span></span>
+<span><span class="co">#&gt; as.factor(year)2008     2.70    0.73</span></span>
+<span><span class="co">#&gt; as.factor(year)2010     2.56    0.74</span></span>
+<span><span class="co">#&gt; as.factor(year)2012     2.06    0.74</span></span>
+<span><span class="co">#&gt; as.factor(year)2014     2.04    0.73</span></span>
+<span><span class="co">#&gt; as.factor(year)2016     2.32    0.74</span></span>
+<span><span class="co">#&gt; as.factor(year)2018     2.13    0.73</span></span>
+<span><span class="co">#&gt; as.factor(year)2021     1.29    0.74</span></span>
+<span><span class="co">#&gt; as.factor(year)2022     1.87    0.74</span></span>
+<span><span class="co">#&gt; slog_depth             -0.23    0.54</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Smooth terms:</span></span>
 <span><span class="co">#&gt;                Std. Dev.</span></span>
-<span><span class="co">#&gt; sds(log_depth)      2.38</span></span>
+<span><span class="co">#&gt; sds(log_depth)       2.4</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Matérn anisotropic range (spatial): 26.1 to 381.1 at 142 deg.</span></span>
-<span><span class="co">#&gt; Spatial SD: 1.18</span></span>
+<span><span class="co">#&gt; Matérn anisotropic range (spatial): 50.9 to 226.4 at 146 deg.</span></span>
+<span><span class="co">#&gt; Spatial SD: 1.19</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Delta/hurdle model 2: -----------------------------------</span></span>
 <span><span class="co">#&gt; Family: Gamma(link = 'log') </span></span>
 <span><span class="co">#&gt;                     coef.est coef.se</span></span>
-<span><span class="co">#&gt; as.factor(year)2004     3.59    0.37</span></span>
-<span><span class="co">#&gt; as.factor(year)2006     2.78    0.33</span></span>
-<span><span class="co">#&gt; as.factor(year)2008     2.47    0.32</span></span>
-<span><span class="co">#&gt; as.factor(year)2010     3.50    0.34</span></span>
-<span><span class="co">#&gt; as.factor(year)2012     2.77    0.33</span></span>
-<span><span class="co">#&gt; as.factor(year)2014     2.45    0.33</span></span>
-<span><span class="co">#&gt; as.factor(year)2016     2.09    0.32</span></span>
-<span><span class="co">#&gt; as.factor(year)2018     2.60    0.32</span></span>
-<span><span class="co">#&gt; as.factor(year)2021     1.69    0.33</span></span>
-<span><span class="co">#&gt; as.factor(year)2022     1.98    0.33</span></span>
-<span><span class="co">#&gt; slog_depth              0.20    0.82</span></span>
+<span><span class="co">#&gt; as.factor(year)2004     3.15    0.62</span></span>
+<span><span class="co">#&gt; as.factor(year)2006     2.37    0.58</span></span>
+<span><span class="co">#&gt; as.factor(year)2008     2.03    0.59</span></span>
+<span><span class="co">#&gt; as.factor(year)2010     3.03    0.60</span></span>
+<span><span class="co">#&gt; as.factor(year)2012     2.29    0.59</span></span>
+<span><span class="co">#&gt; as.factor(year)2014     2.01    0.60</span></span>
+<span><span class="co">#&gt; as.factor(year)2016     1.68    0.58</span></span>
+<span><span class="co">#&gt; as.factor(year)2018     2.19    0.58</span></span>
+<span><span class="co">#&gt; as.factor(year)2021     1.24    0.59</span></span>
+<span><span class="co">#&gt; as.factor(year)2022     1.58    0.60</span></span>
+<span><span class="co">#&gt; slog_depth              0.10    0.80</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Smooth terms:</span></span>
 <span><span class="co">#&gt;                Std. Dev.</span></span>
-<span><span class="co">#&gt; sds(log_depth)      5.09</span></span>
+<span><span class="co">#&gt; sds(log_depth)      4.92</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Dispersion parameter: 0.59</span></span>
-<span><span class="co">#&gt; Matérn anisotropic range (spatial): 4.2 to 60.8 at 142 deg.</span></span>
-<span><span class="co">#&gt; Spatial SD: 1.97</span></span>
+<span><span class="co">#&gt; Dispersion parameter: 0.60</span></span>
+<span><span class="co">#&gt; Matérn anisotropic range (spatial): 18.6 to 82.9 at 146 deg.</span></span>
+<span><span class="co">#&gt; Spatial SD: 2.03</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; REML criterion at convergence: 5851.613</span></span>
+<span><span class="co">#&gt; REML criterion at convergence: 5845.707</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; See ?tidy.sdmTMB to extract these values as a data frame.</span></span>
 <span><span class="co">#&gt; See ?plot_anisotropy to plot the anisotropic range.</span></span></code></pre></div>
@@ -432,7 +428,7 @@ expected number <span class="math inline">\(n\)</span> is <span class="math inli
 \]</span> If <span class="math inline">\(p\)</span> is the probability
 of observing a non-zero (i.e., an encounter), then</p>
 <p><span class="math display">\[
-\exp(-n) = 1 - p.
+\exp(-n) = 1 - p = \mathrm{Pr}(0).
 \]</span></p>
 <p>We can re-arrange that as</p>
 <p><span class="math display">\[
@@ -519,9 +515,9 @@ name.</p>
 code!<a class="anchor" aria-label="anchor" href="#these-equations-dont-look-anything-like-the-sdmtmb-source-code"></a>
 </h3>
 <p>That’s because the calculations have to be done in log space for
-computation stability and some calculations are fastest and most stable
-if done slightly differently from how they are most easily described in
-equations above.</p>
+computational stability and some calculations are fastest and most
+stable if done slightly differently from how they are most easily
+described in equations above.</p>
 </div>
 </div>
 <div class="section level2">
