@@ -234,6 +234,7 @@ This procedure uses optimization to find the normalized weights that maximize th
 Inputs to the function are a list of models, where each list element is the output of a call to `sdmTMB_cv()`:
 
 ```{r ex7, eval=FALSE}
+model_list <- list(m1,m2)
 weights <- sdmTMB_stacking(model_list)
 ```
 
