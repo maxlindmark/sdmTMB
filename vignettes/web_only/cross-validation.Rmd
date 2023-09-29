@@ -235,6 +235,7 @@ Inputs to the function are a list of models, where each list element is the outp
 
 ```{r ex7, eval=FALSE}
 weights <- sdmTMB_stacking(model_list)
+weights
 ```
 
 By default this calculation uses data from each fold.
@@ -243,6 +244,7 @@ If we had just wanted to use the predictions from the first fold onto the 10% te
 
 ```{r ex8, eval=FALSE}
 weights <- sdmTMB_stacking(model_list, include_folds = 1)
+weights
 ```
 
 # References
