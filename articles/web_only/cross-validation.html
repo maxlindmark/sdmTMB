@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Cross-validation for model evaluation and comparison</h1>
             
-            <h4 data-toc-skip class="date">2023-09-29</h4>
+            <h4 data-toc-skip class="date">2023-10-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/cross-validation.Rmd" class="external-link"><code>vignettes/web_only/cross-validation.Rmd</code></a></small>
       <div class="d-none name"><code>cross-validation.Rmd</code></div>
@@ -155,21 +155,17 @@ but this can be turned off with the <code>parallel</code> argument.</p>
 <span><span class="co">#&gt; Running fits with `future.apply()`.</span></span>
 <span><span class="co">#&gt; Set a parallel `future::plan()` to use parallel processing.</span></span>
 <span><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
-<span><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
+<span><span class="co">#&gt; which was just loaded, were retired in October 2023.</span></span>
 <span><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
 <span><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
 <span><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
 <span><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
-<span><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
-<span><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span>
 <span><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
-<span><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
+<span><span class="co">#&gt; which was just loaded, were retired in October 2023.</span></span>
 <span><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
 <span><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
 <span><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
-<span><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
-<span><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
-<span><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span></code></pre></div>
+<span><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span></code></pre></div>
 <p>In the above example, folds are assigned randomly—but these can be
 modified to specific spatial or temporal applications. Without getting
 into the complexities of the <code>blockCV</code> or
@@ -229,9 +225,9 @@ folds that are difficult to predict.</p>
 <span><span class="co">#&gt; Set a parallel `future::plan()` to use parallel processing.</span></span>
 <span></span>
 <span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_loglik</span> <span class="co"># fold log-likelihood</span></span>
-<span><span class="co">#&gt; [1] -1445.106 -1828.581 -1643.766 -1783.430</span></span>
+<span><span class="co">#&gt; [1] -1714.946 -1484.714 -1653.640 -1721.144</span></span>
 <span><span class="va">m_cv</span><span class="op">$</span><span class="va">sum_loglik</span> <span class="co"># total log-likelihood</span></span>
-<span><span class="co">#&gt; [1] -6700.882</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] -6574.443</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="single-splits">Single splits<a class="anchor" aria-label="anchor" href="#single-splits"></a>
@@ -258,7 +254,7 @@ is given ID = 1, and the training set is given ID = 2).</p>
 element of list list:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_loglik</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt; [1] -598.8847</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] -668.9844</span></span></code></pre></div>
 <!-- # Leave Future Out Cross-Validation -->
 <!-- We can do LFOCV using the relevant arguments. Our dataset has 9 time steps. Therefore, if we use the arguments `lfo_forecast=2` and `lfo_validations=3`, the cross validation will: -->
 <!-- - Fit data to time steps 1 to 5, predict and validate step 7. -->
@@ -300,9 +296,9 @@ the model.</p>
 <span></span>
 <span><span class="co"># Compare log-likelihoods -- higher is better!</span></span>
 <span><span class="va">m1</span><span class="op">$</span><span class="va">sum_loglik</span></span>
-<span><span class="co">#&gt; [1] -6706.154</span></span>
+<span><span class="co">#&gt; [1] -6734.777</span></span>
 <span><span class="va">m2</span><span class="op">$</span><span class="va">sum_loglik</span></span>
-<span><span class="co">#&gt; [1] -6552.602</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] -6584.831</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="model-ensembling">Model ensembling<a class="anchor" aria-label="anchor" href="#model-ensembling"></a>
