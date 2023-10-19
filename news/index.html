@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,8 +63,18 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="sdmtmb-development-version">sdmTMB (development version)<a class="anchor" aria-label="anchor" href="#sdmtmb-development-version"></a></h2>
-<ul><li><p>Fix bug in print()/tidy() for delta-model positive model component sigma_E. A recently introduce bug was causing sigma_E for the 2nd model to be reported as the 1st model component sigma_E.</p></li>
+<h2 class="pkg-version" data-toc-text="0.4.0" id="sdmtmb-040">sdmTMB 0.4.0<a class="anchor" aria-label="anchor" href="#sdmtmb-040"></a></h2>
+<ul><li><p>Move add_barrier_mesh() to sdmTMBextra to avoid final INLA dependency. <a href="https://github.com/pbs-assess/sdmTMBextra" class="external-link uri">https://github.com/pbs-assess/sdmTMBextra</a></p></li>
+<li><p>Switch to using the new fmesher package for all mesh/SPDE calculations. INLA is no longer a dependency.</p></li>
+<li><p>Switch to <code>diagonal.penalty = FALSE</code> in mgcv::smoothCon(). This changes the scale of the linear component of the smoother, but should result in the same model. <a href="https://github.com/glmmTMB/glmmTMB/issues/928#issuecomment-1642862066" class="external-link uri">https://github.com/glmmTMB/glmmTMB/issues/928#issuecomment-1642862066</a></p></li>
+<li><p>Implement cross validation for delta models <a href="https://github.com/pbs-assess/sdmTMB/issues/239" class="external-link">#239</a></p></li>
+<li><p>Remove ELPD from cross validation output. Use sum_loglik instead. <a href="https://github.com/pbs-assess/sdmTMB/issues/235" class="external-link">#235</a></p></li>
+<li><p>Turn on Newton optimization by default. <a href="https://github.com/pbs-assess/sdmTMB/issues/182" class="external-link">#182</a></p></li>
+<li><p>print() now checks sanity() and issues a warning if there may be issues. <a href="https://github.com/pbs-assess/sdmTMB/issues/176" class="external-link">#176</a></p></li>
+<li><p>Poisson-link delta models and censored likelihood distributions have been made considerably more robust. <a href="https://github.com/pbs-assess/sdmTMB/issues/186" class="external-link">#186</a></p></li>
+<li><p>Standard errors are now available on SD parameters etc. in tidy() <a href="https://github.com/pbs-assess/sdmTMB/issues/240" class="external-link">#240</a></p></li>
+<li><p>Fix bug in print()/tidy() for delta-model positive model component sigma_E. A recently introduce bug was causing sigma_E for the 2nd model to be reported as the 1st model component sigma_E.</p></li>
+<li><p>Add new anisotropy plotting function.</p></li>
 <li><p>Add anisotropic range printing. <a href="https://github.com/pbs-assess/sdmTMB/issues/149" class="external-link">#149</a> by <a href="https://github.com/jdunic" class="external-link">@jdunic</a></p></li>
 </ul></div>
     <div class="section level2">

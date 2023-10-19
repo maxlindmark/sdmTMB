@@ -28,7 +28,7 @@ covariance function."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -200,7 +200,7 @@ the argument names in <code>pc_matern()</code>):
 credible intervals when the prior satisfies <code>P(sigma &gt; sigma_lt) = 0.05</code> and
 <code>P(range &lt; range_gt) = 0.05</code>, where <code>sigma_lt</code> is between 2.5 to 40 times
 the true marginal standard deviation and <code>range_gt</code> is between 1/10 and 1/2.5
-of the true range." Also see <code><a href="https://rdrr.io/pkg/INLA/man/inla.spde2.pcmatern.html" class="external-link">INLA::inla.spde2.pcmatern()</a></code>.</p>
+of the true range."</p>
 <p>Keep in mind that the range is dependent on the units and scale of the
 coordinate system. In practice, you may choose to try fitting the model
 without a PC prior and then constraining the model from there. A better
@@ -247,8 +247,7 @@ constructing priors. arXiv:1403.4630</p>
 <span class="r-in"><span><span class="fu"><a href="plot_pc_matern.html">plot_pc_matern</a></span><span class="op">(</span>range_gt <span class="op">=</span> <span class="fl">5</span>, sigma_lt <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="priors-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="inla_installed.html">inla_installed</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">pcod</span>, <span class="va">year</span> <span class="op">&gt;</span> <span class="fl">2011</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">pcod_spde</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_mesh.html">make_mesh</a></span><span class="op">(</span><span class="va">d</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -292,8 +291,7 @@ constructing priors. arXiv:1403.4630</p>
 <span class="r-in"><span>    matern_s <span class="op">=</span> <span class="fu">pc_matern</span><span class="op">(</span>range_gt <span class="op">=</span> <span class="fl">5</span>, sigma_lt <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    matern_st <span class="op">=</span> <span class="fu">pc_matern</span><span class="op">(</span>range_gt <span class="op">=</span> <span class="fl">5</span>, sigma_lt <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

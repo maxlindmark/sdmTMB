@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,8 +76,11 @@
 <span>  <span class="va">cutoff</span>,</span>
 <span>  <span class="va">n_knots</span>,</span>
 <span>  seed <span class="op">=</span> <span class="fl">42</span>,</span>
-<span>  refine <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>min.angle <span class="op">=</span> <span class="fl">21</span>, max.edge <span class="op">=</span> <span class="cn">Inf</span>, max.n.strict <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, max.n <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>,</span>
-<span>  mesh <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  mesh <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fmesher_func <span class="op">=</span> <span class="fu">fmesher</span><span class="fu">::</span><span class="va"><a href="https://inlabru-org.github.io/fmesher/reference/fm_rcdt_2d.html" class="external-link">fm_rcdt_2d_inla</a></span>,</span>
+<span>  convex <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  concave <span class="op">=</span> <span class="va">convex</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for sdmTMBmesh</span></span>
@@ -102,10 +105,8 @@ your own mesh.</p></dd>
 
 
 <dt>cutoff</dt>
-<dd><p>An optional cutoff if type is <code>"cutoff"</code>. "The minimum allowed
-distance between points in the mesh". See <code><a href="https://rdrr.io/pkg/INLA/man/inla.mesh.create.html" class="external-link">INLA::inla.mesh.create()</a></code>.
-Smaller values create meshes with more knots. Points further apart than this
-value will receive a separate vertex in the mesh before any mesh refinement.</p></dd>
+<dd><p>An optional cutoff if type is <code>"cutoff"</code>. The minimum allowed
+triangle edge length.</p></dd>
 
 
 <dt>n_knots</dt>
@@ -117,60 +118,86 @@ value will receive a separate vertex in the mesh before any mesh refinement.</p>
 locations if <code>type = "kmeans"</code>.</p></dd>
 
 
-<dt>refine</dt>
-<dd><p>Logical or list to pass to <code><a href="https://rdrr.io/pkg/INLA/man/inla.mesh.create.html" class="external-link">INLA::inla.mesh.create()</a></code>.</p></dd>
-
-
 <dt>mesh</dt>
-<dd><p>An optional mesh created via INLA instead of using the above
+<dd><p>An optional mesh created via <span class="pkg">fmesher</span> instead of using the above
 convenience options.</p></dd>
 
 
-<dt>x</dt>
-<dd><p>Output from <code>make_mesh()</code>.</p></dd>
+<dt>fmesher_func</dt>
+<dd><p>Which <span class="pkg">fmesher</span> function to use. Options include
+<code><a href="https://inlabru-org.github.io/fmesher/reference/fm_rcdt_2d.html" class="external-link">fmesher::fm_rcdt_2d_inla()</a></code> and <code><a href="https://inlabru-org.github.io/fmesher/reference/fm_mesh_2d.html" class="external-link">fmesher::fm_mesh_2d_inla()</a></code> along with
+version without the <code>_inla</code> on the end.</p></dd>
+
+
+<dt>convex</dt>
+<dd><p>If specified, passed to <code><a href="https://inlabru-org.github.io/fmesher/reference/fm_nonconvex_hull.html" class="external-link">fmesher::fm_nonconvex_hull()</a></code>.
+Distance to extend non-convex hull from data.</p></dd>
+
+
+<dt>concave</dt>
+<dd><p>If specified, passed to <code><a href="https://inlabru-org.github.io/fmesher/reference/fm_nonconvex_hull.html" class="external-link">fmesher::fm_nonconvex_hull()</a></code>.
+"Minimum allowed reentrant curvature". Defaults to <code>convex</code>.</p></dd>
 
 
 <dt>...</dt>
 <dd><p>Passed to <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">graphics::plot()</a></code>.</p></dd>
+
+
+<dt>x</dt>
+<dd><p>Output from <code>make_mesh()</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p><code>make_mesh()</code>: A list of class <code>sdmTMBmesh</code>. The element <code>mesh</code> is the output from
-<code><a href="https://inlabru-org.github.io/fmesher/reference/fm_rcdt_2d.html" class="external-link">fmesher::fm_rcdt_2d_inla()</a></code>.</p>
+<p><code>make_mesh()</code>: A list of class <code>sdmTMBmesh</code>. The element <code>mesh</code> is the output
+from <code>fmesher_func</code> (default is <code><a href="https://inlabru-org.github.io/fmesher/reference/fm_mesh_2d.html" class="external-link">fmesher::fm_mesh_2d_inla()</a></code>). See
+<code>mesh$mesh$n</code> for the number of vertices.</p>
 
 
 <p><code>plot.sdmTMBmesh()</code>: A plot of the mesh and data points. If
-<span class="pkg">inlabru</span> and <span class="pkg">ggplot2</span> are installed, a <span class="pkg">ggplot2</span> object is
+<span class="pkg">ggplot2</span> is installed, a <span class="pkg">ggplot2</span> object is
 returned, otherwise a base graphics R plot is returned. To make your own,
-pass <code>your_mesh$mesh</code> to  <code><a href="https://inlabru-org.github.io/inlabru/reference/gg.html" class="external-link">inlabru::gg()</a></code>.</p>
+pass <code>your_mesh$mesh</code> to <code><a href="https://inlabru-org.github.io/inlabru/reference/gg.html" class="external-link">inlabru::gg()</a></code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Extremely simple cutoff:</span></span></span>
 <span class="r-in"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu">make_mesh</span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, cutoff <span class="op">=</span> <span class="fl">5</span>, type <span class="op">=</span> <span class="st">"cutoff"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="make_mesh-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu">make_mesh</span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, n_knots <span class="op">=</span> <span class="fl">50</span>, type <span class="op">=</span> <span class="st">"cutoff_search"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 1.00 | knots = 2639 | ↓ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 100.00 | knots = 21 | ↑ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 10.00 | knots = 202 | ↓ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 31.62 | knots = 45 | ↑ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 17.78 | knots = 89 | ↓ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 23.71 | knots = 59 | ↓ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cutoff = 27.38 | knots = 50 | ✔ </span>
+<span class="r-in"><span><span class="co"># Using a k-means algorithm to assign vertices:</span></span></span>
+<span class="r-in"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu">make_mesh</span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, n_knots <span class="op">=</span> <span class="fl">50</span>, type <span class="op">=</span> <span class="st">"kmeans"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="make_mesh-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu">make_mesh</span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, n_knots <span class="op">=</span> <span class="fl">50</span>, type <span class="op">=</span> <span class="st">"kmeans"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co"># But, it's better to develop more tailored meshes:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Pass arguments via '...' to fmesher::fm_mesh_2d_inla():</span></span></span>
+<span class="r-in"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu">make_mesh</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  fmesher_func <span class="op">=</span> <span class="fu">fmesher</span><span class="fu">::</span><span class="va"><a href="https://inlabru-org.github.io/fmesher/reference/fm_mesh_2d.html" class="external-link">fm_mesh_2d_inla</a></span>,</span></span>
+<span class="r-in"><span>  cutoff <span class="op">=</span> <span class="fl">8</span>, <span class="co"># minimum triangle edge length</span></span></span>
+<span class="r-in"><span>  max.edge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">40</span><span class="op">)</span>, <span class="co"># inner and outer max triangle lengths</span></span></span>
+<span class="r-in"><span>  offset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">40</span><span class="op">)</span> <span class="co"># inner and outer border widths</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="make_mesh-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Or define a mesh directly with fmesher (formerly in INLA):</span></span></span>
+<span class="r-in"><span><span class="va">inla_mesh</span> <span class="op">&lt;-</span> <span class="fu">fmesher</span><span class="fu">::</span><span class="fu"><a href="https://inlabru-org.github.io/fmesher/reference/fm_mesh_2d.html" class="external-link">fm_mesh_2d_inla</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  loc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pcod</span><span class="op">$</span><span class="va">X</span>, <span class="va">pcod</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span>, <span class="co"># coordinates</span></span></span>
+<span class="r-in"><span>  max.edge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">50</span><span class="op">)</span>, <span class="co"># max triangle edge length; inner and outer meshes</span></span></span>
+<span class="r-in"><span>  offset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">25</span><span class="op">)</span>,  <span class="co"># inner and outer border widths</span></span></span>
+<span class="r-in"><span>  cutoff <span class="op">=</span> <span class="fl">5</span> <span class="co"># minimum triangle edge length</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu">make_mesh</span><span class="op">(</span><span class="va">pcod</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span><span class="op">)</span>, mesh <span class="op">=</span> <span class="va">inla_mesh</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="make_mesh-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

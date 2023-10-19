@@ -14,7 +14,7 @@ spread_draws() and gather_draws() functions."><!-- mathjax --><script src="https
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,27 +112,27 @@ long-format data frame. The format matches the format in the <span class="pkg">t
 <span class="r-in"><span>  spatiotemporal <span class="op">=</span> <span class="st">"AR1"</span>, time <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">spread_sims</span><span class="op">(</span><span class="va">m</span>, nsim <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .iteration depth_scaled depth_scaled2    range      phi tweedie_p   ar1_rho</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1    -1.723420     -1.239501 59.20573 13.56981  1.535910 0.7677258</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2    -1.975947     -1.337013 51.06758 12.67182  1.573140 0.8312792</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3    -1.471611     -1.161968 68.90814 13.73527  1.525259 0.8790436</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4    -1.807872     -1.260145 67.47024 12.62994  1.563359 0.8887063</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5    -2.027082     -1.342981 62.47076 13.30531  1.564159 0.9195087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6    -1.793759     -1.282912 53.66913 12.96081  1.549470 0.8483883</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         sigma_O  sigma_E</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           Inf 2.578915</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2.648325e-83 3.078770</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.000000e+00 3.240282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 4.144637e-107 2.755055</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.000000e+00 3.025966</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 9.321804e-129 3.144829</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1    -1.355250     -1.141588 65.00797 12.73156  1.586230 0.9137672</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2    -1.424789     -1.112009 73.68739 12.66518  1.533297 0.8839330</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3    -1.799244     -1.139077 65.27860 13.08742  1.577400 0.8786302</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4    -2.251874     -1.399168 75.97865 12.97785  1.555126 0.9576829</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5    -1.482117     -1.146844 74.46021 13.41796  1.579783 0.9273650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6    -2.400930     -1.408279 59.26444 13.32478  1.576261 0.9001175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   sigma_O  sigma_E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     Inf 2.857986</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     Inf 2.458149</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       0 2.621917</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     Inf 3.075034</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       0 2.486195</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       0 2.842959</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">gather_sims</span><span class="op">(</span><span class="va">m</span>, nsim <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .iteration    .variable    .value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 depth_scaled -1.926309</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2 depth_scaled -1.625672</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3 depth_scaled -1.590939</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4 depth_scaled -1.979694</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5 depth_scaled -1.368574</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6 depth_scaled -2.177121</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 depth_scaled -2.167740</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2 depth_scaled -1.463112</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3 depth_scaled -1.546535</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4 depth_scaled -1.641096</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5 depth_scaled -1.629599</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6 depth_scaled -1.806184</span>
 <span class="r-in"><span><span class="va">samps</span> <span class="op">&lt;-</span> <span class="fu">gather_sims</span><span class="op">(</span><span class="va">m</span>, nsim <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -140,7 +140,7 @@ long-format data frame. The format matches the format in the <span class="pkg">t
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">.variable</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 397 rows containing non-finite values (`stat_bin()`).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 425 rows containing non-finite values (`stat_bin()`).</span>
 <span class="r-plt img"><img src="gather_sims-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

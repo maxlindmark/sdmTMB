@@ -18,7 +18,7 @@ randomly but folds can be manually assigned via the fold_ids argument."><!-- mat
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -221,9 +221,9 @@ with, but not ELPD. For maximum likelihood, <a href="https://github.com/pbs-asse
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Set a parallel `future::plan()` to use parallel processing.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">fold_loglik</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -3383.059 -3327.652</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -3387.398 -3329.670</span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">sum_loglik</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -6710.711</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -6717.068</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">m_cv</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 15</span></span>
@@ -243,18 +243,18 @@ with, but not ELPD. For maximum likelihood, <a href="https://github.com/pbs-asse
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family: tweedie(link = 'log')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               coef.est coef.se</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled     -2.04    0.19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2    -1.28    0.10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled     -2.06    0.19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> depth_scaled2    -1.27    0.10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 13.11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 13.10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 95.96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 3.16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3206.677</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 96.42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2.78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 3206.009</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
 <span class="r-in"><span><span class="va">m_cv</span><span class="op">$</span><span class="va">max_gradients</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.140379e-09 3.525960e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.814415e-10 3.799738e-12</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Create mesh each fold:</span></span></span>
@@ -296,11 +296,10 @@ with, but not ELPD. For maximum likelihood, <a href="https://github.com/pbs-asse
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">example_data</span><span class="op">$</span><span class="va">cv_fold</span>, <span class="va">example_data</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     2003 2004 2005 2007 2009 2011 2013 2015 2017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1  232  230  224  255  233    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2    0    0    0    0    0  251    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3    0    0    0    0    0    0  240    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4    0    0    0    0    0    0    0  238    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   5    0    0    0    0    0    0    0    0  240</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1  232  230  224  255  233  251    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   2    0    0    0    0    0    0  240    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   3    0    0    0    0    0    0    0  238    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   4    0    0    0    0    0    0    0    0  240</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
