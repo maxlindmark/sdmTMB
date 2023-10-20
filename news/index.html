@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,10 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.4.0" id="sdmtmb-040">sdmTMB 0.4.0<a class="anchor" aria-label="anchor" href="#sdmtmb-040"></a></h2>
+<h2 class="pkg-version" data-toc-text="development version" id="sdmtmb-development-version">sdmTMB (development version)<a class="anchor" aria-label="anchor" href="#sdmtmb-development-version"></a></h2>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.4.0" id="sdmtmb-040">sdmTMB 0.4.0<a class="anchor" aria-label="anchor" href="#sdmtmb-040"></a></h2><p class="text-muted">CRAN release: 2023-10-20</p>
 <ul><li><p>Move add_barrier_mesh() to sdmTMBextra to avoid final INLA dependency. <a href="https://github.com/pbs-assess/sdmTMBextra" class="external-link uri">https://github.com/pbs-assess/sdmTMBextra</a></p></li>
 <li><p>Switch to using the new fmesher package for all mesh/SPDE calculations. INLA is no longer a dependency.</p></li>
 <li><p>Switch to <code>diagonal.penalty = FALSE</code> in mgcv::smoothCon(). This changes the scale of the linear component of the smoother, but should result in the same model. <a href="https://github.com/glmmTMB/glmmTMB/issues/928#issuecomment-1642862066" class="external-link uri">https://github.com/glmmTMB/glmmTMB/issues/928#issuecomment-1642862066</a></p></li>

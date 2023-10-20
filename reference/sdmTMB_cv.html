@@ -18,7 +18,7 @@ randomly but folds can be manually assigned via the fold_ids argument."><!-- mat
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,6 +94,7 @@ randomly but folds can be manually assigned via the <code>fold_ids</code> argume
 <span>  lfo_validations <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  parallel <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  use_initial_fit <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  future_globals <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  spde <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -159,6 +160,14 @@ parallel.</p></dd>
 <dt>use_initial_fit</dt>
 <dd><p>Fit the first fold and use those parameter values
 as starting values for subsequent folds? Can be faster with many folds.</p></dd>
+
+
+<dt>future_globals</dt>
+<dd><p>A character vector of global variables used within
+arguments if an error is returned that <span class="pkg">future.apply</span> can't find an
+object. This vector is appended to <code>TRUE</code> and passed to the argument
+<code>future.globals</code> in <code><a href="https://future.apply.futureverse.org/reference/future_lapply.html" class="external-link">future.apply::future_lapply()</a></code>. Useful if global
+objects are used to specify arguments like priors, families, etc.</p></dd>
 
 
 <dt>spde</dt>
