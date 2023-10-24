@@ -111,20 +111,20 @@ long-format data frame. The format matches the format in the <span class="pkg">t
 <span class="r-in"><span>  data <span class="op">=</span> <span class="va">pcod_2011</span>, mesh <span class="op">=</span> <span class="va">pcod_mesh_2011</span>, family <span class="op">=</span> <span class="fu"><a href="families.html">tweedie</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">spread_sims</span><span class="op">(</span><span class="va">m</span>, nsim <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .iteration X.Intercept. depth_scaled    range      phi tweedie_p  sigma_O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1     2.378534   -0.7933863 88.54519 14.58967  1.589928 1.608106</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2     2.489069   -0.6224076 15.45192 14.78132  1.568329 2.974359</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3     3.005066   -0.4876294 37.05711 15.21137  1.584400 1.697899</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4     3.540592   -0.7320227 15.26638 15.81939  1.603113 3.173216</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5     3.500796   -0.5528166 34.18817 15.19810  1.595213 1.951126</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6     2.350821   -0.8157729 39.22583 14.65105  1.591801 2.166761</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1     2.894762   -0.8545553 19.86566 14.59055  1.600137 2.528615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2     2.908403   -0.6366737 32.36848 14.67494  1.577689 1.924753</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3     2.866009   -0.9098213 35.52301 15.60351  1.583430 1.444568</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4     3.513403   -0.5226909 33.78098 15.98712  1.573360 1.862328</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5     2.873889   -0.8040590 20.37395 14.73140  1.596087 2.669583</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6     2.950808   -0.7785113 16.08796 15.07983  1.598505 2.677013</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">gather_sims</span><span class="op">(</span><span class="va">m</span>, nsim <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .iteration    .variable   .value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 X.Intercept. 3.133451</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2 X.Intercept. 2.588547</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3 X.Intercept. 1.897626</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4 X.Intercept. 3.339313</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5 X.Intercept. 2.934447</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6 X.Intercept. 2.996000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1 X.Intercept. 2.845475</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2 X.Intercept. 2.762401</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3 X.Intercept. 2.581949</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4 X.Intercept. 2.458614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5 X.Intercept. 2.552741</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6 X.Intercept. 3.287949</span>
 <span class="r-in"><span><span class="va">samps</span> <span class="op">&lt;-</span> <span class="fu">gather_sims</span><span class="op">(</span><span class="va">m</span>, nsim <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>

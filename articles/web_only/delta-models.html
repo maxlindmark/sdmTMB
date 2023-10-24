@@ -286,12 +286,14 @@ parameters for each model separately.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Dispersion parameter: 1.03</span></span>
 <span><span class="co">#&gt; Matérn range: 14.80</span></span>
-<span><span class="co">#&gt; Spatial SD: 0.69</span></span>
+<span><span class="co">#&gt; Spatial SD: 0.00</span></span>
 <span><span class="co">#&gt; Spatiotemporal IID SD: 1.45</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ML criterion at convergence: 6126.400</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; See ?tidy.sdmTMB to extract these values as a data frame.</span></span></code></pre></div>
+<span><span class="co">#&gt; See ?tidy.sdmTMB to extract these values as a data frame.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; **Possible issues detected! Check output of sanity().**</span></span></code></pre></div>
 <p>Using the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> function will turn the sdmTMB model
 output into a data frame, with the argument <code>model=1</code> or
 <code>model=2</code> to specify which model component to extract as a
@@ -324,10 +326,10 @@ options.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 5</span></span></span>
 <span><span class="co">#&gt;   term    estimate std.error conf.low conf.high</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> range     14.8      5.02      7.62      28.8 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> phi        1.03     0.050<span style="text-decoration: underline;">2</span>    0.939      1.14</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sigma_O    0.691    0.228     0.361      1.32</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sigma_E    1.45     0.336     0.919      2.28</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> range      14.8     5.02      7.62      28.8 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> phi         1.03    0.050<span style="text-decoration: underline;">2</span>    0.939      1.14</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> sigma_O     0       0         1          1   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> sigma_E     1.45    0.336     0.919      2.28</span></span></code></pre></div>
 <!-- We can use `predict()` to predict density in either log space (the default) or transformed into the response scale (`type = "response"`). -->
 <p>For built-in delta models, the default function will return estimated
 response and parameters for each grid cell for each model separately,
@@ -517,8 +519,8 @@ will just let the depth effect be more wiggly by not specifying
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Dispersion parameter: 0.94</span></span>
 <span><span class="co">#&gt; Matérn range: 0.01</span></span>
-<span><span class="co">#&gt; Spatial SD: 727.58</span></span>
-<span><span class="co">#&gt; Spatiotemporal IID SD: 2065.74</span></span>
+<span><span class="co">#&gt; Spatial SD: 727.59</span></span>
+<span><span class="co">#&gt; Spatiotemporal IID SD: 2065.78</span></span>
 <span><span class="co">#&gt; ML criterion at convergence: 5102.136</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; See ?tidy.sdmTMB to extract these values as a data frame.</span></span>
