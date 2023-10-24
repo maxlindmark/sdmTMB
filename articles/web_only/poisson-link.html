@@ -218,8 +218,8 @@ links and illustrate a limitation.</p>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> No gradients with respect to fixed effects are &gt;= 0.001</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> No fixed-effect standard errors are NA</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> No standard errors look unreasonably large</span></span>
-<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> `sigma_O` is smaller than 0.01</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Consider omitting this part of the model</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> No sigma parameters are &lt; 0.01</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> No sigma parameters are &gt; 100</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Range parameters don't look unreasonably large</span></span></code></pre></div>
 <p>How can we show the effect of depth on catch weight? There is no one
 curve, because the two components use different links (logit + log), so
@@ -264,8 +264,8 @@ point in space that has a different random field value.</p>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> No gradients with respect to fixed effects are &gt;= 0.001</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> No fixed-effect standard errors are NA</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> No standard errors look unreasonably large</span></span>
-<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> `sigma_O` is smaller than 0.01</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Consider omitting this part of the model</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> No sigma parameters are &lt; 0.01</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> No sigma parameters are &gt; 100</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Range parameters don't look unreasonably large</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit_dpg</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Spatial model fit by REML ['sdmTMB']</span></span>
@@ -317,14 +317,12 @@ point in space that has a different random field value.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Dispersion parameter: 0.59</span></span>
 <span><span class="co">#&gt; Matérn anisotropic range (spatial): 4.2 to 60.8 at 142 deg.</span></span>
-<span><span class="co">#&gt; Spatial SD: 0.00</span></span>
+<span><span class="co">#&gt; Spatial SD: 1.97</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; REML criterion at convergence: 5851.613</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; See ?tidy.sdmTMB to extract these values as a data frame.</span></span>
-<span><span class="co">#&gt; See ?plot_anisotropy to plot the anisotropic range.</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; **Possible issues detected! Check output of sanity().**</span></span></code></pre></div>
+<span><span class="co">#&gt; See ?plot_anisotropy to plot the anisotropic range.</span></span></code></pre></div>
 <p>and make the same plot:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p_dpg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit_dpg</span>, newdata <span class="op">=</span> <span class="va">nd</span>, re_form <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
