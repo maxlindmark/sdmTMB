@@ -130,6 +130,15 @@ Type objective_function<Type>::operator()()
   DATA_IVECTOR(ln_tau_G_index);
   DATA_INTEGER(n_g); // number of random intercepts
 
+  // Random slopes:
+  DATA_MATRIX(X_gs); // design matrix of data for random slopes
+  DATA_MATRIX(proj_X_gs); // same, but for predictions
+  DATA_IMATRIX(RE_indexes_gs); // indices (groups) for each, like random intercepts
+  DATA_IMATRIX(proj_RE_indexes_gs); // indices (groups) for predictions
+  DATA_IVECTOR(nobs_RE_gs); // number of groups of each (as vector)
+  DATA_IVECTOR(ln_tau_GS_index); // vector / index for variance
+  DATA_INTEGER(n_gs); // number of random slopes
+
   DATA_SPARSE_MATRIX(A_st); // INLA 'A' projection matrix for unique stations
   DATA_IVECTOR(A_spatial_index); // Vector of stations to match up A_st output
 
@@ -211,7 +220,7 @@ Type objective_function<Type>::operator()()
   DATA_INTEGER(has_smooths);  // whether or not smooths are included
   DATA_IVECTOR(b_smooth_start);
 
-  DATA_IVECTOR(sim_re); // sim random effects? 0,1; order: omega, epsilon, zeta, IID, RW, smoothers
+  DATA_IVECTOR(sim_re); // sim random effects? 0,1; order: omega, epsilon, zeta, IID, RW, smoothers, random slopes
   DATA_IVECTOR(simulate_t); // sim this specific time step? (used for forecasting)
 
   DATA_VECTOR(lwr); // lower bound for censpois on counts
@@ -239,9 +248,13 @@ Type objective_function<Type>::operator()()
   PARAMETER_ARRAY(ln_tau_V);  // random walk sigma
   PARAMETER_ARRAY(rho_time_unscaled); // (k, m) dimension ar1 time correlation rho -Inf to Inf
   PARAMETER_VECTOR(ar1_phi);          // AR1 fields correlation
+
+  // Random effects
   PARAMETER_ARRAY(ln_tau_G);  // random intercept sigmas
   PARAMETER_ARRAY(RE);        // random intercept deviations
-  // Random effects
+  PARAMETER_ARRAY(ln_tau_GS);  // random slope sigmas
+  PARAMETER_ARRAY(RE_gs);        // random slope deviations
+  PARAMETER_ARRAY(b_gs);  // random slope effects
   PARAMETER_ARRAY(b_rw_t);  // random walk effects
   PARAMETER_ARRAY(omega_s);    // spatial effects; n_s length
   PARAMETER_ARRAY(zeta_s);    // spatial effects on covariate; n_s length, n_z cols, n_m
@@ -262,6 +275,7 @@ Type objective_function<Type>::operator()()
   int n_i = y_i.rows();   // number of observations
   int n_m = y_i.cols();   // number of models (delta)
   int n_RE = RE_indexes.cols();  // number of random effect intercepts
+  int n_RE_gs = RE_indexes_gs.cols();  // number of random effect slopes
 
   // DELTA TODO
   // ------------------ Derived variables -------------------------------------------------
@@ -549,6 +563,19 @@ Type objective_function<Type>::operator()()
   REPORT(sigma_G);
   ADREPORT(sigma_G); // time-varying SD
 
+  // IID random slopes:
+  array<Type> sigma_GS(n_gs,n_m); // number of random slopes x number of models
+  for (int m = 0; m < n_m; m++) {
+    for (int h = 0; h < RE_gs.rows(); h++) {
+      int g = ln_tau_GS_index(h);
+      sigma_GS(g,m) = exp(ln_tau_GS(g,m));
+      PARALLEL_REGION jnll -= dnorm(RE_gs(h,m), Type(0), sigma_GS(g,m), true);
+      if (sim_re(6)) SIMULATE{RE_gs(h,m) = rnorm(Type(0), sigma_GS(g,m));}
+    }
+  }
+  REPORT(sigma_GS);
+  ADREPORT(sigma_GS); // random slopes SD
+
   array<Type> sigma_V(X_rw_ik.cols(),n_m);
   // Time-varying effects (dynamic regression):
   if (random_walk == 1 || ar1_time || random_walk == 2) {
@@ -697,6 +724,13 @@ Type objective_function<Type>::operator()()
         }
       }
 
+      // Random slope effects
+      if (n_RE_gs > 0) {
+        for (int k = 0; k < X_gs.cols(); k++) {
+          eta_i(i,m) += X_gs(i,k) * b_gs(k, m); // record it
+        }
+      }
+
       // Spatially varying effects:
       if (include_spatial(m)) {
         if (!omit_spatial_intercept) // FIXME needs to be an n_m vector??
@@ -718,6 +752,7 @@ Type objective_function<Type>::operator()()
         }
       }
       eta_i(i,m) += eta_iid_re_i(i,m);
+
       if (family(m) == 1 && !poisson_link_delta) { // regular binomial
         mu_i(i,m) = LogitInverseLink(eta_i(i,m), link(m));
       } else if (poisson_link_delta) { // a tweak on clogog:
@@ -1073,6 +1108,13 @@ Type objective_function<Type>::operator()()
           }
         }
         proj_fe(i) += proj_iid_re_i(i,m);
+      }
+    }
+
+    // Random slope effects
+    if (n_gs > 0) {
+      for (int m = 0; m < n_m; m++) {
+        proj_fe.col(m) += proj_X_gs * vector<Type>(b_gs.col(m));
       }
     }
 
