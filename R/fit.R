@@ -796,7 +796,12 @@ sdmTMB <- function(
   RE_indexes <- list() # ncols passed into TMB
   nobs_RE <- list() # ncols passed into TMB
   ln_tau_G_index<- list() # passed into TMB
-  X_ij = list() # main effects, passed into TMB
+  RE_indexes_gs <- list() # ncols passed into TMB
+  nobs_RE_gs <- list() # ncols passed into TMB
+  ln_tau_GS_index<- list() # passed into TMB
+  X_ij <- list() # main effects, passed into TMB
+  X_gs <- list() # effects for random slopes, passed into TMB
+  n_gs <- 0 # number of random slopes, passed into TMB
   mf <- list()
   mt <- list()
   sm <- list()
@@ -827,8 +832,22 @@ sdmTMB <- function(
         tt
       }
       reXterms <- lapply(split_formula[[ii]]$bars, termsfun)
-      if (length(attr(reXterms[[1]], "term.labels")))
-        cli_abort("This model appears to have a random slope specified (e.g., y ~ (1 + b | group)). sdmTMB currently can only do random intercepts (e.g., y ~ (1 | group)).")
+      # attr(reXterms[[1]], "term.labels") returns a vector of character names of the random slope vars
+      if (length(attr(reXterms[[1]], "term.labels"))) {
+        RE_slope_names <- attr(reXterms[[1]], "term.labels")
+        n_gs <- length(RE_slope_names)
+        X_gs[[ii]] <- data[,c(RE_slope_names)]
+
+        # same approach here as with random intercepts
+        #fct_check <- vapply(RE_slope_names, function(x) check_valid_factor_levels(data[[x]], .name = x), TRUE)
+        RE_group_names <- split_formula[[ii]]$barnames
+        RE_indexes_gs[[ii]] <- vapply(RE_group_names, function(x) as.integer(data[[x]]) - 1L, rep(1L, nrow(data)))
+        nobs_RE_gs[[ii]] <- unname(apply(RE_indexes_gs[[ii]], 2L, max)) + 1L
+        if (length(nobs_RE_gs[[ii]]) == 0L) nobs_RE_gs[[ii]] <- 0L
+        ln_tau_GS_index[[ii]] <- unlist(lapply(seq_along(nobs_RE_gs[[ii]]), function(i) rep(i, each = nobs_RE_gs[[ii]][i]))) - 1L
+      }
+      #if (length(attr(reXterms[[1]], "term.labels")))
+      #  cli_abort("This model appears to have a random slope specified (e.g., y ~ (1 + b | group)). sdmTMB currently can only do random intercepts (e.g., y ~ (1 | group)).")
     }
 
     mt[[ii]] <- attr(mf[[ii]], "terms")
@@ -1045,6 +1064,12 @@ sdmTMB <- function(
     Xs         = sm$Xs, # optional smoother linear effect matrix
     proj_Zs    = list(),
     proj_Xs    = matrix(nrow = 0L, ncol = 0L),
+    ln_tau_G_index = ln_tau_G_index,
+    RE_indexes_gs = RE_indexes_gs,
+    nobs_RE_gs = nobs_RE_gs,
+    ln_tau_GS_index = ln_tau_GS_index,
+    X_gs = X_gs,
+    n_gs = n_gs,
     b_smooth_start = sm$b_smooth_start,
     proj_lon   = 0,
     proj_lat   = 0,
