@@ -795,10 +795,10 @@ sdmTMB <- function(
   split_formula <- list() # passed to out structure, not TMB
   RE_indexes <- list() # ncols passed into TMB
   nobs_RE <- list() # ncols passed into TMB
-  ln_tau_G_index<- list() # passed into TMB
-  RE_indexes_gs <- list() # ncols passed into TMB
-  nobs_RE_gs <- list() # ncols passed into TMB
-  ln_tau_GS_index<- list() # passed into TMB
+  ln_tau_G_index<- list(0) # passed into TMB
+  RE_indexes_gs <- list(matrix(0, nrow(data), 0)) # ncols passed into TMB
+  nobs_RE_gs <- list(0) # ncols passed into TMB
+  ln_tau_GS_index<- list(0) # passed into TMB
   X_ij <- list() # main effects, passed into TMB
   X_gs <- list() # effects for random slopes, passed into TMB
   n_gs <- 0 # number of random slopes, passed into TMB
@@ -836,7 +836,7 @@ sdmTMB <- function(
       if (length(attr(reXterms[[1]], "term.labels"))) {
         RE_slope_names <- attr(reXterms[[1]], "term.labels")
         n_gs <- length(RE_slope_names)
-        X_gs[[ii]] <- data[,c(RE_slope_names)]
+        X_gs[[ii]] <- as.matrix(data[,c(RE_slope_names)])
 
         # same approach here as with random intercepts
         #fct_check <- vapply(RE_slope_names, function(x) check_valid_factor_levels(data[[x]], .name = x), TRUE)
@@ -873,10 +873,16 @@ sdmTMB <- function(
   }
 
   # split_formula <- split_formula[[1]] # Delete this and next 7 lines as smooths / random effects added
+  # TODO: Currently, we can't have different REs in formulas, e.g.
+  # density ~ (1|fyear), density ~ (1|grp) doesn't work
   RE_indexes <- RE_indexes[[1]]
   nobs_RE <- nobs_RE[[1]]
   ln_tau_G_index <- ln_tau_G_index[[1]]
   sm <- sm[[1]]
+  # TODO: Needs to be fixed for slopes too
+  RE_indexes_gs <- RE_indexes_gs[[1]]
+  nobs_RE_gs <- nobs_RE_gs[[1]]
+  ln_tau_GS_index <- ln_tau_GS_index[[1]]
 
   y_i <- model.response(mf[[1]], "numeric")
   if (delta) {
@@ -1064,12 +1070,15 @@ sdmTMB <- function(
     Xs         = sm$Xs, # optional smoother linear effect matrix
     proj_Zs    = list(),
     proj_Xs    = matrix(nrow = 0L, ncol = 0L),
-    ln_tau_G_index = ln_tau_G_index,
+
     RE_indexes_gs = RE_indexes_gs,
-    nobs_RE_gs = nobs_RE_gs,
-    ln_tau_GS_index = ln_tau_GS_index,
     X_gs = X_gs,
     n_gs = n_gs,
+    #proj_RE_indexes_gs = matrix(0, ncol = 0, nrow = 1), # dummy
+    nobs_RE_gs = nobs_RE_gs,
+    ln_tau_GS_index = ln_tau_GS_index,
+    n_gs = length(unique(ln_tau_GS_index)),
+
     b_smooth_start = sm$b_smooth_start,
     proj_lon   = 0,
     proj_lat   = 0,
@@ -1145,6 +1154,7 @@ sdmTMB <- function(
     b_j        = rep(0, ncol(X_ij[[1]])), # TODO: verify ok
     b_j2       = if (delta) rep(0, ncol(X_ij[[2]])) else numeric(0), # TODO: verify ok
     bs         = if (sm$has_smooths) matrix(0, nrow = ncol(sm$Xs), ncol = n_m) else array(0),
+    #b_gs       = if (n_gs > 0) matrix(0, nrow = ncol(X_gs), ncol = n_m) else array(0),
     ln_tau_O   = rep(0, n_m),
     ln_tau_Z = matrix(0, n_z, n_m),
     ln_tau_E   = rep(0, n_m),
@@ -1159,6 +1169,8 @@ sdmTMB <- function(
     ar1_phi    = rep(0, n_m),
     ln_tau_G   = matrix(0, ncol(RE_indexes), n_m),
     RE         = matrix(0, sum(nobs_RE), n_m),
+    ln_tau_GS   = matrix(0, ncol(RE_indexes_gs), n_m),
+    RE_gs         = matrix(0, sum(nobs_RE_gs), n_m),
     b_rw_t     = array(0, dim = c(tmb_data$n_t, ncol(X_rw_ik), n_m)),
     omega_s    = matrix(0, if (!omit_spatial_intercept) n_s else 0L, n_m),
     zeta_s    = array(0, dim = c(n_s, n_z, n_m)),
@@ -1277,6 +1289,10 @@ sdmTMB <- function(
     tmb_random <- c(tmb_random, "RE")
     tmb_map <- unmap(tmb_map, c("ln_tau_G", "RE"))
   }
+  #if (nobs_RE_gs[[1]] > 0) {
+  #  tmb_random <- c(tmb_random, "RE_gs")
+  #  tmb_map <- unmap(tmb_map, c("ln_tau_GS", "RE_gs"))
+  #}
   if (reml) tmb_random <- c(tmb_random, "b_j")
   if (reml && delta) tmb_random <- c(tmb_random, "b_j2")
 

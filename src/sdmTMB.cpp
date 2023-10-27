@@ -131,10 +131,10 @@ Type objective_function<Type>::operator()()
   DATA_INTEGER(n_g); // number of random intercepts
 
   // Random slopes:
-  DATA_MATRIX(X_gs); // design matrix of data for random slopes
-  DATA_MATRIX(proj_X_gs); // same, but for predictions
+  DATA_STRUCT(X_gs, sdmTMB::LOM_t); // list of model matrices
+//  DATA_STRUCT(proj_X_gs, sdmTMB::LOM_t); // list of model matrices for predictions
   DATA_IMATRIX(RE_indexes_gs); // indices (groups) for each, like random intercepts
-  DATA_IMATRIX(proj_RE_indexes_gs); // indices (groups) for predictions
+//  DATA_IMATRIX(proj_RE_indexes_gs); // indices (groups) for predictions
   DATA_IVECTOR(nobs_RE_gs); // number of groups of each (as vector)
   DATA_IVECTOR(ln_tau_GS_index); // vector / index for variance
   DATA_INTEGER(n_gs); // number of random slopes
@@ -254,7 +254,7 @@ Type objective_function<Type>::operator()()
   PARAMETER_ARRAY(RE);        // random intercept deviations
   PARAMETER_ARRAY(ln_tau_GS);  // random slope sigmas
   PARAMETER_ARRAY(RE_gs);        // random slope deviations
-  PARAMETER_ARRAY(b_gs);  // random slope effects
+  //PARAMETER_ARRAY(b_gs);  // random slope effects
   PARAMETER_ARRAY(b_rw_t);  // random walk effects
   PARAMETER_ARRAY(omega_s);    // spatial effects; n_s length
   PARAMETER_ARRAY(zeta_s);    // spatial effects on covariate; n_s length, n_z cols, n_m
@@ -725,11 +725,9 @@ Type objective_function<Type>::operator()()
       }
 
       // Random slope effects
-      if (n_RE_gs > 0) {
-        for (int k = 0; k < X_gs.cols(); k++) {
-          eta_i(i,m) += X_gs(i,k) * b_gs(k, m); // record it
-        }
-      }
+      //if (n_RE_gs > 0) {
+      //  eta_i(i,m) += X_gs(m) * vector<Type>(b_gs.col(m));// record it
+      //}
 
       // Spatially varying effects:
       if (include_spatial(m)) {
@@ -1112,11 +1110,11 @@ Type objective_function<Type>::operator()()
     }
 
     // Random slope effects
-    if (n_gs > 0) {
-      for (int m = 0; m < n_m; m++) {
-        proj_fe.col(m) += proj_X_gs * vector<Type>(b_gs.col(m));
-      }
-    }
+    // if (n_gs > 0) {
+    //   for (int m = 0; m < n_m; m++) {
+    //     proj_fe.col(m) += proj_X_gs(m) * vector<Type>(b_gs.col(m));
+    //   }
+    // }
 
     // Random walk covariates:
     array<Type> proj_rw_i(n_p,n_m);
