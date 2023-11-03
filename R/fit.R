@@ -796,11 +796,13 @@ sdmTMB <- function(
   RE_indexes <- list() # ncols passed into TMB
   nobs_RE <- list() # ncols passed into TMB
   ln_tau_G_index<- list(0) # passed into TMB
-  RE_indexes_gs <- list(matrix(0, nrow(data), 0)) # ncols passed into TMB
+  RE_indexes_gs <- list(matrix(0, nrow(data), 0))
+  RE_indexes_gs_array <- array(0, dim = c(1,1,1)) # array form of RE_indexes_gs, passed into TMB
   nobs_RE_gs <- list(0) # ncols passed into TMB
-  ln_tau_GS_index<- list(0) # passed into TMB
+  ln_tau_GS_index <- list(0) # passed into TMB
   X_ij <- list() # main effects, passed into TMB
-  X_gs <- list() # effects for random slopes, passed into TMB
+  X_gs <- list() # effects for random slopes
+  X_gs_array <- array(0, dim = c(1,1,1)) # array form of X_gs, passed into TMB
   n_gs <- 0 # number of random slopes, passed into TMB
   mf <- list()
   mt <- list()
@@ -834,17 +836,29 @@ sdmTMB <- function(
       reXterms <- lapply(split_formula[[ii]]$bars, termsfun)
       # attr(reXterms[[1]], "term.labels") returns a vector of character names of the random slope vars
       if (length(attr(reXterms[[1]], "term.labels"))) {
-        RE_slope_names <- attr(reXterms[[1]], "term.labels")
-        n_gs <- length(RE_slope_names)
-        X_gs[[ii]] <- as.matrix(data[,c(RE_slope_names)])
+        for(iii in 1:length(reXterms)) { # loop over grouping variables for random slopes
+          RE_slope_names <- attr(reXterms[[iii]], "term.labels")
+          if(iii == 1) {n_gs <- length(RE_slope_names)} else {n_gs <- c(n_gs, length(RE_slope_names))}
+          temp_mat <- as.matrix(data[,c(RE_slope_names)])
+          if(iii == 1) {X_gs[[ii]] <- temp_mat} else {X_gs[[ii]] <- cbind(X_gs[[ii]], temp_mat)}# X_gs is the design matrix with cols = n_gs
 
-        # same approach here as with random intercepts
-        #fct_check <- vapply(RE_slope_names, function(x) check_valid_factor_levels(data[[x]], .name = x), TRUE)
-        RE_group_names <- split_formula[[ii]]$barnames
-        RE_indexes_gs[[ii]] <- vapply(RE_group_names, function(x) as.integer(data[[x]]) - 1L, rep(1L, nrow(data)))
-        nobs_RE_gs[[ii]] <- unname(apply(RE_indexes_gs[[ii]], 2L, max)) + 1L
-        if (length(nobs_RE_gs[[ii]]) == 0L) nobs_RE_gs[[ii]] <- 0L
-        ln_tau_GS_index[[ii]] <- unlist(lapply(seq_along(nobs_RE_gs[[ii]]), function(i) rep(i, each = nobs_RE_gs[[ii]][i]))) - 1L
+          RE_group_names <- split_formula[[ii]]$barnames # names of the grouping variable(s)
+          temp_mat <- vapply(RE_group_names, function(x) as.integer(data[[x]]) - 1L, rep(1L, nrow(data)))
+          if(iii == 1) {RE_indexes_gs[[ii]] <- matrix(temp_mat[,rep(iii,length(RE_slope_names))], ncol=1)} else {RE_indexes_gs[[ii]] <- cbind(RE_indexes_gs[[ii]], temp_mat[,rep(iii,length(RE_slope_names))])}
+
+        #   temp_vec <- unname(apply(temp_mat, 2L, max)) + 1L # number of levels of each group
+        #   if(length(temp_vec)==0) temp_vec <- 0L
+        #   if(iii == length(reXterms)) {nobs_RE_gs[[ii]] <- rep(temp_vec, n_gs)} # if last, this should return a vector that represents # levels in each column of X_gs
+        #
+        #   #temp_vec2 <- unlist(lapply(seq_along(temp_vec), function(i) rep(i, each = temp_vec[i]))) - 1L
+        #   if(iii == length(reXterms)) {ln_tau_GS_index[[ii]] <- rep(1:length(nobs_RE_gs[[ii]]), nobs_RE_gs[[ii]])} #else {ln_tau_GS_index[[ii]] <- c(ln_tau_GS_index[[ii]], temp_vec2)}
+        }
+
+        temp_vec <- unname(apply(temp_mat, 2L, max)) + 1L # number of levels of each group
+        if(length(temp_vec)==0) temp_vec <- 0L
+        nobs_RE_gs[[ii]] <- rep(temp_vec, n_gs) # if last, this should return a vector that represents # levels in each column of X_gs
+
+        ln_tau_GS_index[[ii]] <- rep(1:length(nobs_RE_gs[[ii]]), nobs_RE_gs[[ii]])
       }
       #if (length(attr(reXterms[[1]], "term.labels")))
       #  cli_abort("This model appears to have a random slope specified (e.g., y ~ (1 + b | group)). sdmTMB currently can only do random intercepts (e.g., y ~ (1 | group)).")
@@ -854,6 +868,45 @@ sdmTMB <- function(
     # parse everything mgcv + smoothers:
     sm[[ii]] <- parse_smoothers(formula = formula[[ii]], data = data, knots = knots)
   }
+
+  n_slope_cov <- 0 # max of slope covariates, dimensions for X_gs array
+  col_index_gs <- 0
+  slope_mu_indexes <- matrix(0, 1, 1)
+  if(sum(unlist(lapply(X_gs, ncol))) > 0) {
+    # adjust the RE slope indices so that they are flattened across (1) models and (2) covariates.
+    incr <- 0
+    for (ii in seq_along(formula)) { # loop over models
+      for(iii in 1:ncol(RE_indexes_gs[[ii]])) { # loop over RE indices
+        RE_indexes_gs[[ii]][,iii] <- RE_indexes_gs[[ii]][,iii] + incr
+        incr <- max(RE_indexes_gs[[ii]][,iii]) + 1
+        tmp <- rep(1, length(unique(RE_indexes_gs[[ii]][,iii])))
+        if(ii*iii==1) {
+          col_index_gs <- tmp
+        } else {
+          col_index_gs <- c(col_index_gs, max(col_index_gs) + tmp)
+        }
+      }
+      if(ii > 1) ln_tau_GS_index[[ii]] <- ln_tau_GS_index[[ii]] + max(ln_tau_GS_index[[ii-1]])
+    }
+    max_row <- max(unlist(lapply(RE_indexes_gs, nrow)))
+    n_slope_cov <- max(unlist(lapply(RE_indexes_gs, ncol)))
+    n_m <- length(RE_indexes_gs)
+    RE_indexes_gs_array <- array(0, dim = c(max_row, n_slope_cov, n_m))
+    X_gs_array <- array(0, dim = c(max_row, n_slope_cov, n_m))
+    slope_mu_indexes <- matrix(0, n_slope_cov, n_m)# create matrix of indices for slope means
+    # Create arrays that get passed to TMB
+    incr <- 0
+    for (ii in seq_along(formula)) {
+      RE_indexes_gs_array[1:nrow(RE_indexes_gs[[ii]]), 1:ncol(RE_indexes_gs[[ii]]), ii] <- RE_indexes_gs[[ii]]
+      X_gs_array[1:nrow(X_gs[[ii]]), 1:ncol(X_gs[[ii]]), ii] <- X_gs[[ii]]
+      slope_mu_indexes[1:ncol(RE_indexes_gs[[ii]]),ii] <- 1:ncol(RE_indexes_gs[[ii]]) - 1L + incr
+      incr <- max(slope_mu_indexes[1:ncol(RE_indexes_gs[[ii]]),ii]) + 1L
+    }
+
+
+  }
+  ln_tau_GS_index <- unlist(ln_tau_GS_index) # flatten to single vector
+
 
   if (delta) {
     if (any(unlist(lapply(nobs_RE, function(.x) .x > 0)))) {
@@ -879,10 +932,6 @@ sdmTMB <- function(
   nobs_RE <- nobs_RE[[1]]
   ln_tau_G_index <- ln_tau_G_index[[1]]
   sm <- sm[[1]]
-  # TODO: Needs to be fixed for slopes too
-  RE_indexes_gs <- RE_indexes_gs[[1]]
-  nobs_RE_gs <- nobs_RE_gs[[1]]
-  ln_tau_GS_index <- ln_tau_GS_index[[1]]
 
   y_i <- model.response(mf[[1]], "numeric")
   if (delta) {
@@ -1071,13 +1120,12 @@ sdmTMB <- function(
     proj_Zs    = list(),
     proj_Xs    = matrix(nrow = 0L, ncol = 0L),
 
-    RE_indexes_gs = RE_indexes_gs,
-    X_gs = X_gs,
-    n_gs = n_gs,
-    #proj_RE_indexes_gs = matrix(0, ncol = 0, nrow = 1), # dummy
-    nobs_RE_gs = nobs_RE_gs,
-    ln_tau_GS_index = ln_tau_GS_index,
-    n_gs = length(unique(ln_tau_GS_index)),
+    RE_indexes_gs = RE_indexes_gs_array, # index matrices for RE slopes, as a list across models
+    X_gs = X_gs_array, # design matrices of covariates, as a list across models
+    n_slope_cov = n_slope_cov, # max number of slope covariates
+    ln_tau_GS_index = ln_tau_GS_index, # vector of variance / group indices for b estimates
+    col_index_gs = col_index_gs,
+    slope_mu_indexes = slope_mu_indexes,
 
     b_smooth_start = sm$b_smooth_start,
     proj_lon   = 0,
@@ -1154,7 +1202,7 @@ sdmTMB <- function(
     b_j        = rep(0, ncol(X_ij[[1]])), # TODO: verify ok
     b_j2       = if (delta) rep(0, ncol(X_ij[[2]])) else numeric(0), # TODO: verify ok
     bs         = if (sm$has_smooths) matrix(0, nrow = ncol(sm$Xs), ncol = n_m) else array(0),
-    #b_gs       = if (n_gs > 0) matrix(0, nrow = ncol(X_gs), ncol = n_m) else array(0),
+    #b_gs       = rep(0, sum(unlist(lapply(X_gs, ncol)))),
     ln_tau_O   = rep(0, n_m),
     ln_tau_Z = matrix(0, n_z, n_m),
     ln_tau_E   = rep(0, n_m),
@@ -1169,8 +1217,8 @@ sdmTMB <- function(
     ar1_phi    = rep(0, n_m),
     ln_tau_G   = matrix(0, ncol(RE_indexes), n_m),
     RE         = matrix(0, sum(nobs_RE), n_m),
-    ln_tau_GS   = matrix(0, ncol(RE_indexes_gs), n_m),
-    RE_gs         = matrix(0, sum(nobs_RE_gs), n_m),
+    ln_tau_GS   = if(max(ln_tau_GS_index) == 0) {0} else {rep(0, max(ln_tau_GS_index))},
+    RE_gs         = if(length(ln_tau_GS_index) == 0) {0} else {rep(0, length(ln_tau_GS_index))},
     b_rw_t     = array(0, dim = c(tmb_data$n_t, ncol(X_rw_ik), n_m)),
     omega_s    = matrix(0, if (!omit_spatial_intercept) n_s else 0L, n_m),
     zeta_s    = array(0, dim = c(n_s, n_z, n_m)),
@@ -1289,10 +1337,11 @@ sdmTMB <- function(
     tmb_random <- c(tmb_random, "RE")
     tmb_map <- unmap(tmb_map, c("ln_tau_G", "RE"))
   }
-  #if (nobs_RE_gs[[1]] > 0) {
-  #  tmb_random <- c(tmb_random, "RE_gs")
-  #  tmb_map <- unmap(tmb_map, c("ln_tau_GS", "RE_gs"))
-  #}
+  if (sum(unlist(lapply(X_gs, ncol))) > 0) {
+    tmb_random <- c(tmb_random, "RE_gs") # RE_gs is the random devs
+    # b_gs and ln_tau_GS are fixed effect pars controlling the REs
+    tmb_map <- unmap(tmb_map, c("ln_tau_GS", "RE_gs"))#, "b_gs"))
+  }
   if (reml) tmb_random <- c(tmb_random, "b_j")
   if (reml && delta) tmb_random <- c(tmb_random, "b_j2")
 

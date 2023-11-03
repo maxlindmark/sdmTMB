@@ -131,13 +131,12 @@ Type objective_function<Type>::operator()()
   DATA_INTEGER(n_g); // number of random intercepts
 
   // Random slopes:
-  DATA_STRUCT(X_gs, sdmTMB::LOM_t); // list of model matrices
-//  DATA_STRUCT(proj_X_gs, sdmTMB::LOM_t); // list of model matrices for predictions
-  DATA_IMATRIX(RE_indexes_gs); // indices (groups) for each, like random intercepts
-//  DATA_IMATRIX(proj_RE_indexes_gs); // indices (groups) for predictions
-  DATA_IVECTOR(nobs_RE_gs); // number of groups of each (as vector)
+  DATA_ARRAY(X_gs); // n_i x max(n_var) x n_m
+  DATA_IARRAY(RE_indexes_gs); // n_i x max(n_var) x n_m
+  DATA_INTEGER(n_slope_cov);
   DATA_IVECTOR(ln_tau_GS_index); // vector / index for variance
-  DATA_INTEGER(n_gs); // number of random slopes
+  DATA_IVECTOR(col_index_gs); // index of columns in X_gs that each slope is associated with
+  DATA_IMATRIX(slope_mu_indexes); // matrix of indices for b slope mu
 
   DATA_SPARSE_MATRIX(A_st); // INLA 'A' projection matrix for unique stations
   DATA_IVECTOR(A_spatial_index); // Vector of stations to match up A_st output
@@ -252,9 +251,9 @@ Type objective_function<Type>::operator()()
   // Random effects
   PARAMETER_ARRAY(ln_tau_G);  // random intercept sigmas
   PARAMETER_ARRAY(RE);        // random intercept deviations
-  PARAMETER_ARRAY(ln_tau_GS);  // random slope sigmas
-  PARAMETER_ARRAY(RE_gs);        // random slope deviations
-  //PARAMETER_ARRAY(b_gs);  // random slope effects
+  PARAMETER_VECTOR(ln_tau_GS);  // random slope sigmas
+  PARAMETER_VECTOR(RE_gs);        // random slope deviations
+  //PARAMETER_VECTOR(b_gs);  // mean slope effects
   PARAMETER_ARRAY(b_rw_t);  // random walk effects
   PARAMETER_ARRAY(omega_s);    // spatial effects; n_s length
   PARAMETER_ARRAY(zeta_s);    // spatial effects on covariate; n_s length, n_z cols, n_m
@@ -275,7 +274,7 @@ Type objective_function<Type>::operator()()
   int n_i = y_i.rows();   // number of observations
   int n_m = y_i.cols();   // number of models (delta)
   int n_RE = RE_indexes.cols();  // number of random effect intercepts
-  int n_RE_gs = RE_indexes_gs.cols();  // number of random effect slopes
+  //int n_RE_gs = RE_indexes_gs.cols();  // number of random effect slopes
 
   // DELTA TODO
   // ------------------ Derived variables -------------------------------------------------
@@ -563,18 +562,16 @@ Type objective_function<Type>::operator()()
   REPORT(sigma_G);
   ADREPORT(sigma_G); // time-varying SD
 
-  // IID random slopes:
-  array<Type> sigma_GS(n_gs,n_m); // number of random slopes x number of models
-  for (int m = 0; m < n_m; m++) {
-    for (int h = 0; h < RE_gs.rows(); h++) {
-      int g = ln_tau_GS_index(h);
-      sigma_GS(g,m) = exp(ln_tau_GS(g,m));
-      PARALLEL_REGION jnll -= dnorm(RE_gs(h,m), Type(0), sigma_GS(g,m), true);
-      if (sim_re(6)) SIMULATE{RE_gs(h,m) = rnorm(Type(0), sigma_GS(g,m));}
+  // IID random slopes: these represent the random deviates centered on 0
+  if(col_index_gs(0) > 0) { // random slopes estimated
+    //int n_vars = 0;
+    for (int i = 0; i < ln_tau_GS_index.size(); i++) {
+      //if(ln_tau_GS_index(i) > n_vars) n_vars = ln_tau_GS_index(i);
+      PARALLEL_REGION jnll -= dnorm(RE_gs(i), Type(0), exp(ln_tau_GS(ln_tau_GS_index(i) - 1)), true);
+      if (sim_re(6)) SIMULATE{RE_gs(i) = rnorm(Type(0), exp(ln_tau_GS(ln_tau_GS_index(i) - 1)));}
+      //std::cout <<ln_tau_GS_index(i) << exp(ln_tau_GS(ln_tau_GS_index(i) - 1)) << '\n';
     }
   }
-  REPORT(sigma_GS);
-  ADREPORT(sigma_GS); // random slopes SD
 
   array<Type> sigma_V(X_rw_ik.cols(),n_m);
   // Time-varying effects (dynamic regression):
@@ -702,9 +699,10 @@ Type objective_function<Type>::operator()()
     }
   }
 
-  matrix<Type> mu_i(n_i,n_m), eta_i(n_i,n_m), eta_rw_i(n_i,n_m), eta_iid_re_i(n_i,n_m);
+  matrix<Type> mu_i(n_i,n_m), eta_i(n_i,n_m), eta_rw_i(n_i,n_m), eta_iid_re_i(n_i,n_m), beta_iid_re_i(n_i,n_m);
   eta_rw_i.setZero();
-  eta_iid_re_i.setZero();
+  eta_iid_re_i.setZero(); // total group random effect per observation
+  beta_iid_re_i.setZero(); // total slope random effect per observation
   mu_i.setZero();
   eta_i.setZero();
 
@@ -712,6 +710,7 @@ Type objective_function<Type>::operator()()
 
   // combine parts:
   for (int m = 0; m < n_m; m++) {
+
     for (int i = 0; i < n_i; i++) {
       eta_i(i,m) = eta_fixed_i(i,m) + eta_smooth_i(i,m);
       if ((n_m == 2 && m == 1) || n_m == 1) {
@@ -725,9 +724,13 @@ Type objective_function<Type>::operator()()
       }
 
       // Random slope effects
-      //if (n_RE_gs > 0) {
-      //  eta_i(i,m) += X_gs(m) * vector<Type>(b_gs.col(m));// record it
-      //}
+      if (col_index_gs(0) > 0) {
+        for (int k = 0; k < n_slope_cov; k++) {
+          //X_gs(i,k,m) will be 0 if not needed
+          beta_iid_re_i(i,m) += X_gs(i,k,m) * (RE_gs(RE_indexes_gs(i,k,m)) );//+ b_gs(slope_mu_indexes(k,m)));
+        }
+        eta_i(i,m) += beta_iid_re_i(i,m);
+      }
 
       // Spatially varying effects:
       if (include_spatial(m)) {
