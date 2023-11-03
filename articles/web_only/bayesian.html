@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Bayesian estimation with sdmTMB</h1>
             
-            <h4 data-toc-skip class="date">2023-11-02</h4>
+            <h4 data-toc-skip class="date">2023-11-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pbs-assess/sdmTMB/blob/HEAD/vignettes/web_only/bayesian.Rmd" class="external-link"><code>vignettes/web_only/bayesian.Rmd</code></a></small>
       <div class="d-none name"><code>bayesian.Rmd</code></div>
@@ -99,7 +99,7 @@ site</a> under ‘Articles’.</strong></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pbs-assess.github.io/sdmTMB/index.html">sdmTMB</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pbs-assess.github.io/sdmTMB/">sdmTMB</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstan/" class="external-link">rstan</a></span><span class="op">)</span> <span class="co"># for plot() method</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>mc.cores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># use rstan parallel processing</span></span></code></pre></div>
 <p>Bayesian estimation is possible with sdmTMB by passing fitted models
@@ -397,7 +397,7 @@ of required samples.</p>
 <span><span class="co">#&gt; omega_s[85]  -0.29    0.01 0.21  -0.68  -0.44  -0.30  -0.15   0.11  1111 1.00</span></span>
 <span><span class="co">#&gt; lp__        136.06    0.93 9.26 118.11 129.87 136.38 142.46 152.88   100 1.02</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Samples were drawn using NUTS(diag_e) at Thu Nov  2 17:16:46 2023.</span></span>
+<span><span class="co">#&gt; Samples were drawn using NUTS(diag_e) at Fri Nov  3 17:57:59 2023.</span></span>
 <span><span class="co">#&gt; For each parameter, n_eff is a crude measure of effective sample size,</span></span>
 <span><span class="co">#&gt; and Rhat is the potential scale reduction factor on split chains (at </span></span>
 <span><span class="co">#&gt; convergence, Rhat=1).</span></span></code></pre></div>
