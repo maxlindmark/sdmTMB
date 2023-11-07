@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +64,10 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="sdmtmb-development-version">sdmTMB (development version)<a class="anchor" aria-label="anchor" href="#sdmtmb-development-version"></a></h2>
-</div>
+<ul><li><p>Improve warnings/errors around use of <code>do_index = TRUE</code> and <code><a href="../reference/get_index.html">get_index()</a></code> if <code>newdata = NULL</code>. <a href="https://github.com/pbs-assess/sdmTMB/issues/276" class="external-link">#276</a></p></li>
+<li><p>Fix prediction with <code>offset</code> when <code>newdata</code> is <code>NULL</code> but <code>offset</code> is specified. <a href="https://github.com/pbs-assess/sdmTMB/issues/274" class="external-link">#274</a></p></li>
+<li><p>Fix prediction failure when both <code>offset</code> and <code>nsim</code> are provided and model includes <code>extra_time</code>. <a href="https://github.com/pbs-assess/sdmTMB/issues/273" class="external-link">#273</a></p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.1" id="sdmtmb-041">sdmTMB 0.4.1<a class="anchor" aria-label="anchor" href="#sdmtmb-041"></a></h2><p class="text-muted">CRAN release: 2023-11-03</p>
 <ul><li><p>Fix memory issues detected by CRAN ‘Additional issues’ clang-UBSAN, valgrind.</p></li>

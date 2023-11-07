@@ -14,7 +14,7 @@ partial differential equation) approximation to Gaussian random fields."><!-- ma
     
     <a class="navbar-brand me-2" href="../index.html">sdmTMB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -293,18 +293,20 @@ fitting (<code>FALSE</code>)?</p></dd>
 memory and time when working with large datasets or projection grids since
 the TMB object doesn't have to be rebuilt with <code><a href="predict.sdmTMB.html">predict.sdmTMB()</a></code> and
 <code><a href="get_index.html">get_index()</a></code>. If <code>TRUE</code>, then <code>predict_args</code> must have a <code>newdata</code> element
-supplied and <code>area</code> can be supplied to <code>index_args</code>.</p></dd>
+supplied and <code>area</code> can be supplied to <code>index_args</code>.
+Most users can ignore this option.</p></dd>
 
 
 <dt>predict_args</dt>
-<dd><p>A list of arguments to pass to <code><a href="predict.sdmTMB.html">predict.sdmTMB()</a></code> if
-<code>do_index = TRUE</code>.</p></dd>
+<dd><p>A list of arguments to pass to <code><a href="predict.sdmTMB.html">predict.sdmTMB()</a></code> <strong>if</strong>
+<code>do_index = TRUE</code>. Most users can ignore this option.</p></dd>
 
 
 <dt>index_args</dt>
-<dd><p>A list of arguments to pass to <code><a href="get_index.html">get_index()</a></code> if
+<dd><p>A list of arguments to pass to <code><a href="get_index.html">get_index()</a></code> <strong>if</strong>
 <code>do_index = TRUE</code>. Currently, only <code>area</code> is supported. Bias correction
-can be done when calling <code><a href="get_index.html">get_index()</a></code> on the resulting fitted object.</p></dd>
+can be done when calling <code><a href="get_index.html">get_index()</a></code> on the resulting fitted object.
+Most users can ignore this option.</p></dd>
 
 
 <dt>experimental</dt>
@@ -741,8 +743,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              coef.est coef.se</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      2.55    0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    -2.93    2.07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2    -0.15    0.09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_1    -0.15    0.09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdepthyear_2    -2.93    2.07</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Smooth terms:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Std. Dev.</span>
@@ -1048,8 +1050,8 @@ estimated abundance indices for West Coast groundfishes. ICES J. Mar. Sci.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dispersion parameter: 12.80</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Tweedie p: 1.56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Matérn range: 0.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2571.96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal IID SD: 2087.15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatial SD: 2572.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spatiotemporal IID SD: 2087.99</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ML criterion at convergence: 2911.371</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> See ?tidy.sdmTMB to extract these values as a data frame.</span>
