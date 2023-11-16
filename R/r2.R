@@ -183,6 +183,10 @@ r2.sdmTMB <- function(model, ...) {
   phi * mu^p
 }
 
+# .variance_family_nbinom <- function(x, mu, phi, faminfo) { #FIXME: should this be called ".get_variance_family_nbinom" or something? Why faminfo?
+#   phi <- exp(unname(get_pars(x)$ln_phi))
+# }
+
 .get_distribution_variance <- function(x) {
   phi <- exp(get_pars(x)$ln_phi)
   if (x$family$family %in% "gaussian") {
@@ -191,16 +195,21 @@ r2.sdmTMB <- function(model, ...) {
   if (x$family$family %in% "Gamma") {
     return(stats::family(x)$variance(exp(-0.5 * log(phi))))
   }
-  if (x$family$family %in% c("tweedie", "Gamma", "poisson")) {
+  if (x$family$family %in% c("tweedie", "Gamma", "poisson", "nbinom1", "nbinom2")) {
     re <- x$split_formula[[1]][[2]]
-    if (length(re)) {
-      rterms <- paste0("(1 | ", re, ")") # FIXME: works for multiple!?
+    if (length(re) >= 1) {
+      rterms <- paste0("( ", re, ")")
       nullform <- reformulate(rterms, response = ".")
     } else {
       nullform <- ". ~ 1"
     }
     null_model <- update(x, nullform)
-    mu <- null_model$family$linkinv(unname(fixef(null_model)))
+    # regarding mu below:
+    #FIXME: "mu <- null_model ..."  is lambda2 in Nakagawa 2017 supp, which is commented out in their example. Below is their chosen approach https://royalsocietypublishing.org/action/downloadSupplement?doi=10.1098%2Frsif.2017.0213&file=rsif20170213supp2.pdf
+    #FIXME: below is the lambda in Nakagawa 2017. We are not sure about 1) only sigma_G, but likely all sigmas, 2) why 0.5*sum of two random variances? is this just mean if no. of groups is not 2?
+    #mu <- as.numeric(exp(fixef(fit2) + 0.5 * sum(subset(tidy(fit2, effects = "ran_par"), term == "sigma_G")$estimate^2)))
+    mu <- null_model$family$linkinv(unname(fixef(null_model))) #FIXME: fixef probably not working with breakpoint effect
+    # above is the approximation, this is the accurate: mu <- exp(fixef(parmodCPr) + 0.5 * (VarCorr(parmodCPr)$Population[1] + VarCorr(parmodCPr)$Container[1]))
   }
   cvsquared <- tryCatch(
     {
